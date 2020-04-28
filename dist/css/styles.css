@@ -1006,11 +1006,11 @@ a {
   .btn_animate {
     animation: FadeIn 1s forwards; }
 
-.logo {
+.logo__icon {
   width: 256px;
   height: 64px; }
   @media screen and (max-width: 768px) {
-    .logo {
+    .logo__icon {
       width: 136px;
       height: 34px; } }
 
@@ -1129,7 +1129,7 @@ a {
     opacity: 0; } }
 
 .header {
-  z-index: 9997;
+  z-index: 9990;
   position: fixed;
   width: 100%;
   background-color: #0b0b0b; }
@@ -1148,15 +1148,15 @@ a {
       .header__btn {
         display: none; } }
 
-.burger {
+.burger__icon {
   width: 48px;
   height: 48px;
   transition: filter 0.2s 1s; }
-  .burger:hover, .burger:focus, .burger:active {
+  .burger__icon:hover, .burger__icon:focus, .burger__icon:active {
     filter: drop-shadow(0 0 10px #fff); }
-    .burger:hover rect, .burger:focus rect, .burger:active rect {
+    .burger__icon:hover rect, .burger__icon:focus rect, .burger__icon:active rect {
       animation: drawBurgerReq 1s forwards, opacityRect 2s forwards; }
-    .burger:hover line, .burger:focus line, .burger:active line {
+    .burger__icon:hover line, .burger__icon:focus line, .burger__icon:active line {
       animation: drawBurgerLines 1.5s forwards, opacityLines 1.5s forwards; }
 
 @keyframes opacityRect {
@@ -1190,6 +1190,107 @@ a {
     stroke-dasharray: 24;
     stroke-dashoffset: 0;
     stroke-opacity: 0; } }
+
+.close-btn__icon {
+  stroke-dasharray: 305;
+  stroke-dashoffset: 305;
+  fill: white; }
+  .close-btn__icon:hover, .close-btn__icon:focus, .close-btn__icon:active {
+    animation: drawCloseIcon 1s forwards, opacityIcon 0.5s 1s forwards; }
+
+@keyframes drawCloseIcon {
+  from {
+    stroke-dasharray: 305;
+    stroke-dashoffset: 305;
+    fill-opacity: 0; }
+  to {
+    stroke-dasharray: 305;
+    stroke-dashoffset: 0;
+    fill-opacity: 0; } }
+
+@keyframes closeIconOpacity {
+  from {
+    fill-opacity: 0; }
+  to {
+    fill-opacity: 1; } }
+
+.nav {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9990;
+  background-color: #0b0b0b;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-100vh);
+  transition: transform 1s; }
+  .nav_active {
+    transform: translateY(0); }
+  .nav__list {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%; }
+    @media screen and (max-width: 768px) {
+      .nav__list {
+        flex-direction: column; } }
+  .nav__item {
+    flex: 0 1 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    text-align: center;
+    height: 50%; }
+    @media screen and (max-width: 768px) {
+      .nav__item {
+        width: 50%; } }
+    .nav__item:not(:last-of-type) {
+      border-right: 1px solid rgba(255, 255, 255, 0.1); }
+      @media screen and (max-width: 768px) {
+        .nav__item:not(:last-of-type) {
+          border-right: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1); } }
+  .nav__link {
+    text-align: center;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    text-stroke: 1px white;
+    transition: color 0.2s, text-stroke 0.2s; }
+    .nav__link_active {
+      -webkit-text-stroke: 0;
+      text-stroke: 0;
+      color: #fff;
+      text-shadow: 0px 0px 8px #ffffff; }
+    .nav__link:hover, .nav__link:focus {
+      -webkit-text-stroke: 0;
+      text-stroke: 0;
+      color: #fff; }
+    .nav__link:active {
+      -webkit-text-stroke: 0;
+      text-stroke: 0;
+      color: #fff;
+      text-shadow: 0px 0px 8px #ffffff; }
+  .nav__close-link {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%); }
+    @media screen and (max-width: 768px) {
+      .nav__close-link {
+        top: 30px;
+        left: auto;
+        right: 15px; } }
 
 .hero {
   position: relative; }

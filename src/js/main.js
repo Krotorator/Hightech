@@ -7,10 +7,8 @@ require("waypoints/lib/noframework.waypoints.js");
 
 var bLazy = new Blazy();
 
-console.log(2);
-
 document.addEventListener("DOMContentLoaded", () => {
-    console.log(1);
+    /////////////////////////////SLIDER
     var testimonialsSliderThumbs = new Swiper(".testimonials-thumbs", {
         spaceBetween: 224,
         slidesPerView: 2,
@@ -69,6 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         false
     );
+
+    //////////////NAV
+    let nav = document.querySelector("#nav");
+    let wrapper = document.querySelector("#wrapper");
+    let burger = document.querySelector("#burger");
+    let closeBtn = [...document.querySelectorAll(".close-btn")];
+
+    burger.addEventListener("click", () => {
+        nav.classList.add("nav_active");
+        wrapper.classList.add("wrapper_hidden");
+    });
+    for (let i = 0; i < closeBtn.length; i++) {
+        const btn = closeBtn[i];
+        btn.addEventListener("click", () => {
+            nav.classList.remove("nav_active");
+            wrapper.classList.remove("wrapper_hidden");
+        });
+    }
 
     ///////////////// ANIMATIONS
 

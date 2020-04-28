@@ -118,11 +118,13 @@ a {
 }
 
 .logo {
-    width: 256px;
-    height: 64px;
-    @media screen and(max-width: 768px) {
-        width: 136px;
-        height: 34px;
+    &__icon {
+        width: 256px;
+        height: 64px;
+        @media screen and(max-width: 768px) {
+            width: 136px;
+            height: 34px;
+        }
     }
 }
 
@@ -256,11 +258,9 @@ a {
 
 //////HEADER STARTS
 .header {
-    z-index: 9997;
-
+    z-index: 9990;
     position: fixed;
     width: 100%;
-
     background-color: #0b0b0b;
     &__row {
         padding: 40px 0 20px;
@@ -282,24 +282,131 @@ a {
 }
 
 .burger {
-    width: 48px;
-    height: 48px;
-    transition: filter 0.2s 1s;
-    &:hover,
-    &:focus,
-    &:active {
-        filter: drop-shadow(0 0 10px #fff);
-        rect {
-            animation: drawBurgerReq 1s forwards, opacityRect 2s forwards;
+    &__icon {
+        width: 48px;
+        height: 48px;
+        transition: filter 0.2s 1s;
+        &:hover,
+        &:focus,
+        &:active {
+            filter: drop-shadow(0 0 10px #fff);
+            rect {
+                animation: drawBurgerReq 1s forwards, opacityRect 2s forwards;
+            }
+            line {
+                animation: drawBurgerLines 1.5s forwards, opacityLines 1.5s forwards;
+            }
         }
-        line {
-            animation: drawBurgerLines 1.5s forwards, opacityLines 1.5s forwards;
+        @include opacityIcon(opacityRect, stroke-opacity, 1, 1);
+        @include opacityIcon(opacityLines, stroke-opacity);
+        @include drawIcon(drawBurgerReq, stroke-opacity, 184, 184);
+        @include drawIcon(drawBurgerLines, stroke-opacity, 24, 24);
+    }
+}
+
+.close-btn {
+    &__icon {
+        stroke-dasharray: 305;
+        stroke-dashoffset: 305;
+        fill: white;
+        &:hover,
+        &:focus,
+        &:active {
+            animation: drawCloseIcon 1s forwards, opacityIcon 0.5s 1s forwards;
+        }
+
+        @include drawIcon(drawCloseIcon, fill-opacity, 305, 305);
+        @include opacityIcon(closeIconOpacity, fill-opacity);
+    }
+}
+
+.nav {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9990;
+    background-color: #0b0b0b;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100vh);
+    transition: transform 1s;
+    &_active {
+        transform: translateY(0);
+    }
+    &__list {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: 1200px;
+        height: 100%;
+        @media screen and(max-width: 768px) {
+            flex-direction: column;
         }
     }
-    @include opacityIcon(opacityRect, stroke-opacity, 1, 1);
-    @include opacityIcon(opacityLines, stroke-opacity);
-    @include drawIcon(drawBurgerReq, stroke-opacity, 184, 184);
-    @include drawIcon(drawBurgerLines, stroke-opacity, 24, 24);
+    &__item {
+        flex: 0 1 25%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        text-align: center;
+        height: 50%;
+        @media screen and(max-width: 768px) {
+            width: 50%;
+        }
+        &:not(:last-of-type) {
+            border-right: 1px solid rgba($color: #fff, $alpha: 0.1);
+            @media screen and(max-width: 768px) {
+                border-right: none;
+                border-bottom: 1px solid rgba($color: #fff, $alpha: 0.1);
+            }
+        }
+    }
+    &__link {
+        text-align: center;
+        display: inline-block;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: transparent;
+        -webkit-text-stroke: 1px white;
+        text-stroke: 1px white;
+        transition: color 0.2s, text-stroke 0.2s;
+        &_active {
+            -webkit-text-stroke: 0;
+            text-stroke: 0;
+            color: #fff;
+            text-shadow: 0px 0px 8px #ffffff;
+        }
+        &:hover,
+        &:focus {
+            -webkit-text-stroke: 0;
+            text-stroke: 0;
+            color: #fff;
+        }
+        &:active {
+            -webkit-text-stroke: 0;
+            text-stroke: 0;
+            color: #fff;
+            text-shadow: 0px 0px 8px #ffffff;
+        }
+    }
+    &__close-link {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        @media screen and(max-width: 768px) {
+            top: 30px;
+            left: auto;
+            right: 15px;
+        }
+    }
 }
 
 //////HEADER ENDS
@@ -378,21 +485,14 @@ a {
         right: 0;
         width: 40%;
         height: 935px;
-        // background-image: url(../img/hero/hero_bg_mask.png);
         background-size: contain;
         background-repeat: no-repeat;
         pointer-events: none;
         z-index: 100;
         &_bg {
             position: absolute;
-            // width: 100%;
-            // height: 100%;
             top: 0;
             left: 0;
-            // svg {
-            //     width: 100%;
-            //     height: 100%;
-            // }
         }
         @media screen and(max-width: 1400px) {
             top: 25%;
