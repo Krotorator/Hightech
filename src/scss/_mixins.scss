@@ -1,0 +1,36 @@
+@mixin tr($property, $time: 0.5s) {
+    transition: $property $time linear;
+}
+
+@mixin myPos($top: 50%, $left: 50%, $tx: -50%, $ty: -50%) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    transform: translate($tx, $ty);
+}
+
+@mixin drawIcon($animationName, $opacityProperty, $dasharray, $dashoffset) {
+    @keyframes #{$animationName} {
+        from {
+            stroke-dasharray: $dasharray;
+            stroke-dashoffset: $dashoffset;
+            #{$opacityProperty}: 0;
+        }
+        to {
+            stroke-dasharray: $dasharray;
+            stroke-dashoffset: 0;
+            #{$opacityProperty}: 0;
+        }
+    }
+}
+
+@mixin opacityIcon($animationName, $opacityProperty, $from: 0, $to: 1) {
+    @keyframes #{$animationName} {
+        from {
+            #{$opacityProperty}: $from;
+        }
+        to {
+            #{$opacityProperty}: $to;
+        }
+    }
+}
