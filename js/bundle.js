@@ -9569,7 +9569,11 @@ document.addEventListener("DOMContentLoaded", function () {
       handler: function handler() {
         this.element.classList.toggle("title-wrapper_section-animate");
       },
+<<<<<<< HEAD
       offset: "120%"
+=======
+      offset: "90%"
+>>>>>>> ea545c64065cc7eec2deb0013a00efb4f5020379
     });
   }
 
