@@ -2,7 +2,10 @@
 //= _swiper.js
 //= _scripts.js
 import Swiper from "swiper";
+import Blazy from "blazy";
 require("waypoints/lib/noframework.waypoints.js");
+
+var bLazy = new Blazy();
 
 console.log(2);
 

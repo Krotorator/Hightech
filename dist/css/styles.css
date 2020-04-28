@@ -1251,7 +1251,6 @@ a {
     right: 0;
     width: 40%;
     height: 935px;
-    background-image: url(../img/hero/hero_bg_mask.png);
     background-size: contain;
     background-repeat: no-repeat;
     pointer-events: none;
