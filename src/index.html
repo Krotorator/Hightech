@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 	//= partials/head.html
 </head>
 
-<body>
+<body id="homePage">
 	<!-- HEADER STARTS -->
 	//= partials/header.html
 	<!-- HEADER ENDS -->
@@ -43,9 +43,9 @@
 			<svg class="hero__bg-toRight">
 				<use xlink:href="#bgShapeToRight"></use>
 			</svg>
-			<svg class="hero__bg-toRight_small">
+			<!-- <svg class="hero__bg-toRight_small">
 				<use xlink:href="#bgShapeToRight"></use>
-			</svg>
+			</svg> -->
 		</section>
 		<!-- HEADER ENDS -->
 
@@ -289,7 +289,7 @@
 		<!-- WHY ENDS -->
 
 		<!-- PORTFOLIO STARTS -->
-		<section class="section portfolio">
+		<section class="section works">
 			<div class="container">
 				<div class="title-wrapper title-wrapper_section">
 					<h2 class="title section-title why__title">ПОСЛЕДНИЕ</h2>
@@ -297,35 +297,35 @@
 					<div class="decor-square decor-square_title-wrapper"></div>
 				</div>
 			</div>
-			<div class="portfolio__grid container">
-				<div class="portfolio__row">
-					<div class="portfolio__column">
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/1.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+			<div class="works__grid container">
+				<div class="works__row">
+					<div class="works__column">
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/1.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/2.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/2.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
 					</div>
-					<div class="portfolio__column">
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/3.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+					<div class="works__column">
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/3.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/4.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/4.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
-						<div class="portfolio__item">
-							<a href="#" class="btn portfolio__btn">ЗАКАЗАТЬ САЙТ</a>
+						<div class="works__item">
+							<a href="#" class="btn works__btn btnForModal" btnForModal>ЗАКАЗАТЬ САЙТ</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="portfolio__btn-wrapper">
-				<a href="#" class="btn btn_light portfolio__btn_light">СМОТРЕТЬ ВСЕ РАБОТЫ</a>
+			<div class="works__btn-wrapper">
+				<a href="portfolio.html" class="btn btn_light works__btn_light">СМОТРЕТЬ ВСЕ РАБОТЫ</a>
 			</div>
 		</section>
 		<!-- PORTFOLIO ENDS -->
@@ -632,53 +632,17 @@
 		<!-- TESTIMONIALS ENDS -->
 
 		<!-- CONTACTS STARTS -->
-		<section class="section contacts">
-			<div class="container">
-				<div class="contacts__wrapper">
-					<div class="contacts-info">
-						<div class="title-wrapper title-wrapper_section">
-							<h2 class="title section-title contacts-info__title">наши</h2>
-							<span class="section-subtitle contacts-info__subtitle">контакты</span>
-							<div class="decor-square decor-square_title-wrapper"></div>
-						</div>
-						<div class="contacts-info__cards">
-							<a href="#" class="contacts-info__card contacts-info__card_noLink">
-								<span class="contacts-info__lable contacts-info__lable_address">Адрес:</span>
-								<span class="contacts-info__item">Ул. Неизвестная, 14</span>
-							</a>
-							<a href="tel:001122333444" class="contacts-info__card">
-								<span class="contacts-info__lable contacts-info__lable_phone">Телефон:</span>
-								<span class="contacts-info__item">00 11 22 333 444</span>
-							</a>
-							<a href="mailto:email.@gmail.com" class="contacts-info__card">
-								<span class="contacts-info__lable contacts-info__lable_mail">E-mail:</span>
-								<span class="contacts-info__item">email.@gmail.com</span>
-							</a>
-						</div>
-					</div>
-					<div class="contacts-form">
-						<div class="title-wrapper title-wrapper_section">
-							<h2 class="title section-title contacts-form__title">свяжитесь</h2>
-							<span class="section-subtitle contacts-form__subtitle">с нами</span>
-							<div class="decor-square decor-square_title-wrapper"></div>
-						</div>
-						<form action="#" method="POST" class="main-form">
-							<input type="text" name="userName" id="userName" placeholder="Ваше имя">
-							<input type="email" name="userMail" id="userMail" placeholder="Ваш E-mail">
-							<textarea name="userMessage" id="userMessage" cols="30" rows="10"
-								placeholder="Сообщение"></textarea>
-							<button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
-						</form>
-
-					</div>
-				</div>
-			</div>
-		</section>
+		//= partials/contacts.html
 		<!-- CONTACTS ENDS -->
 	</div>
 
-
+	<!-- FOOTER STARTS -->
 	//= partials/footer.html
+	<!-- FOOTER ENDS -->
+
+	<!-- modal STARTS -->
+	//= partials/modal.html
+	<!-- modal ENDS -->
 	//= partials/scripts.html
 </body>
 
