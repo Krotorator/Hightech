@@ -9849,6 +9849,8 @@ var _blazy = _interopRequireDefault(require("blazy"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -9863,9 +9865,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 require("waypoints/lib/noframework.waypoints.js");
 
-var bLazy = new _blazy.default();
 document.addEventListener("DOMContentLoaded", function () {
-  /////////////////////////////SLIDER
+  var bLazy = new _blazy.default(); /////////////////////////////SLIDER
+
   var testimonialsSliderThumbs = new _swiper.default(".testimonials-thumbs", {
     spaceBetween: 224,
     slidesPerView: 2,
@@ -9901,56 +9903,215 @@ document.addEventListener("DOMContentLoaded", function () {
       el: ".testimonials-slider-pagination",
       clickable: true
     }
-  }); ///////////////////// CONTACTS CHANGE TITLES TEXT
-
-  function contactsChangeTitlesOnMobile() {
-    if (document.body.clientWidth < 786) {
-      document.querySelector(".contacts-form .contacts-form__title").innerText = "наши";
-      document.querySelector(".contacts-form .contacts-form__subtitle").innerText = "контакты";
-    } else {
-      document.querySelector(".contacts-form .contacts-form__title").innerText = "свяжитесь";
-      document.querySelector(".contacts-form .contacts-form__subtitle").innerText = "с нами";
-    }
-  }
-
-  contactsChangeTitlesOnMobile();
-  window.addEventListener("resize", function () {
-    contactsChangeTitlesOnMobile();
-  }, false); //////////////NAV
+  }); //////////////NAV
 
   var nav = document.querySelector("#nav");
+
+  var navLinks = _toConsumableArray(document.querySelectorAll(".nav__link"));
+
   var wrapper = document.querySelector("#wrapper");
   var burger = document.querySelector("#burger");
 
   var closeBtn = _toConsumableArray(document.querySelectorAll(".close-btn"));
 
-  burger.addEventListener("click", function () {
+  burger.addEventListener("click", function (e) {
+    e.preventDefault();
     nav.classList.add("nav_active");
-    wrapper.classList.add("wrapper_hidden");
+    document.body.classList.add("body_hidden");
   });
 
   for (var _i = 0; _i < closeBtn.length; _i++) {
     var btn = closeBtn[_i];
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
       nav.classList.remove("nav_active");
-      wrapper.classList.remove("wrapper_hidden");
+      document.body.classList.remove("body_hidden");
     });
-  } ///////////////// ANIMATIONS
+  } //set active nav-link
 
 
-  var heroContent = document.querySelector(".hero__content");
-  heroContent.classList.add("hero__content_animate");
-  var whyIcons = document.querySelectorAll(".why__icon");
+  navLinks.forEach(function (link) {
+    if (window.location.href === link.href) {
+      link.classList.add("nav__link_active");
+    }
 
-  for (var i = 0; i < whyIcons.length; i++) {
-    new Waypoint({
-      element: whyIcons[i],
-      handler: function handler() {
-        this.element.parentElement.classList.toggle("why__card_animate");
-      },
-      offset: "70%"
+    link.addEventListener("click", function () {
+      var thisLink = link;
+      link.classList.add("nav__link_active");
+      navLinks.forEach(function (link) {
+        if (link !== thisLink) {
+          link.classList.remove("nav__link_active");
+        }
+      });
     });
+  });
+
+  if (document.querySelector("#modal")) {
+    (function () {
+      ////////////////// MODAL
+      var modal = document.querySelector("#modal");
+      var closeModalBtn = document.querySelector("#modalClose");
+
+      var btnsForModal = _toConsumableArray(document.querySelectorAll(".btnForModal")); // open modal
+
+
+      for (var _i2 = 0; _i2 < btnsForModal.length; _i2++) {
+        ///// SHOW MODAL ON CLICK
+        btnsForModal[_i2].addEventListener("click", function (e) {
+          e.preventDefault();
+          modal.style.display = "block";
+          modal.classList.add("modal_open");
+          document.body.classList.add("body_hidden");
+        });
+      }
+
+      closeModalBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        modal.classList.remove("modal_open");
+        modal.classList.add("modal_close");
+        var form = modal.querySelector(".main-form");
+
+        var _iterator = _createForOfIteratorHelper(form.children),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var child = _step.value;
+            child.tagName !== "BUTTON" ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        form.reset(); /////////// RESET FORM
+
+        setTimeout(function () {
+          modalNormal(modal); ////// RETURN TO NORMAL MODAL STATE
+        }, 500);
+        setTimeout(function () {
+          modal.style.display = "none";
+          modal.classList.remove("modal_close");
+        }, 600);
+      });
+    })();
+  } //////////////FORM
+
+
+  var mainForms = _toConsumableArray(document.querySelectorAll(".main-form"));
+
+  var inputs = _toConsumableArray(document.querySelectorAll(".main-form__input"));
+
+  var inputWrappers = _toConsumableArray(document.querySelectorAll(".main-form__input-wrapper"));
+
+  var submitBtns = _toConsumableArray(document.querySelectorAll(".main-form__btn")); //////////// FORM INPUTS STATES
+
+
+  var _loop = function _loop(_i3) {
+    var input = inputs[_i3];
+    input.addEventListener("focus", function () {
+      input.parentElement.classList.add("main-form__input-wrapper_active");
+    });
+    input.addEventListener("blur", function () {
+      if (input.value == "") {
+        input.parentElement.classList = "main-form__input-wrapper";
+      }
+    });
+    input.addEventListener("input", function () {
+      if (input.name == "userName") {
+        if (!nameIsEmpty(input)) {
+          input.parentElement.classList.add("main-form__input-wrapper_succes");
+          input.parentElement.classList.remove("main-form__input-wrapper_alert");
+        } else {
+          input.parentElement.classList.add("main-form__input-wrapper_alert");
+          input.parentElement.classList.remove("main-form__input-wrapper_succes");
+        }
+      } else if (input.name == "userMail") {
+        if (emailIsValid(input)) {
+          input.parentElement.classList.add("main-form__input-wrapper_succes");
+          input.parentElement.classList.remove("main-form__input-wrapper_alert");
+        } else {
+          input.parentElement.classList.add("main-form__input-wrapper_alert");
+          input.parentElement.classList.remove("main-form__input-wrapper_succes");
+        }
+      }
+    });
+  };
+
+  for (var _i3 = 0; _i3 < inputs.length; _i3++) {
+    _loop(_i3);
+  } ////////////// FORM VALIDATE AND SUBMIT
+
+
+  var _loop2 = function _loop2(_i4) {
+    var submitBtn = submitBtns[_i4];
+    submitBtn.addEventListener("click", function (e) {
+      var name = submitBtn.parentElement.userName;
+      var email = submitBtn.parentElement.userMail;
+      e.preventDefault();
+
+      if (!nameIsEmpty(name) && emailIsValid(email)) {
+        console.log("ok!"); ///////////////////////////// AJAX script here
+
+        modalSucces(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR SUCCES MESSAGE IF SENDING SUCCES
+        // modalError(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR ERROR MESSAGE IF SENDING FAILED
+
+        inputWrappers.forEach(function (el) {
+          ///////DISABLING INPUTS IF SUCCES
+          el.classList = "main-form__input-wrapper";
+
+          var formElements = _toConsumableArray(el.parentElement.elements);
+
+          formElements.forEach(function (input) {
+            input.setAttribute("disabled", "disabled");
+          });
+        });
+        submitBtn.parentElement.reset();
+        submitBtn.setAttribute("disabled", "disabled");
+      } else if (nameIsEmpty(name)) {
+        ///// ALERT STATE OF INPUTS
+        name.parentElement.classList.add("main-form__input-wrapper_alert");
+      } else if (!emailIsValid(email)) {
+        email.parentElement.classList.add("main-form__input-wrapper_alert");
+      }
+    });
+  };
+
+  for (var _i4 = 0; _i4 < submitBtns.length; _i4++) {
+    _loop2(_i4);
   }
+
+  function nameIsEmpty(element) {
+    return element.value == "";
+  }
+
+  function emailIsValid(element) {
+    return element.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
+  } ///////////////// MODAL MESSAGE SUCCESS/ERROR/NORMAL
+
+
+  function modalSucces(modal) {
+    modal.querySelector(".title-wrapper").innerHTML = "\n            <span  class=\"section-subtitle contacts-form__subtitle\">\u0421\u043F\u0410\u0421\u0418\u0411\u041E</span>\n            <h2  class=\"title section-title contacts-form__title\">\u0437\u0410 \u0417\u0410\u042F\u0412\u041A\u0423!</h2>\n            <span >\u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0441 \u0412\u0430\u043C\u0438 \u0432 \u043A\u0440\u0430\u0442\u0447\u0430\u0439\u0448\u0438\u0435 \u0441\u0440\u043E\u043A\u0438</span>\n     ";
+    modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+    modal.querySelector(".main-form").classList.add("form-isHide");
+    modal.classList.add("modal__message");
+  }
+
+  function modalError(modal) {
+    modal.querySelector(".title-wrapper").innerHTML = "\n            <h2  class=\"title section-title contacts-form__title\">\u041E\u0448\u0438\u0431\u043A\u0430</h2>\n            <span >\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u0442\u043F\u0440\u0430\u0432\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443! <br> \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u043E\u0437\u0436\u0435\u044E</span>\n       ";
+    modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+    modal.querySelector(".main-form").classList.add("form-isHide");
+    modal.classList.add("modal__message");
+  }
+
+  function modalNormal(modal) {
+    modal.querySelector(".title-wrapper").innerHTML = "\n            <h2 class=\"title section-title contacts-form__title\">\u0441\u0432\u044F\u0436\u0438\u0442\u0435\u0441\u044C</h2>\n                <span class=\"section-subtitle contacts-form__subtitle\">\u0441 \u043D\u0430\u043C\u0438</span>\n                <div class=\"decor-square decor-square_title-wrapper\"></div>\n       ";
+    modal.querySelector(".title-wrapper").classList.remove("title-wrapper_form-succes");
+    modal.querySelector(".main-form").classList.remove("form-isHide");
+    modal.classList.remove("modal__message");
+  } ///// animations fot title
+
 
   var decorSquare = document.querySelectorAll(".decor-square_title-wrapper");
 
@@ -9976,65 +10137,123 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  var servicesCards = document.querySelectorAll(".services__card");
+  if (document.querySelector("#portfolio")) {
+    var portfolioImage = document.querySelectorAll(".portfolio__img");
 
-  for (var i = 0; i < servicesCards.length; i++) {
-    new Waypoint({
-      element: servicesCards[i],
-      handler: function handler() {
-        var _this = this;
+    for (var i = 0; i < portfolioImage.length; i++) {
+      new Waypoint({
+        element: portfolioImage[i],
+        handler: function handler() {
+          this.element.classList.toggle("portfolio__img_animate");
+        },
+        offset: "100%"
+      });
+    }
 
-        this.element.classList.add("services__card_animate");
-        setTimeout(function () {
-          _this.element.classList.remove("services__card_animate");
-        }, 1000);
-      },
-      offset: "80%"
-    });
+    var portfolioDescription = document.querySelectorAll(".portfolio__desc");
+
+    for (var i = 0; i < portfolioDescription.length; i++) {
+      new Waypoint({
+        element: portfolioDescription[i],
+        handler: function handler() {
+          this.element.classList.toggle("portfolio__desc_animate");
+        },
+        offset: "100%"
+      });
+    }
   }
 
-  var buttons = document.querySelectorAll(".btn");
+  if (document.querySelector("#homePage")) {
+    ///////////////////// CONTACTS CHANGE TITLES TEXT
+    var contactsChangeTitlesOnMobile = function contactsChangeTitlesOnMobile() {
+      if (document.body.clientWidth < 786) {
+        document.querySelector(".contacts-form .contacts-form__title").innerText = "наши";
+        document.querySelector(".contacts-form .contacts-form__subtitle").innerText = "контакты";
+      } else {
+        document.querySelector(".contacts-form .contacts-form__title").innerText = "свяжитесь";
+        document.querySelector(".contacts-form .contacts-form__subtitle").innerText = "с нами";
+      }
+    };
 
-  for (var i = 0; i < buttons.length; i++) {
-    new Waypoint({
-      element: buttons[i],
+    contactsChangeTitlesOnMobile();
+    window.addEventListener("resize", function () {
+      contactsChangeTitlesOnMobile();
+    }, false); ///////////////// ANIMATIONS
+
+    var heroContent = document.querySelector(".hero__content");
+    heroContent.classList.add("hero__content_animate");
+    var whyIcons = document.querySelectorAll(".why__icon");
+
+    for (var i = 0; i < whyIcons.length; i++) {
+      new Waypoint({
+        element: whyIcons[i],
+        handler: function handler() {
+          this.element.parentElement.classList.toggle("why__card_animate");
+        },
+        offset: "70%"
+      });
+    }
+
+    var servicesCards = document.querySelectorAll(".services__card");
+
+    for (var i = 0; i < servicesCards.length; i++) {
+      new Waypoint({
+        element: servicesCards[i],
+        handler: function handler() {
+          var _this = this;
+
+          this.element.classList.add("services__card_animate");
+          setTimeout(function () {
+            _this.element.classList.remove("services__card_animate");
+          }, 1000);
+        },
+        offset: "80%"
+      });
+    }
+
+    var buttons = document.querySelectorAll(".btn");
+
+    for (var i = 0; i < buttons.length; i++) {
+      new Waypoint({
+        element: buttons[i],
+        handler: function handler() {
+          var _this2 = this;
+
+          if (this.element.classList.contains("header__btn")) {
+            return false;
+          }
+
+          this.element.classList.add("btn_animate");
+          setTimeout(function () {
+            _this2.element.classList.remove("btn_animate");
+          }, 1000);
+        },
+        offset: "110%"
+      });
+    }
+
+    var worksBtnLine = new Waypoint({
+      element: document.querySelector(".works__btn-wrapper"),
       handler: function handler() {
-        var _this2 = this;
-
-        if (this.element.classList.contains("header__btn")) {
-          return false;
-        }
-
-        this.element.classList.add("btn_animate");
-        setTimeout(function () {
-          _this2.element.classList.remove("btn_animate");
-        }, 1000);
+        this.element.classList.toggle("works__btn-wrapper_animate");
+      },
+      offset: "100%"
+    });
+    var form = new Waypoint({
+      element: document.querySelector(".main-form "),
+      handler: function handler() {
+        this.element.classList.toggle("main-form_animate");
       },
       offset: "110%"
     });
+    var sliderControls = new Waypoint({
+      element: document.querySelector(".testimonials-slider-pagination "),
+      handler: function handler() {
+        document.querySelector(".testimonials__sliders").classList.toggle("testimonials__sliders_animate");
+      },
+      offset: "100%"
+    });
   }
-
-  var portfolioBtnLine = new Waypoint({
-    element: document.querySelector(".portfolio__btn-wrapper"),
-    handler: function handler() {
-      this.element.classList.toggle("portfolio__btn-wrapper_animate");
-    },
-    offset: "100%"
-  });
-  var mainForm = new Waypoint({
-    element: document.querySelector(".main-form "),
-    handler: function handler() {
-      this.element.classList.toggle("main-form_animate");
-    },
-    offset: "110%"
-  });
-  var sliderControls = new Waypoint({
-    element: document.querySelector(".testimonials-slider-pagination "),
-    handler: function handler() {
-      document.querySelector(".testimonials__sliders").classList.toggle("testimonials__sliders_animate");
-    },
-    offset: "100%"
-  });
 });
 
 },{"blazy":1,"swiper":2,"waypoints/lib/noframework.waypoints.js":3}]},{},[4]);

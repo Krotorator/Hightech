@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 	<meta charset="UTF-8">
@@ -14,7 +14,7 @@
 	<meta name="description" content="Site constructor">
 </head>
 
-<body>
+<body id="homePage">
 	<!-- HEADER STARTS -->
 	<section class="header">
 	    <div class="container-large">
@@ -34,10 +34,16 @@
 	                    <rect x="1" y="1" width="46" height="46" stroke="white" stroke-width="2" />
 	                </svg>
 	            </a>
-	            <a href="#" class="btn header__btn">ЗАКАЗАТЬ ЗВОНОК СЕЙЧАС</a>
+	            <a href="#" class="btn header__btn btnForModal">ЗАКАЗАТЬ ЗВОНОК СЕЙЧАС</a>
 	        </div>
 	    </div>
 	    <div class="nav" id="nav">
+	        <svg class="nav__bg-toRight">
+	            <use style="width: 100%;" xlink:href="#bgShapeToRight"></use>
+	        </svg>
+	        <svg class="nav__bg-toLeft">
+	            <use xlink:href="#bgShapeToLeft"></use>
+	        </svg>
 	        <a href="#" class="close-btn nav__close-link">
 	            <svg class="close-btn__icon nav__close-icon" fill="none" width="40" height="40" viewBox="0 0 40 40"
 	                fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,11 +57,9 @@
 	            </svg>
 	        </a>
 	        <ul class="nav__list">
-	            <li class="nav__item"><a href="#" class="nav__link nav__link_active">ГЛАВНАЯ</a></li>
-	            <li class="nav__item"><a href="#" class="nav__link">ПОРТФОЛИО</a></li>
-	            <li class="nav__item"><a href="#" class="nav__link">УСЛУГИ</a></li>
-	            <li class="nav__item"><a href="#" class="nav__link">УСЛУГИ</a></li>
-	            <li class="nav__item"><a href="#" class="nav__link">УСЛУГИ</a></li>
+	            <li class="nav__item"><a href="/" class="nav__link">ГЛАВНАЯ</a></li>
+	            <li class="nav__item"><a href="portfolio.html" class="nav__link">ПОРТФОЛИО</a></li>
+	            <li class="nav__item"><a href="services.html" class="nav__link">УСЛУГИ</a></li>
 	            <li class="nav__item"><a href="#" class="nav__link">КОНСТРУКТОР
 	                    ИНТЕРНЕТ МАГАЗИНА</a></li>
 	
@@ -97,9 +101,9 @@
 			<svg class="hero__bg-toRight">
 				<use xlink:href="#bgShapeToRight"></use>
 			</svg>
-			<svg class="hero__bg-toRight_small">
+			<!-- <svg class="hero__bg-toRight_small">
 				<use xlink:href="#bgShapeToRight"></use>
-			</svg>
+			</svg> -->
 		</section>
 		<!-- HEADER ENDS -->
 
@@ -343,7 +347,7 @@
 		<!-- WHY ENDS -->
 
 		<!-- PORTFOLIO STARTS -->
-		<section class="section portfolio">
+		<section class="section works">
 			<div class="container">
 				<div class="title-wrapper title-wrapper_section">
 					<h2 class="title section-title why__title">ПОСЛЕДНИЕ</h2>
@@ -351,35 +355,35 @@
 					<div class="decor-square decor-square_title-wrapper"></div>
 				</div>
 			</div>
-			<div class="portfolio__grid container">
-				<div class="portfolio__row">
-					<div class="portfolio__column">
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/1.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+			<div class="works__grid container">
+				<div class="works__row">
+					<div class="works__column">
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/1.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/2.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/2.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
 					</div>
-					<div class="portfolio__column">
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/3.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+					<div class="works__column">
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/3.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
-						<div class="portfolio__item">
-							<img class="portfolio__img b-lazy" src="img/5.svg" data-src="img/portfolio/4.jpg" alt="">
-							<div class="portfolio__lable"><span>Название первого кейса</span></div>
+						<div class="works__item">
+							<img class="works__img b-lazy" src="img/5.svg" data-src="img/works/4.jpg" alt="">
+							<div class="works__lable"><span>Название первого кейса</span></div>
 						</div>
-						<div class="portfolio__item">
-							<a href="#" class="btn portfolio__btn">ЗАКАЗАТЬ САЙТ</a>
+						<div class="works__item">
+							<a href="#" class="btn works__btn btnForModal" btnForModal>ЗАКАЗАТЬ САЙТ</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="portfolio__btn-wrapper">
-				<a href="#" class="btn btn_light portfolio__btn_light">СМОТРЕТЬ ВСЕ РАБОТЫ</a>
+			<div class="works__btn-wrapper">
+				<a href="portfolio.html" class="btn btn_light works__btn_light">СМОТРЕТЬ ВСЕ РАБОТЫ</a>
 			</div>
 		</section>
 		<!-- PORTFOLIO ENDS -->
@@ -687,51 +691,62 @@
 
 		<!-- CONTACTS STARTS -->
 		<section class="section contacts">
-			<div class="container">
-				<div class="contacts__wrapper">
-					<div class="contacts-info">
-						<div class="title-wrapper title-wrapper_section">
-							<h2 class="title section-title contacts-info__title">наши</h2>
-							<span class="section-subtitle contacts-info__subtitle">контакты</span>
-							<div class="decor-square decor-square_title-wrapper"></div>
-						</div>
-						<div class="contacts-info__cards">
-							<a href="#" class="contacts-info__card contacts-info__card_noLink">
-								<span class="contacts-info__lable contacts-info__lable_address">Адрес:</span>
-								<span class="contacts-info__item">Ул. Неизвестная, 14</span>
-							</a>
-							<a href="tel:001122333444" class="contacts-info__card">
-								<span class="contacts-info__lable contacts-info__lable_phone">Телефон:</span>
-								<span class="contacts-info__item">00 11 22 333 444</span>
-							</a>
-							<a href="mailto:email.@gmail.com" class="contacts-info__card">
-								<span class="contacts-info__lable contacts-info__lable_mail">E-mail:</span>
-								<span class="contacts-info__item">email.@gmail.com</span>
-							</a>
-						</div>
-					</div>
-					<div class="contacts-form">
-						<div class="title-wrapper title-wrapper_section">
-							<h2 class="title section-title contacts-form__title">свяжитесь</h2>
-							<span class="section-subtitle contacts-form__subtitle">с нами</span>
-							<div class="decor-square decor-square_title-wrapper"></div>
-						</div>
-						<form action="#" method="POST" class="main-form">
-							<input type="text" name="userName" id="userName" placeholder="Ваше имя">
-							<input type="email" name="userMail" id="userMail" placeholder="Ваш E-mail">
-							<textarea name="userMessage" id="userMessage" cols="30" rows="10"
-								placeholder="Сообщение"></textarea>
-							<button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
-						</form>
-
-					</div>
-				</div>
-			</div>
+		    <div class="container">
+		        <div class="contacts__wrapper">
+		            <div class="contacts-info">
+		                <div class="title-wrapper title-wrapper_section">
+		                    <h2 class="title section-title contacts-info__title">наши</h2>
+		                    <span class="section-subtitle contacts-info__subtitle">контакты</span>
+		                    <div class="decor-square decor-square_title-wrapper"></div>
+		                </div>
+		                <div class="contacts-info__cards">
+		                    <a href="#" class="contacts-info__card contacts-info__card_noLink">
+		                        <span class="contacts-info__lable contacts-info__lable_address">Адрес:</span>
+		                        <span class="contacts-info__item">Ул. Неизвестная, 14</span>
+		                    </a>
+		                    <a href="tel:001122333444" class="contacts-info__card">
+		                        <span class="contacts-info__lable contacts-info__lable_phone">Телефон:</span>
+		                        <span class="contacts-info__item">00 11 22 333 444</span>
+		                    </a>
+		                    <a href="mailto:email.@gmail.com" class="contacts-info__card">
+		                        <span class="contacts-info__lable contacts-info__lable_mail">E-mail:</span>
+		                        <span class="contacts-info__item">email.@gmail.com</span>
+		                    </a>
+		                </div>
+		            </div>
+		            <div class="contacts-form">
+		                <div class="title-wrapper title-wrapper_section">
+		                    <h2 class="title section-title contacts-form__title">свяжитесь</h2>
+		                    <span class="section-subtitle contacts-form__subtitle">с нами</span>
+		                    <div class="decor-square decor-square_title-wrapper"></div>
+		                </div>
+		                <form action="#" method="POST" class="main-form">
+		                    <div class="main-form__input-wrapper">
+		                        <input class="main-form__input" type="text" name="userName" id="userName" required>
+		                        <label for="userName">Ваше имя</label>
+		                        <span class="main-form__error">Поле заполнено неверно.</span>
+		                    </div>
+		                    <div class="main-form__input-wrapper">
+		                        <input class="main-form__input" type="email" name="userMail" id="userMail" required>
+		                        <label for="userName">Ваш E-mail</label>
+		                        <span class="main-form__error">Поле заполнено неверно.</span>
+		                    </div>
+		                    <div class="main-form__input-wrapper">
+		                        <textarea class="main-form__input" name="userMessage" id="userMessage" cols="30"
+		                            rows="10"></textarea>
+		                        <label for="userMessage">Сообщение</label>
+		                    </div>
+		                    <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+		                </form>
+		
+		            </div>
+		        </div>
+		    </div>
 		</section>
 		<!-- CONTACTS ENDS -->
 	</div>
 
-
+	<!-- FOOTER STARTS -->
 	<footer class="footer">
 	    <div class="container">
 	        <span class="copyright">Copyright ©</span>
@@ -944,9 +959,67 @@
 	        <path d="M239.744 23.9792H255.785V27.1861H249.371V40.0208H246.165V27.1861H239.751L239.744 23.9792Z"
 	            fill="white" />
 	    </symbol>
-	    <script src="js/bundle.min.js"></script>
+	    <script src="js/bundle.js"></script>
 	</svg>
-	<script src="js/bundle.min.js"></script>
+	<!-- FOOTER ENDS -->
+
+	<!-- modal STARTS -->
+	<div class="modal" id="modal">
+	
+	    <div class="modal__bg-wrapper">
+	        <svg class="modal__bg-toRight">
+	            <use xlink:href="#bgShapeToRight"></use>
+	        </svg>
+	        <svg class="modal__bg-toLeft">
+	            <use xlink:href="#bgShapeToLeft"></use>
+	        </svg>
+	        <a href="#" class="close-btn modal__close-btn" id="modalClose">
+	            <svg class="close-btn__icon modal__close-icon" fill="none" width="40" height="40" viewBox="0 0 40 40"
+	                fill="none" xmlns="http://www.w3.org/2000/svg">
+	                <path
+	                    d="M40 9.06623L31.8223 0.888526L30.0452 2.66558L36.4459 9.06623L25.5121 20L36.4459 30.9338L30.9338 36.4459L20 25.5121L9.06623 36.4459L3.5541 30.9338L14.4879 20L3.5541 9.06623L9.06623 3.5541L19.1115 13.5993L20.8885 11.8223L9.06623 0L0 9.06623L10.9338 20L0 30.9338L9.06623 40L20 29.0662L30.9338 40L40 30.9338L29.0662 20L40 9.06623Z"
+	                    stroke="white" stroke-width=".3" />
+	                <path d="M30.0449 6.25728L28.2676 4.47998L26.4903 6.25728L28.2676 8.03459L30.0449 6.25728Z"
+	                    stroke="white" stroke-width=".3" />
+	                <path d="M26.2744 10.0272L24.4971 8.24988L22.7198 10.0272L24.4971 11.8045L26.2744 10.0272Z"
+	                    stroke="white" stroke-width=".3" />
+	            </svg>
+	        </a>
+	        <div class="modal__wrapper">
+	
+	
+	            <div class="modal__content">
+	                <div class="title-wrapper title-wrapper_section">
+	                    <h2 class="title section-title contacts-form__title">свяжитесь</h2>
+	                    <span class="section-subtitle contacts-form__subtitle">с нами</span>
+	                    <div class="decor-square decor-square_title-wrapper"></div>
+	                </div>
+	
+	                <form action="#" method="POST" class="main-form">
+	                    <div class="main-form__input-wrapper">
+	                        <input class="main-form__input" type="text" name="userName" id="userName" required>
+	                        <label for="userName">Ваше имя</label>
+	                        <span class="main-form__error">Поле заполнено неверно.</span>
+	                    </div>
+	                    <div class="main-form__input-wrapper">
+	                        <input class="main-form__input" type="email" name="userMail" id="userMail" required>
+	                        <label for="userName">Ваш E-mail</label>
+	                        <span class="main-form__error">Поле заполнено неверно.</span>
+	                    </div>
+	                    <div class="main-form__input-wrapper">
+	                        <textarea class="main-form__input" name="userMessage" id="userMessage" cols="30"
+	                            rows="10"></textarea>
+	                        <label for="userMessage">Сообщение</label>
+	                    </div>
+	                    <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+	                </form>
+	
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- modal ENDS -->
+	<script src="js/bundle.js"></script>
 </body>
 
 </html>
