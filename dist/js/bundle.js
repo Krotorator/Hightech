@@ -10253,7 +10253,120 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       offset: "100%"
     });
+  } /////////// STAGES ACCORDION
+
+
+  if (document.querySelector(".stages")) {
+    var stagesLink = _toConsumableArray(document.querySelectorAll(".stages__arrow-link"));
+
+    var stagesItems = _toConsumableArray(document.querySelectorAll(".stages__item"));
+
+    var stagesBody = _toConsumableArray(document.querySelectorAll(".stages__body"));
+
+    stagesItems.forEach(function (stagesItem) {
+      stagesItem.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.classList.contains("stages__arrow-link")) {
+          e.preventDefault();
+          var link = e.target;
+          link.classList.toggle("stages__arrow-link_isOpened");
+          var itemBody = stagesItem.querySelector(".stages__body");
+
+          if (itemBody.classList.contains("stages__body_isOpened")) {
+            itemBody.style.height = getComputedStyle(itemBody).height;
+            itemBody.classList.remove("stages__body_isOpened");
+            getComputedStyle(itemBody).height;
+            itemBody.style.height = "";
+          } else {
+            itemBody.classList.add("stages__body_isOpened");
+            var h = getComputedStyle(itemBody).height;
+            itemBody.style.height = "0";
+            getComputedStyle(itemBody).height;
+            itemBody.style.height = h;
+            setTimeout(function () {
+              itemBody.style.height = "";
+            }, 1000);
+          }
+        } else if (e.target.classList.contains("stages__arrow")) {
+          return false;
+        }
+      });
+    });
   }
-});
+}); ///////////// services page animations
+
+if (document.querySelector("#servicesPage")) {
+  var weDoDesc = new Waypoint({
+    element: document.querySelector(".weDo__desc"),
+    handler: function handler() {
+      this.element.classList.toggle("weDo__desc_animate");
+    },
+    offset: "100%"
+  });
+  var optionsIcons = document.querySelectorAll(".options__icon");
+
+  for (var i = 0; i < optionsIcons.length; i++) {
+    new Waypoint({
+      element: optionsIcons[i],
+      handler: function handler() {
+        this.element.classList.toggle("options__icon_animate");
+      },
+      offset: "100%"
+    });
+  }
+
+  var weDoIcons = document.querySelectorAll(".weDo__info-icon");
+
+  for (var i = 0; i < weDoIcons.length; i++) {
+    new Waypoint({
+      element: weDoIcons[i],
+      handler: function handler() {
+        this.element.classList.toggle("weDo__info-icon_animate");
+      },
+      offset: "100%"
+    });
+  }
+
+  var resultNumber = document.querySelectorAll(".result__number");
+
+  for (var i = 0; i < resultNumber.length; i++) {
+    new Waypoint({
+      element: resultNumber[i],
+      handler: function handler() {
+        this.element.classList.toggle("result__number_animate");
+      },
+      offset: "100%"
+    });
+  }
+} ///// CHANGING GRID-ITEMS IN PRICE BLOCK
+
+
+if (document.querySelector("#prices")) {
+  var changeGridItems = function changeGridItems() {
+    if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
+      grid[0].innerHTML = action + busines;
+      grid[1].innerHTML = standart + top;
+    } else if (window.innerWidth <= 768) {
+      grid[0].innerHTML = action + standart;
+      grid[1].innerHTML = busines + top;
+    } else if (window.innerWidth >= 1442) {
+      grid[0].innerHTML = action + standart;
+      grid[1].innerHTML = busines + top;
+    }
+  };
+
+  var grid = document.querySelector("#grid").children;
+  var action = document.querySelector("#action").outerHTML;
+  var standart = document.querySelector("#standart").outerHTML;
+  var busines = document.querySelector("#busines").outerHTML;
+  var top = document.querySelector("#top").outerHTML;
+  window.addEventListener("load", function () {
+    changeGridItems();
+  });
+  window.addEventListener("resize", function () {
+    changeGridItems();
+  });
+}
 
 },{"blazy":1,"swiper":2,"waypoints/lib/noframework.waypoints.js":3}]},{},[4]);

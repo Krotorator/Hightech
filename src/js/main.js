@@ -371,4 +371,113 @@ document.addEventListener("DOMContentLoaded", () => {
             offset: "100%",
         });
     }
+
+    /////////// STAGES ACCORDION
+    if (document.querySelector(".stages")) {
+        let stagesLink = [...document.querySelectorAll(".stages__arrow-link")];
+        let stagesItems = [...document.querySelectorAll(".stages__item")];
+        let stagesBody = [...document.querySelectorAll(".stages__body")];
+
+        stagesItems.forEach((stagesItem) => {
+            stagesItem.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (e.target.classList.contains("stages__arrow-link")) {
+                    e.preventDefault();
+                    let link = e.target;
+                    link.classList.toggle("stages__arrow-link_isOpened");
+                    let itemBody = stagesItem.querySelector(".stages__body");
+                    if (itemBody.classList.contains("stages__body_isOpened")) {
+                        itemBody.style.height = getComputedStyle(itemBody).height;
+                        itemBody.classList.remove("stages__body_isOpened");
+                        getComputedStyle(itemBody).height;
+                        itemBody.style.height = "";
+                    } else {
+                        itemBody.classList.add("stages__body_isOpened");
+                        let h = getComputedStyle(itemBody).height;
+                        itemBody.style.height = "0";
+                        getComputedStyle(itemBody).height;
+                        itemBody.style.height = h;
+                        setTimeout(() => {
+                            itemBody.style.height = "";
+                        }, 1000);
+                    }
+                } else if (e.target.classList.contains("stages__arrow")) {
+                    return false;
+                }
+            });
+        });
+    }
 });
+
+///////////// services page animations
+
+if (document.querySelector("#servicesPage")) {
+    var weDoDesc = new Waypoint({
+        element: document.querySelector(".weDo__desc"),
+        handler: function () {
+            this.element.classList.toggle("weDo__desc_animate");
+        },
+        offset: "100%",
+    });
+
+    var optionsIcons = document.querySelectorAll(".options__icon");
+    for (var i = 0; i < optionsIcons.length; i++) {
+        new Waypoint({
+            element: optionsIcons[i],
+            handler: function () {
+                this.element.classList.toggle("options__icon_animate");
+            },
+            offset: "100%",
+        });
+    }
+
+    var weDoIcons = document.querySelectorAll(".weDo__info-icon");
+    for (var i = 0; i < weDoIcons.length; i++) {
+        new Waypoint({
+            element: weDoIcons[i],
+            handler: function () {
+                this.element.classList.toggle("weDo__info-icon_animate");
+            },
+            offset: "100%",
+        });
+    }
+
+    var resultNumber = document.querySelectorAll(".result__number");
+    for (var i = 0; i < resultNumber.length; i++) {
+        new Waypoint({
+            element: resultNumber[i],
+            handler: function () {
+                this.element.classList.toggle("result__number_animate");
+            },
+            offset: "100%",
+        });
+    }
+}
+
+///// CHANGING GRID-ITEMS IN PRICE BLOCK
+
+if (document.querySelector("#prices")) {
+    let grid = document.querySelector("#grid").children;
+    let action = document.querySelector("#action").outerHTML;
+    let standart = document.querySelector("#standart").outerHTML;
+    let busines = document.querySelector("#busines").outerHTML;
+    let top = document.querySelector("#top").outerHTML;
+    function changeGridItems() {
+        if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
+            grid[0].innerHTML = action + busines;
+            grid[1].innerHTML = standart + top;
+        } else if (window.innerWidth <= 768) {
+            grid[0].innerHTML = action + standart;
+            grid[1].innerHTML = busines + top;
+        } else if (window.innerWidth >= 1442) {
+            grid[0].innerHTML = action + standart;
+            grid[1].innerHTML = busines + top;
+        }
+    }
+    window.addEventListener("load", () => {
+        changeGridItems();
+    });
+    window.addEventListener("resize", () => {
+        changeGridItems();
+    });
+}
