@@ -10367,6 +10367,69 @@ if (document.querySelector("#prices")) {
   window.addEventListener("resize", function () {
     changeGridItems();
   });
-}
+} //////////////  CONSTRUCTOR PAGE
+
+
+if (document.querySelector("#constructor")) {
+  ////////// BUILDER
+  //////BUILDER OPTION CARD BTN -> CHECKBOX:CHECKED
+  document.querySelectorAll(".functions-card").forEach(function (card) {
+    card.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log(e.target);
+
+      if (e.target.classList.contains("functions-card__btn")) {
+        card.parentElement.querySelector(".functions-builder__checkbox").checked = "true";
+      }
+    });
+  }); ////////// BUILDER ACCORDION WHEN SCREEN > 768px
+  // if (window.innerWidth >= 769) {
+  //     document.querySelectorAll(".functions-builder__function-link").forEach((element) => {
+  //         element.addEventListener("click", (e) => {
+  //             e.preventDefault();
+  //             let thisParent = element.parentElement.parentElement;
+  //             thisParent.classList.add("functions-builder__function_active");
+  //             document.querySelectorAll(".functions-builder__function").forEach((parent) => {
+  //                 if (parent !== thisParent) {
+  //                     parent.classList.remove("functions-builder__function_active");
+  //                 }
+  //             });
+  //         });
+  //     });
+  // }
+  ////////// BUILDER ACCORDION WHEN SCREEN < 768px
+  // if (window.innerWidth <= 768) {
+
+  var optionLinks = document.querySelectorAll(".functions-builder__function-link");
+  optionLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var optionTitle = link.parentElement.parentElement;
+      var optionCard = optionTitle.querySelector(".functions-card");
+
+      if (optionTitle.classList.contains("functions-builder__function_active")) {
+        console.log(optionTitle);
+        optionCard.style.height = getComputedStyle(optionCard).height;
+        optionTitle.classList.remove("functions-builder__function_active");
+        getComputedStyle(optionCard).height;
+        optionCard.style.height = "";
+      } else {
+        document.querySelectorAll(".functions-builder__function").forEach(function (element) {
+          if (element !== optionCard) {
+            element.classList.remove("functions-builder__function_active");
+          }
+        });
+        optionTitle.classList.add("functions-builder__function_active");
+        var h = getComputedStyle(optionCard).height;
+        optionCard.style.height = "0";
+        getComputedStyle(optionCard).height;
+        optionCard.style.height = h;
+        setTimeout(function () {
+          optionCard.style.height = "";
+        }, 1000);
+      }
+    });
+  });
+} // }
 
 },{"blazy":1,"swiper":2,"waypoints/lib/noframework.waypoints.js":3}]},{},[4]);
