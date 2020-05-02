@@ -11,32 +11,449 @@
         //= partials/header.html
         <!-- HEADER ENDS -->
 
-        <!-- HEADER STARTS -->
-        <section class="constructor">
+        <!-- constructor-hero STARTS -->
+        <section class="constructor-hero">
+            <svg class="constructor-hero__bg-toRight">
+                <use xlink:href="#constrBgToRight"></use>
+            </svg>
             <div class="container-large">
-                <div class="constructor__content">
+                <div class="constructor-hero__content">
                     <div class="title-wrapper">
-                        <h1 class="title constructor__title">уникальный конструктор
+                        <h1 class="title constructor-hero__title">уникальный конструктор
                         </h1>
-                        <span class="constructor__subtitle">интернет магазина</span>
+                        <span class="constructor-hero__subtitle">интернет магазина</span>
                     </div>
                 </div>
             </div>
-            <div class="constructor__bg-mask b-lazy" data-src="img/constructor/constr-bg.png">
-                <!-- <svg class="constructor__bg-mask_bg" viewBox="0 0 534 619" fill="none"
+            <div class="constructor-hero__bg-mask b-lazy" src="" data-src="img/constructor/constr-bg.png">
+                <!-- <svg class="constructor-hero__bg-mask_bg" width="1022" height="1182" viewBox="0 0 1022 1182" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M349.445 154.868L349.445 154.866C349.439 153.496 349.072 152.152 348.38 150.969C347.689 149.786 346.697 148.807 345.506 148.13C344.315 147.453 342.967 147.102 341.597 147.113C340.226 147.124 338.883 147.496 337.703 148.192L337.7 148.194L17.5559 340.072L17.5545 340.073L10.5584 344.236L10.5572 344.237L0.499983 350.26L0.499979 259.532L18.0132 248.864L18.0138 248.864L331.682 58.373L331.682 58.3728L361.638 40.2145L361.638 40.2141L406.801 12.746L406.803 12.745L424.665 1.98375L424.665 396.128L349.445 351.955L349.445 154.868Z"
-                        stroke="white" />
-                    <path
-                        d="M440.064 409.724L440.179 0.816762L444.772 3.16326L444.774 3.16399L518.043 40.2898L518.044 40.2906L533.5 48.189L533.5 556.611L523.379 550.743L241.054 387.085L241.053 387.084L200.767 363.788L203.536 362.034L203.539 362.032L264.527 324.08L274.62 329.719L274.621 329.719L319.321 354.816L319.322 354.817L428.504 416.405L428.506 416.406C429.676 417.06 430.994 417.404 432.335 417.404C433.676 417.404 434.994 417.06 436.165 416.406L436.169 416.404C437.347 415.731 438.327 414.759 439.011 413.587C439.695 412.415 440.058 411.083 440.064 409.726L440.064 409.724Z"
-                        stroke="white" />
-                    <path
-                        d="M331.56 261.43L331.559 261.432L319.299 269.239L319.296 269.241L274.537 298.155L274.536 298.155L185.19 355.464L185.19 355.464L184.38 355.985L184.378 355.986L182.077 357.481C180.91 358.146 179.954 359.127 179.318 360.311C178.681 361.496 178.392 362.837 178.483 364.179C178.523 365.5 178.894 366.789 179.561 367.93C180.23 369.073 181.175 370.03 182.311 370.713L182.317 370.717L509.447 560.737L509.46 560.745L510.834 561.604L510.842 561.609L510.849 561.613L524.868 569.718L517.174 573.747L517.171 573.749L508.731 578.085L508.729 578.086L432.41 617.802L365.972 578.1L365.73 578.505L365.972 578.1L335.553 559.941L22.0581 372.631L22.0555 372.629L17.8366 370.144L17.8338 370.143L7.62457 364.039L17.8366 357.933L17.837 357.933L333.987 168.531L333.987 259.9L331.56 261.43Z"
-                        stroke="white" />
+                    <g opacity="0.2">
+                        <path
+                            d="M668.331 296.025L668.331 296.023C668.32 293.484 667.639 290.993 666.356 288.801C665.073 286.61 663.233 284.795 661.023 283.541C658.814 282.286 656.312 281.636 653.77 281.656C651.229 281.677 648.737 282.366 646.548 283.656L646.545 283.658L33.8334 650.427L33.832 650.428L20.4413 658.386L20.44 658.387L0.499996 670.315L0.499989 495.83L34.2373 475.305L34.2379 475.305L634.555 111.188L691.885 76.4788L691.886 76.4785L778.324 23.9732L778.325 23.9721L813.204 2.98449L813.204 757.981L668.331 673.01L668.331 296.025Z"
+                            stroke="white" />
+                        <path
+                            d="M851.439 5.64067L851.44 5.6414L991.668 76.6068L991.669 76.6076L1021.5 91.8329L1021.5 1064.73L1001.44 1053.12L1001.19 1053.55L1001.44 1053.12L461.113 740.293L461.112 740.293L383.358 695.385L389.296 691.629L389.3 691.627L506.254 618.939L525.807 629.848L525.808 629.849L611.36 677.822L611.361 677.823L820.32 795.547L820.322 795.548C822.493 796.761 824.939 797.398 827.427 797.398C829.915 797.398 832.362 796.761 834.533 795.548L834.537 795.545C836.723 794.299 838.541 792.499 839.81 790.327C841.078 788.156 841.751 785.689 841.762 783.175L841.762 783.173L841.983 0.816203L851.439 5.64067Z"
+                            stroke="white" />
+                        <path
+                            d="M634.803 500.1L634.801 500.102L611.337 515.024L611.335 515.026L525.672 570.295L525.67 570.296L354.674 679.84L354.674 679.84L353.124 680.835L353.122 680.836L348.708 683.702C346.543 684.931 344.77 686.746 343.592 688.937C342.413 691.129 341.878 693.61 342.048 696.092C342.121 698.544 342.809 700.938 344.049 703.055C345.29 705.175 347.045 706.949 349.152 708.214L349.159 708.218L975.25 1071.44L975.264 1071.45L977.906 1073.1L977.914 1073.11L977.921 1073.11L1005.47 1089.01L990.007 1097.1L990.003 1097.1L973.848 1105.39L973.846 1105.39L827.555 1181.43L700.183 1105.41L699.955 1105.79L700.183 1105.41L641.966 1070.7L41.9815 712.662L41.9788 712.66L33.902 707.909L33.8992 707.907L13.7028 695.847L33.902 683.785L33.9024 683.785L639.661 321.336L639.661 497.042L634.803 500.1Z"
+                            stroke="white" />
+                    </g>
                 </svg> -->
+            </div>
         </section>
-        <!-- HEADER ENDS -->
+        <!-- constructor-hero ENDS -->
+
+        <!-- CONSTRUCTOR STARTS -->
+        <section class="section constructor">
+            <svg class="constructor__bg-toLeftBig">
+                <use xlink:href="#bgShapeToLeftBig"></use>
+            </svg>
+            <svg class="constructor__bg-toLeft">
+                <use xlink:href="#bgShapeToLeft"></use>
+            </svg>
+            <div class="container">
+                <div class="base-functions">
+                    <h4 class="constructor__title">В базовый набор функций интернет магазина входят:</h4>
+                    <ul class="list base-functions__list">
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Главная</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Оплата и доставка</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            О компании</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Контакты</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Каталог продукции по
+                            категориям</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Страница товара</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Корзина</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Страница заказа</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Форма обратной связи</li>
+                        <li class="list__item base-functions__item">
+                            <svg class="list__item-icon base-functions__item-icon">
+                                <use xlink:href="#listIcon"></use>
+                            </svg>
+                            Система управления сайтом
+                            (админка).</li>
+                    </ul>
+                </div>
+                <h4 class="constructor__title functions-builder__title">Но вы можете добавить больше функций
+                    самостоятельно:</h4>
+                <div class="functions-builder">
+                    <ul class="list functions-builder__list">
+                        <li class="functions-builder__function functions-builder__function_active">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="searchFunction"
+                                    id="searchFunction">
+                                <label class="functions-builder__label" for="searchFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Поиск по сайту</span>
+                                        <span class="functions-builder__function-price">5 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/blog.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Поиск по сайту</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">от 9 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="sortFunction"
+                                    id="sortFunction">
+                                <label class="functions-builder__label" for="sortFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Сортировка товара</span>
+                                        <span class="functions-builder__function-price">2 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/2.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Сортировка товара</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">2 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="sliderFunction"
+                                    id="sliderFunction">
+                                <label class="functions-builder__label" for="sliderFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Слайдер</span>
+                                        <span class="functions-builder__function-price">1 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/3.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Слайдер</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">1 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="onlinePayFunction"
+                                    id="onlinePayFunction">
+                                <label class="functions-builder__label" for="onlinePayFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Онлайн-оплата</span>
+                                        <span class="functions-builder__function-price">9 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/4.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Онлайн-оплата</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">9 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="cabinetFunction"
+                                    id="cabinetFunction">
+                                <label class="functions-builder__label" for="cabinetFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Личный кабинет</span>
+                                        <span class="functions-builder__function-price">от 5 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/5.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Личный кабинет</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">от 5 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="siteReviewFunction"
+                                    id="siteReviewFunction">
+                                <label class="functions-builder__label" for="siteReviewFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Отзывы о сайте</span>
+                                        <span class="functions-builder__function-price">1 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/6.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Отзывы о сайте</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">1 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="productReviewFunction"
+                                    id="productReviewFunction">
+                                <label class="functions-builder__label" for="productReviewFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Отзывы о товаре</span>
+                                        <span class="functions-builder__function-price">1 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/7.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Отзывы о товаре</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">1 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function ">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="blogFunction"
+                                    id="blogFunction">
+                                <label class="functions-builder__label" for="blogFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Блог</span>
+                                        <span class="functions-builder__function-price">от 9 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/blog.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Блог</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">от 9 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+                        <li class="functions-builder__function">
+                            <div class="functions-builder__function-group">
+                                <input class="functions-builder__checkbox" type="checkbox" name="compareFunction"
+                                    id="compareFunction">
+                                <label class="functions-builder__label" for="compareFunction">
+                                    <svg class="functions-builder__label-icon">
+                                        <use xlink:href="#listIcon"></use>
+                                    </svg>
+                                </label>
+                                <a href="#" class="functions-builder__function-link">
+
+                                    <div class="functions-builder__function-info-group">
+                                        <span class="functions-builder__function-name">Сравнение товаров</span>
+                                        <span class="functions-builder__function-price">5 990 ₽</span>
+                                    </div>
+                                    <svg class="functions-builder__arrow">
+                                        <use xlink:href="#arrowDown"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="functions-card">
+                                <img src="img/constructor/buider/8.jpg" alt="blog image" class="functions-card__img">
+                                <h4 class="functions-card__title">Сравнение товаров</h4>
+                                <p class="functions-card__desc">Появление на сайте текстов положительно
+                                    влияет на сайт в целом. Благодаря качественному
+                                    контенту, вы можете собрать вокруг интернетмагазина свою читательскую аудиторию,
+                                    часть
+                                    которой станет вашими клиентами. Больше того,
+                                    именно блог может сформировать уникальное
+                                    торговое предложение, которое заметно выделит
+                                    магазин на фоне конкурентов, игнорирующих
+                                    преимущества блоггинга. Мы разработаем блог по
+                                    вашим требованиям.</p>
+                                <span class="functions-card__price">5 990 ₽</span>
+                                <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <a href="#" class="btn btn_light functions-builder__btn-submit">ПОДТВЕРДИТЬ ВЫБОР</a>
+                </div>
+            </div>
+        </section>
+        <!-- CONSTRUCTOR ENDS -->
 
         <!-- CONTACTS STARTS -->
         //= partials/contacts.html
