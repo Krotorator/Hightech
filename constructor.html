@@ -58,7 +58,7 @@
                     </svg>
                 </a>
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="/" class="nav__link">ГЛАВНАЯ</a></li>
+                    <li class="nav__item"><a href="index.html" class="nav__link">ГЛАВНАЯ</a></li>
                     <li class="nav__item"><a href="portfolio.html" class="nav__link">ПОРТФОЛИО</a></li>
                     <li class="nav__item"><a href="services.html" class="nav__link">УСЛУГИ</a></li>
                     <li class="nav__item"><a href="constructor.html" class="nav__link">КОНСТРУКТОР
@@ -172,7 +172,8 @@
                     самостоятельно:</h4>
                 <div class="functions-builder">
                     <ul class="list functions-builder__list">
-                        <li class="functions-builder__function functions-builder__function_active">
+                        <li class="functions-builder__function functions-builder__function_active"
+                            data-name="Поиск по сайту" data-price="5990">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="searchFunction"
                                     id="searchFunction">
@@ -209,7 +210,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function">
+                        <li class="functions-builder__function" data-name="Сортировка товара" data-price="2990">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="sortFunction"
                                     id="sortFunction">
@@ -246,7 +247,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function">
+                        <li class="functions-builder__function" data-name="Слайдер" data-price="1990">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="sliderFunction"
                                     id="sliderFunction">
@@ -283,7 +284,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function">
+                        <li class="functions-builder__function" data-name="Онлайн-оплата" data-price="9900">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="onlinePayFunction"
                                     id="onlinePayFunction">
@@ -320,7 +321,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function">
+                        <li class="functions-builder__function" data-name="Личный кабинет" data-price="5990">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="cabinetFunction"
                                     id="cabinetFunction">
@@ -357,7 +358,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function">
+                        <li class="functions-builder__function" data-name="Отзывы о сайте" data-price="1900">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="siteReviewFunction"
                                     id="siteReviewFunction">
@@ -394,7 +395,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function">
+                        <li class="functions-builder__function" data-name="Отзывы о товаре" data-price="1900">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="productReviewFunction"
                                     id="productReviewFunction">
@@ -431,7 +432,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function ">
+                        <li class="functions-builder__function" data-name="Блог" data-price="9900">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="blogFunction"
                                     id="blogFunction">
@@ -468,7 +469,7 @@
                                 <a href="#" class="btn functions-card__btn">ДОБАВИТЬ ОПЦИЮ</a>
                             </div>
                         </li>
-                        <li class="functions-builder__function">
+                        <li class="functions-builder__function" data-name="Сравнение товаров" data-price="5990">
                             <div class="functions-builder__function-group">
                                 <input class="functions-builder__checkbox" type="checkbox" name="compareFunction"
                                     id="compareFunction">
@@ -560,7 +561,10 @@
                                     rows="10"></textarea>
                                 <label for="userMessage">Сообщение</label>
                             </div>
-                            <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+                            <div class="main-form__submit-group">
+                                <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+                                <span class="main-form__total"> <span class="main-form__total-price"></span> </span>
+                            </div>
                         </form>
         
                     </div>
@@ -579,6 +583,18 @@
         
         
         <svg style="display: none;">
+        
+            <symbol id="orderOptionDelete" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0)">
+                    <path d="M11.5 1.5L1 12" stroke="white" stroke-width="2" />
+                    <path d="M11.5 12L1 1.5" stroke="white" stroke-width="2" />
+                </g>
+                <defs>
+                    <clipPath id="clip0">
+                        <path d="M0 0.5H13V13.5H0V0.5Z" fill="white" />
+                    </clipPath>
+                </defs>
+            </symbol>
         
             <symbol id="bgShapeToLeftBig" viewBox="0 0 1496 2120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.4">
@@ -871,7 +887,139 @@
                                 rows="10"></textarea>
                             <label for="userMessage">Сообщение</label>
                         </div>
-                        <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+                        <div class="main-form__submit-group">
+                            <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+                            <span class="main-form__total"> <span class="main-form__total-price"></span></span>
+                        </div>
+                    </form>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal order-modal" id="orderModal">
+    
+        <div class=" modal__bg-wrapper">
+            <svg class="modal__bg-toRight">
+                <use xlink:href="#bgShapeToRight"></use>
+            </svg>
+            <svg class="modal__bg-toLeft">
+                <use xlink:href="#bgShapeToLeft"></use>
+            </svg>
+            <a href="#" class="close-btn modal__close-btn" id="modalClose">
+                <svg class="close-btn__icon modal__close-icon" fill="none" width="40" height="40" viewBox="0 0 40 40"
+                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M40 9.06623L31.8223 0.888526L30.0452 2.66558L36.4459 9.06623L25.5121 20L36.4459 30.9338L30.9338 36.4459L20 25.5121L9.06623 36.4459L3.5541 30.9338L14.4879 20L3.5541 9.06623L9.06623 3.5541L19.1115 13.5993L20.8885 11.8223L9.06623 0L0 9.06623L10.9338 20L0 30.9338L9.06623 40L20 29.0662L30.9338 40L40 30.9338L29.0662 20L40 9.06623Z"
+                        stroke="white" stroke-width=".3" />
+                    <path d="M30.0449 6.25728L28.2676 4.47998L26.4903 6.25728L28.2676 8.03459L30.0449 6.25728Z"
+                        stroke="white" stroke-width=".3" />
+                    <path d="M26.2744 10.0272L24.4971 8.24988L22.7198 10.0272L24.4971 11.8045L26.2744 10.0272Z"
+                        stroke="white" stroke-width=".3" />
+                </svg>
+            </a>
+            <div class="modal__wrapper">
+    
+    
+                <div class="modal__content">
+                    <div class="title-wrapper title-wrapper_section">
+                        <h2 class="title section-title contacts-form__title"></h2>
+                        <span class="section-subtitle contacts-form__subtitle">Оформить заказ</span>
+                        <div class="decor-square decor-square_title-wrapper"></div>
+                    </div>
+    
+                    <form action="#" method="POST" class="main-form">
+                        <div class="order-options">
+                            <h3 class="order-options__title">Вы выбрали:</h3>
+                            <div class="order-options__choosen-items">
+                                <!-- <div class="order-options__item" data-name="Поиск по сайту">
+                                    <span class="order-options__name">Поиск по сайту</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="order-options__item" data-name="Сортировка товара">
+                                    <span class="order-options__name">Сортировка товара</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="order-options__item" data-name=" Слайдер">
+                                    <span class="order-options__name">Слайдер</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="order-options__item" data-name="Онлайн-оплата">
+                                    <span class="order-options__name">Онлайн-оплата</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="order-options__item" data-name="Личный кабинет ">
+                                    <span class="order-options__name">Личный кабинет</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="order-options__item" data-name="Отзывы о сайте">
+                                    <span class="order-options__name">Отзывы о сайте</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="order-options__item" data-name="Отзывы о товаре">
+                                    <span class="order-options__name">Отзывы о товаре</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="order-options__item" data-name="Сравнение товаров">
+                                    <span class="order-options__name">Сравнение товаров</span>
+                                    <a href="#" class="order-options__close-link">
+                                        <svg class="order-options__closeBtn">
+                                            <use xlink:href="#orderOptionDelete"></use>
+                                        </svg>
+                                    </a>
+                                </div> -->
+    
+                            </div>
+                        </div>
+    
+                        <h3 class="main-form__title">Заполните пожалуйста форму ниже:</h3>
+                        <div class="main-form__input-wrapper">
+                            <input class="main-form__input" type="text" name="userName" id="userName" required>
+                            <label for="userName">Ваше имя</label>
+                            <span class="main-form__error">Поле заполнено неверно.</span>
+                        </div>
+                        <div class="main-form__input-wrapper">
+                            <input class="main-form__input" type="email" name="userMail" id="userMail" required>
+                            <label for="userName">Ваш E-mail</label>
+                            <span class="main-form__error">Поле заполнено неверно.</span>
+                        </div>
+                        <div class="main-form__input-wrapper">
+                            <textarea class="main-form__input" name="userMessage" id="userMessage" cols="30"
+                                rows="10"></textarea>
+                            <label for="userMessage">Сообщение</label>
+                        </div>
+                        <div class="main-form__submit-group">
+                            <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+                            <span class="main-form__total">Итого <span class="main-form__total-price">0</span> р</span>
+                        </div>
                     </form>
     
                 </div>
