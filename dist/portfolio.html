@@ -58,7 +58,7 @@
                     </svg>
                 </a>
                 <ul class="nav__list">
-                    <li class="nav__item"><a href="/" class="nav__link">ГЛАВНАЯ</a></li>
+                    <li class="nav__item"><a href="index.html" class="nav__link">ГЛАВНАЯ</a></li>
                     <li class="nav__item"><a href="portfolio.html" class="nav__link">ПОРТФОЛИО</a></li>
                     <li class="nav__item"><a href="services.html" class="nav__link">УСЛУГИ</a></li>
                     <li class="nav__item"><a href="constructor.html" class="nav__link">КОНСТРУКТОР
@@ -198,6 +198,18 @@
         
         
         <svg style="display: none;">
+        
+            <symbol id="orderOptionDelete" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0)">
+                    <path d="M11.5 1.5L1 12" stroke="white" stroke-width="2" />
+                    <path d="M11.5 12L1 1.5" stroke="white" stroke-width="2" />
+                </g>
+                <defs>
+                    <clipPath id="clip0">
+                        <path d="M0 0.5H13V13.5H0V0.5Z" fill="white" />
+                    </clipPath>
+                </defs>
+            </symbol>
         
             <symbol id="bgShapeToLeftBig" viewBox="0 0 1496 2120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g opacity="0.4">
@@ -489,7 +501,10 @@
                                     rows="10"></textarea>
                                 <label for="userMessage">Сообщение</label>
                             </div>
-                            <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+                            <div class="main-form__submit-group">
+                                <button type="submit" class="btn btn_light main-form__btn">ОТПРАВИТЬ</button>
+                                <span class="main-form__total"> <span class="main-form__total-price"></span></span>
+                            </div>
                         </form>
         
                     </div>

@@ -9996,6 +9996,104 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 600);
       });
     })();
+  } ///// BUILDER OPTIONS SUBMIT BUTTON
+
+
+  if (document.querySelector("#orderModal") && document.querySelector("#constructor")) {
+    var odreModal = document.querySelector("#orderModal");
+    var optionsBtnSubmit = document.querySelector(".functions-builder__btn-submit");
+    optionsBtnSubmit.addEventListener("click", function (e) {
+      var optionsList = document.querySelectorAll(".functions-builder__function");
+      var price = 0; //// CHECKING FOR ACTIVE OPTIONS
+
+      optionsList.forEach(function (option, index) {
+        if (option.querySelector('input[type="checkbox"]').checked) {
+          var box = option.querySelector('input[type="checkbox"]'); /// if option is chosen create option element
+
+          var choosenOption = document.createElement("DIV");
+          choosenOption.classList.add("order-options__item");
+          choosenOption.dataset.name = option.dataset.name;
+          choosenOption.dataset.price = option.dataset.price;
+          choosenOption.innerHTML = " \n                        <span class=\"order-options__name\">".concat(option.dataset.name, "</span>\n                        <a href=\"#\" class=\"order-options__delete-link\">\n                            <svg class=\"order-options__deleteBtn\">\n                                <use xlink:href=\"#orderOptionDelete\"></use>\n                            </svg>\n                        </a>"); /// append option element to form
+
+          odreModal.querySelector(".order-options__choosen-items").append(choosenOption); //// calculate and show total price
+
+          price += parseInt(option.dataset.price);
+          odreModal.querySelector(".main-form__total-price").innerText = price;
+        }
+      }); /// if there are no chosen options change option-title in form
+
+      if (!odreModal.querySelector(".order-options__item")) {
+        odreModal.querySelector(".order-options__title").innerText = "\u0412\u044B \u043D\u0435 \u0432\u044B\u0431\u0440\u0430\u043B\u0438 \u043D\u0438 \u043E\u0434\u043D\u043E\u0439 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0439 \u043E\u043F\u0446\u0438\u0438.";
+      } else {
+        odreModal.querySelector(".order-options__title").innerText = "\u0412\u044B \u0432\u044B\u0431\u0440\u0430\u043B\u0438:";
+      } //// delete option on click
+
+
+      var deleteBtns = odreModal.querySelectorAll(".order-options__delete-link");
+      deleteBtns.forEach(function (deleteBtn) {
+        deleteBtn.addEventListener("click", function (e) {
+          e.preventDefault(); //recalculate total price minus deleted option
+
+          var priceContainer = odreModal.querySelector(".main-form__total-price");
+          var price = parseInt(priceContainer.innerText);
+          price -= deleteBtn.parentElement.dataset.price;
+          priceContainer.innerText = price; //delete option element
+
+          deleteBtn.parentElement.remove(); /// remove checked state of checkbox in builder
+          //compare elements data-name
+
+          document.querySelectorAll(".functions-builder__checkbox").forEach(function (checkbox) {
+            if (checkbox.parentElement.parentElement.dataset.name === deleteBtn.parentElement.dataset.name) {
+              checkbox.checked = false; /// remove checked state of checkbox
+            }
+          }); //// reflow options elements count
+
+          var deleteBtnsReflow = odreModal.querySelectorAll(".order-options__delete-link"); /// if all options are deleted change title text
+
+          if (deleteBtnsReflow.length < 1) {
+            odreModal.querySelector(".order-options__title").innerText = "\u0412\u044B \u043D\u0435 \u0432\u044B\u0431\u0440\u0430\u043B\u0438 \u043D\u0438 \u043E\u0434\u043D\u043E\u0439 \u0434\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0439 \u043E\u043F\u0446\u0438\u0438.";
+          }
+        });
+      });
+      e.preventDefault();
+      odreModal.style.display = "block";
+      odreModal.classList.add("modal_open");
+      document.body.classList.add("body_hidden");
+      var closeModalBtn = odreModal.querySelector("#modalClose");
+      closeModalBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        odreModal.classList.remove("modal_open");
+        odreModal.classList.add("modal_close"); //remove chosen options
+
+        odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
+
+        var form = odreModal.querySelector(".main-form");
+
+        var _iterator2 = _createForOfIteratorHelper(form.children),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var child = _step2.value;
+            !child.classList.contains("main-form__submit-group") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
+        }
+
+        form.reset(); /////////// RESET FORM
+
+        setTimeout(function () {// modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+        }, 500);
+        setTimeout(function () {
+          odreModal.style.display = "none";
+          odreModal.classList.remove("modal_close");
+        }, 600);
+      });
+    });
   } //////////////FORM
 
 
@@ -10057,6 +10155,9 @@ document.addEventListener("DOMContentLoaded", function () {
         modalSucces(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR SUCCES MESSAGE IF SENDING SUCCES
         // modalError(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR ERROR MESSAGE IF SENDING FAILED
 
+        modal.style.display = "block";
+        modal.classList.add("modal_open");
+        document.body.classList.add("body_hidden");
         inputWrappers.forEach(function (el) {
           ///////DISABLING INPUTS IF SUCCES
           el.classList = "main-form__input-wrapper";
@@ -10338,35 +10439,153 @@ if (document.querySelector("#servicesPage")) {
       },
       offset: "100%"
     });
+  } ///// CHANGING GRID-ITEMS IN PRICE BLOCK
+
+
+  if (document.querySelector("#prices")) {
+    var changeGridItems = function changeGridItems() {
+      if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
+        grid[0].innerHTML = action + busines;
+        grid[1].innerHTML = standart + top;
+      } else if (window.innerWidth <= 768) {
+        grid[0].innerHTML = action + standart;
+        grid[1].innerHTML = busines + top;
+      } else if (window.innerWidth >= 1442) {
+        grid[0].innerHTML = action + standart;
+        grid[1].innerHTML = busines + top;
+      }
+    };
+
+    var grid = document.querySelector("#grid").children;
+    var action = document.querySelector("#action").outerHTML;
+    var standart = document.querySelector("#standart").outerHTML;
+    var busines = document.querySelector("#busines").outerHTML;
+    var top = document.querySelector("#top").outerHTML;
+    document.addEventListener("DOMContentLoaded", function () {
+      changeGridItems(); ////// ORDER BUTTONS MODAL
+
+      var odreModal = document.querySelector("#orderModal");
+      var orderBtns = document.querySelectorAll(".btnOrder");
+      var price = 0;
+      orderBtns.forEach(function (orderBtn) {
+        orderBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          console.log(orderBtn);
+          odreModal.style.display = "block";
+          odreModal.classList.add("modal_open");
+          document.body.classList.add("body_hidden"); /// if option is chosen create option element
+
+          var choosenOption = document.createElement("DIV");
+          choosenOption.classList.add("order-options__item");
+          choosenOption.dataset.name = orderBtn.dataset.name;
+          choosenOption.dataset.price = orderBtn.dataset.price;
+          choosenOption.innerHTML = " \n                        <span class=\"order-options__name\">".concat(orderBtn.dataset.name, " ( ").concat(orderBtn.dataset.option, " )</span>\n                        <br>\n                       "); /// append option element to form
+
+          odreModal.querySelector(".order-options__choosen-items").append(choosenOption); //// calculate and show total price
+
+          price += parseInt(orderBtn.dataset.price);
+          odreModal.querySelector(".main-form__total-price").innerText = price;
+        });
+        var closeModalBtn = odreModal.querySelector("#modalClose");
+        closeModalBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          odreModal.classList.remove("modal_open");
+          odreModal.classList.add("modal_close");
+          price = 0; //remove chosen options
+
+          odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
+
+          var form = odreModal.querySelector(".main-form");
+
+          var _iterator3 = _createForOfIteratorHelper(form.children),
+              _step3;
+
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var child = _step3.value;
+              !child.classList.contains("main-form__submit-group") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+
+          form.reset(); /////////// RESET FORM
+
+          setTimeout(function () {// modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+          }, 500);
+          setTimeout(function () {
+            odreModal.style.display = "none";
+            odreModal.classList.remove("modal_close");
+          }, 600);
+        });
+      });
+    });
+    window.addEventListener("resize", function () {
+      changeGridItems();
+      var odreModal = document.querySelector("#orderModal");
+      var orderBtns = document.querySelectorAll(".btnOrder");
+      var price = 0;
+      orderBtns.forEach(function (orderBtn) {
+        orderBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          console.log(orderBtn);
+          odreModal.style.display = "block";
+          odreModal.classList.add("modal_open");
+          document.body.classList.add("body_hidden"); /// if option is chosen create option element
+
+          var choosenOption = document.createElement("DIV");
+          choosenOption.classList.add("order-options__item");
+          choosenOption.dataset.name = orderBtn.dataset.name;
+          choosenOption.dataset.price = orderBtn.dataset.price;
+          choosenOption.innerHTML = " \n                        <span class=\"order-options__name\">".concat(orderBtn.dataset.name, " ( ").concat(orderBtn.dataset.option, " )</span>\n                        <br>\n                       "); /// append option element to form
+
+          if (odreModal.querySelector(".order-options__choosen-items").children.length < 1) {
+            odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
+          } //// calculate and show total price
+
+
+          price += parseInt(orderBtn.dataset.price);
+          odreModal.querySelector(".main-form__total-price").innerText = price;
+        });
+        var closeModalBtn = odreModal.querySelector("#modalClose");
+        closeModalBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          odreModal.classList.remove("modal_open");
+          odreModal.classList.add("modal_close");
+          price = 0; //remove chosen options
+
+          odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
+
+          var form = odreModal.querySelector(".main-form");
+
+          var _iterator4 = _createForOfIteratorHelper(form.children),
+              _step4;
+
+          try {
+            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+              var child = _step4.value;
+              !child.classList.contains("main-form__submit-group") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
+            }
+          } catch (err) {
+            _iterator4.e(err);
+          } finally {
+            _iterator4.f();
+          }
+
+          form.reset(); /////////// RESET FORM
+
+          setTimeout(function () {// modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+          }, 500);
+          setTimeout(function () {
+            odreModal.style.display = "none";
+            odreModal.classList.remove("modal_close");
+          }, 600);
+        });
+      });
+    });
   }
-} ///// CHANGING GRID-ITEMS IN PRICE BLOCK
-
-
-if (document.querySelector("#prices")) {
-  var changeGridItems = function changeGridItems() {
-    if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
-      grid[0].innerHTML = action + busines;
-      grid[1].innerHTML = standart + top;
-    } else if (window.innerWidth <= 768) {
-      grid[0].innerHTML = action + standart;
-      grid[1].innerHTML = busines + top;
-    } else if (window.innerWidth >= 1442) {
-      grid[0].innerHTML = action + standart;
-      grid[1].innerHTML = busines + top;
-    }
-  };
-
-  var grid = document.querySelector("#grid").children;
-  var action = document.querySelector("#action").outerHTML;
-  var standart = document.querySelector("#standart").outerHTML;
-  var busines = document.querySelector("#busines").outerHTML;
-  var top = document.querySelector("#top").outerHTML;
-  window.addEventListener("load", function () {
-    changeGridItems();
-  });
-  window.addEventListener("resize", function () {
-    changeGridItems();
-  });
 } //////////////  CONSTRUCTOR PAGE
 
 
@@ -10398,7 +10617,6 @@ if (document.querySelector("#constructor")) {
   //     });
   // }
   ////////// BUILDER ACCORDION WHEN SCREEN < 768px
-  // if (window.innerWidth <= 768) {
 
   var optionLinks = document.querySelectorAll(".functions-builder__function-link");
   optionLinks.forEach(function (link) {
@@ -10430,6 +10648,6 @@ if (document.querySelector("#constructor")) {
       }
     });
   });
-} // }
+}
 
 },{"blazy":1,"swiper":2,"waypoints/lib/noframework.waypoints.js":3}]},{},[4]);

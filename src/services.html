@@ -996,7 +996,7 @@
                 </div>
             </div>
             <div class="container-large">
-                <div class="prices__item">
+                <div class="prices__item" id="internetShop">
                     <h3 class="prices__item-title">ИНТЕРНЕТ МАГАЗИН
                         <div class="decor-square prices__item-title-decor-square"></div>
                     </h3>
@@ -1008,7 +1008,7 @@
                                     САМОСТОЯТЕЛЬНО</span>
                                 <span class="prices__action-subtitle">С ПОМОЩЬЮ НАШЕГО
                                     КОНСТРУКТОРА</span>
-                                <a href="#" class="btn prices__action-btn">СОБРАТЬ МАГАЗИН</a>
+                                <a href="constructor.html" class="btn prices__action-btn">СОБРАТЬ МАГАЗИН</a>
                             </div>
                             <div class="prices__variant" id="standart">
                                 <div class="prices__header">
@@ -1069,7 +1069,8 @@
                                         <span class="prices__summary-name">Срок</span>
                                         <span class="prices__summary-number">от 2 недель</span>
                                     </div>
-                                    <a href="#" class="btn btn_light prices__btn">ЗАКАЗАТЬ</a>
+                                    <a href="#" class="btn btn_light prices__btn btnOrder" data-name="Интернет магазин"
+                                        data-option="Стандарт" data-price="15990">ЗАКАЗАТЬ</a>
                                 </div>
                             </div>
                         </div>
@@ -1150,7 +1151,8 @@
                                         <span class="prices__summary-name">Срок</span>
                                         <span class="prices__summary-number">от 3 недель</span>
                                     </div>
-                                    <a href="#" class="btn btn_light prices__btn">ЗАКАЗАТЬ</a>
+                                    <a href="#" class="btn btn_light prices__btn btnOrder" data-name="Интернет магазин"
+                                        data-option="Бизнес" data-price="30900">ЗАКАЗАТЬ</a>
                                 </div>
                             </div>
                             <div class="prices__variant" id="top">
@@ -1237,13 +1239,14 @@
                                 <div class="prices__footer">
                                     <div class="prices__summary">
                                         <span class="prices__summary-name">Стоимость</span>
-                                        <span class="prices__summary-number">30 900 ₽</span>
+                                        <span class="prices__summary-number">40 900 ₽</span>
                                     </div>
                                     <div class="prices__summary">
                                         <span class="prices__summary-name">Срок</span>
                                         <span class="prices__summary-number">от 3 недель</span>
                                     </div>
-                                    <a href="#" class="btn btn_light prices__btn">ЗАКАЗАТЬ</a>
+                                    <a href="#" class="btn btn_light prices__btn btnOrder" data-name="Интернет магазин"
+                                        data-option="Топ" data-price="40900">ЗАКАЗАТЬ</a>
                                 </div>
                             </div>
 
@@ -1252,7 +1255,7 @@
                 </div>
                 <div class="prices__item-row prices__item-row_small">
                     <div class="prices__item-column">
-                        <div class="prices__item">
+                        <div class="prices__item" id="landing">
                             <h3 class="prices__item-title">ЛЕНДИНГ
                                 <div class="decor-square prices__item-title-decor-square"></div>
                             </h3>
@@ -1273,13 +1276,14 @@
                                         <span class="prices__summary-name">Срок</span>
                                         <span class="prices__summary-number">от 2 недель</span>
                                     </div>
-                                    <a href="#" class="btn btn_light prices__btn">ЗАКАЗАТЬ</a>
+                                    <a href="#" class="btn btn_light prices__btn btnOrder" data-name="ЛЕНДИНГ"
+                                        data-option="без опций" data-price="15990">ЗАКАЗАТЬ</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="prices__item-column">
-                        <div class="prices__item">
+                        <div class="prices__item" id="businessCard">
                             <h3 class="prices__item-title">САЙТ ВИЗИТКА
                                 <div class="decor-square prices__item-title-decor-square"></div>
                             </h3>
@@ -1298,7 +1302,8 @@
                                         <span class="prices__summary-name">Срок</span>
                                         <span class="prices__summary-number">от 2 недель</span>
                                     </div>
-                                    <a href="#" class="btn btn_light prices__btn">ЗАКАЗАТЬ</a>
+                                    <a href="#" class="btn btn_light prices__btn btnOrder" data-name="САЙТ ВИЗИТКА"
+                                        data-option="без опций" data-price="15990">ЗАКАЗАТЬ</a>
                                 </div>
                             </div>
                         </div>
@@ -1319,6 +1324,7 @@
 
     <!-- modal STARTS -->
     //= partials/modal.html
+    //= partials/order-modal.html
     <!-- modal ENDS -->
 
     //= partials/scripts.html

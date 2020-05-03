@@ -123,6 +123,126 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    ///// BUILDER OPTIONS SUBMIT BUTTON
+
+    if (document.querySelector("#orderModal") && document.querySelector("#constructor")) {
+        let odreModal = document.querySelector("#orderModal");
+
+        let optionsBtnSubmit = document.querySelector(".functions-builder__btn-submit");
+
+        optionsBtnSubmit.addEventListener("click", (e) => {
+            let optionsList = document.querySelectorAll(".functions-builder__function");
+            let price = 0;
+            //// CHECKING FOR ACTIVE OPTIONS
+            optionsList.forEach((option, index) => {
+                if (option.querySelector('input[type="checkbox"]').checked) {
+                    let box = option.querySelector('input[type="checkbox"]');
+
+                    /// if option is chosen create option element
+                    let choosenOption = document.createElement("DIV");
+                    choosenOption.classList.add("order-options__item");
+                    choosenOption.dataset.name = option.dataset.name;
+                    choosenOption.dataset.price = option.dataset.price;
+                    choosenOption.innerHTML = ` 
+                        <span class="order-options__name">${option.dataset.name}</span>
+                        <a href="#" class="order-options__delete-link">
+                            <svg class="order-options__deleteBtn">
+                                <use xlink:href="#orderOptionDelete"></use>
+                            </svg>
+                        </a>`;
+                    /// append option element to form
+                    odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
+
+                    //// calculate and show total price
+                    price += parseInt(option.dataset.price);
+                    odreModal.querySelector(".main-form__total-price").innerText = price;
+                }
+            });
+
+            /// if there are no chosen options change option-title in form
+            if (!odreModal.querySelector(".order-options__item")) {
+                odreModal.querySelector(
+                    ".order-options__title"
+                ).innerText = `Вы не выбрали ни одной дополнительной опции.`;
+            } else {
+                odreModal.querySelector(".order-options__title").innerText = `Вы выбрали:`;
+            }
+            //// delete option on click
+            let deleteBtns = odreModal.querySelectorAll(".order-options__delete-link");
+
+            deleteBtns.forEach((deleteBtn) => {
+                deleteBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    //recalculate total price minus deleted option
+                    let priceContainer = odreModal.querySelector(".main-form__total-price");
+                    let price = parseInt(priceContainer.innerText);
+                    price -= deleteBtn.parentElement.dataset.price;
+                    priceContainer.innerText = price;
+                    //delete option element
+                    deleteBtn.parentElement.remove();
+
+                    /// remove checked state of checkbox in builder
+                    //compare elements data-name
+                    document
+                        .querySelectorAll(".functions-builder__checkbox")
+                        .forEach((checkbox) => {
+                            if (
+                                checkbox.parentElement.parentElement.dataset.name ===
+                                deleteBtn.parentElement.dataset.name
+                            ) {
+                                checkbox.checked = false; /// remove checked state of checkbox
+                            }
+                        });
+
+                    //// reflow options elements count
+                    let deleteBtnsReflow = odreModal.querySelectorAll(
+                        ".order-options__delete-link"
+                    );
+                    /// if all options are deleted change title text
+                    if (deleteBtnsReflow.length < 1) {
+                        odreModal.querySelector(
+                            ".order-options__title"
+                        ).innerText = `Вы не выбрали ни одной дополнительной опции.`;
+                    }
+                });
+            });
+
+            e.preventDefault();
+            odreModal.style.display = "block";
+            odreModal.classList.add("modal_open");
+            document.body.classList.add("body_hidden");
+
+            let closeModalBtn = odreModal.querySelector("#modalClose");
+
+            closeModalBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                odreModal.classList.remove("modal_open");
+                odreModal.classList.add("modal_close");
+
+                //remove chosen options
+                odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
+
+                /// REMOVE INPUT STATES
+                let form = odreModal.querySelector(".main-form");
+                for (const child of form.children) {
+                    !child.classList.contains("main-form__submit-group")
+                        ? (child.classList = "main-form__input-wrapper")
+                        : false; /////////// REMOVE INPUT STATES
+                }
+                form.reset(); /////////// RESET FORM
+
+                setTimeout(() => {
+                    // modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+                }, 500);
+
+                setTimeout(() => {
+                    odreModal.style.display = "none";
+                    odreModal.classList.remove("modal_close");
+                }, 600);
+            });
+        });
+    }
+
     //////////////FORM
 
     let mainForms = [...document.querySelectorAll(".main-form")];
@@ -173,7 +293,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("ok!"); ///////////////////////////// AJAX script here
                 modalSucces(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR SUCCES MESSAGE IF SENDING SUCCES
                 // modalError(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR ERROR MESSAGE IF SENDING FAILED
-
+                modal.style.display = "block";
+                modal.classList.add("modal_open");
+                document.body.classList.add("body_hidden");
                 inputWrappers.forEach((el) => {
                     ///////DISABLING INPUTS IF SUCCES
                     el.classList = "main-form__input-wrapper";
@@ -452,34 +574,159 @@ if (document.querySelector("#servicesPage")) {
             offset: "100%",
         });
     }
-}
 
-///// CHANGING GRID-ITEMS IN PRICE BLOCK
+    ///// CHANGING GRID-ITEMS IN PRICE BLOCK
 
-if (document.querySelector("#prices")) {
-    let grid = document.querySelector("#grid").children;
-    let action = document.querySelector("#action").outerHTML;
-    let standart = document.querySelector("#standart").outerHTML;
-    let busines = document.querySelector("#busines").outerHTML;
-    let top = document.querySelector("#top").outerHTML;
-    function changeGridItems() {
-        if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
-            grid[0].innerHTML = action + busines;
-            grid[1].innerHTML = standart + top;
-        } else if (window.innerWidth <= 768) {
-            grid[0].innerHTML = action + standart;
-            grid[1].innerHTML = busines + top;
-        } else if (window.innerWidth >= 1442) {
-            grid[0].innerHTML = action + standart;
-            grid[1].innerHTML = busines + top;
+    if (document.querySelector("#prices")) {
+        let grid = document.querySelector("#grid").children;
+        let action = document.querySelector("#action").outerHTML;
+        let standart = document.querySelector("#standart").outerHTML;
+        let busines = document.querySelector("#busines").outerHTML;
+        let top = document.querySelector("#top").outerHTML;
+        function changeGridItems() {
+            if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
+                grid[0].innerHTML = action + busines;
+                grid[1].innerHTML = standart + top;
+            } else if (window.innerWidth <= 768) {
+                grid[0].innerHTML = action + standart;
+                grid[1].innerHTML = busines + top;
+            } else if (window.innerWidth >= 1442) {
+                grid[0].innerHTML = action + standart;
+                grid[1].innerHTML = busines + top;
+            }
         }
+        document.addEventListener("DOMContentLoaded", () => {
+            changeGridItems();
+            ////// ORDER BUTTONS MODAL
+            let odreModal = document.querySelector("#orderModal");
+
+            let orderBtns = document.querySelectorAll(".btnOrder");
+
+            let price = 0;
+            orderBtns.forEach((orderBtn) => {
+                orderBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    console.log(orderBtn);
+                    odreModal.style.display = "block";
+                    odreModal.classList.add("modal_open");
+                    document.body.classList.add("body_hidden");
+
+                    /// if option is chosen create option element
+                    let choosenOption = document.createElement("DIV");
+                    choosenOption.classList.add("order-options__item");
+                    choosenOption.dataset.name = orderBtn.dataset.name;
+                    choosenOption.dataset.price = orderBtn.dataset.price;
+                    choosenOption.innerHTML = ` 
+                        <span class="order-options__name">${orderBtn.dataset.name} ( ${orderBtn.dataset.option} )</span>
+                        <br>
+                       `;
+                    /// append option element to form
+                    odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
+
+                    //// calculate and show total price
+                    price += parseInt(orderBtn.dataset.price);
+                    odreModal.querySelector(".main-form__total-price").innerText = price;
+                });
+
+                let closeModalBtn = odreModal.querySelector("#modalClose");
+
+                closeModalBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    odreModal.classList.remove("modal_open");
+                    odreModal.classList.add("modal_close");
+                    price = 0;
+                    //remove chosen options
+                    odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
+
+                    /// REMOVE INPUT STATES
+                    let form = odreModal.querySelector(".main-form");
+                    for (const child of form.children) {
+                        !child.classList.contains("main-form__submit-group")
+                            ? (child.classList = "main-form__input-wrapper")
+                            : false; /////////// REMOVE INPUT STATES
+                    }
+                    form.reset(); /////////// RESET FORM
+
+                    setTimeout(() => {
+                        // modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+                    }, 500);
+
+                    setTimeout(() => {
+                        odreModal.style.display = "none";
+                        odreModal.classList.remove("modal_close");
+                    }, 600);
+                });
+            });
+        });
+        window.addEventListener("resize", () => {
+            changeGridItems();
+            let odreModal = document.querySelector("#orderModal");
+
+            let orderBtns = document.querySelectorAll(".btnOrder");
+
+            let price = 0;
+            orderBtns.forEach((orderBtn) => {
+                orderBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    console.log(orderBtn);
+                    odreModal.style.display = "block";
+                    odreModal.classList.add("modal_open");
+                    document.body.classList.add("body_hidden");
+
+                    /// if option is chosen create option element
+                    let choosenOption = document.createElement("DIV");
+                    choosenOption.classList.add("order-options__item");
+                    choosenOption.dataset.name = orderBtn.dataset.name;
+                    choosenOption.dataset.price = orderBtn.dataset.price;
+                    choosenOption.innerHTML = ` 
+                        <span class="order-options__name">${orderBtn.dataset.name} ( ${orderBtn.dataset.option} )</span>
+                        <br>
+                       `;
+                    /// append option element to form
+                    if (
+                        odreModal.querySelector(".order-options__choosen-items").children.length < 1
+                    ) {
+                        odreModal
+                            .querySelector(".order-options__choosen-items")
+                            .append(choosenOption);
+                    }
+
+                    //// calculate and show total price
+                    price += parseInt(orderBtn.dataset.price);
+                    odreModal.querySelector(".main-form__total-price").innerText = price;
+                });
+
+                let closeModalBtn = odreModal.querySelector("#modalClose");
+
+                closeModalBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    odreModal.classList.remove("modal_open");
+                    odreModal.classList.add("modal_close");
+                    price = 0;
+                    //remove chosen options
+                    odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
+
+                    /// REMOVE INPUT STATES
+                    let form = odreModal.querySelector(".main-form");
+                    for (const child of form.children) {
+                        !child.classList.contains("main-form__submit-group")
+                            ? (child.classList = "main-form__input-wrapper")
+                            : false; /////////// REMOVE INPUT STATES
+                    }
+                    form.reset(); /////////// RESET FORM
+
+                    setTimeout(() => {
+                        // modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+                    }, 500);
+
+                    setTimeout(() => {
+                        odreModal.style.display = "none";
+                        odreModal.classList.remove("modal_close");
+                    }, 600);
+                });
+            });
+        });
     }
-    window.addEventListener("load", () => {
-        changeGridItems();
-    });
-    window.addEventListener("resize", () => {
-        changeGridItems();
-    });
 }
 
 //////////////  CONSTRUCTOR PAGE
@@ -515,7 +762,6 @@ if (document.querySelector("#constructor")) {
 
     ////////// BUILDER ACCORDION WHEN SCREEN < 768px
 
-    // if (window.innerWidth <= 768) {
     let optionLinks = document.querySelectorAll(".functions-builder__function-link");
     optionLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
@@ -548,4 +794,3 @@ if (document.querySelector("#constructor")) {
         });
     });
 }
-// }
