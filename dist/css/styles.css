@@ -1528,10 +1528,8 @@ a {
       .hero__content {
         width: 100%;
         padding: 140px 0 400px; } }
-    .hero__content_animate .hero__title {
-      animation: FadeIn 1s forwards; }
     .hero__content_animate .hero__subtitle {
-      animation: subtitleIsVisible 1s 1s forwards; }
+      animation: FadeIn 1s 0.5s forwards; }
 
 @keyframes subtitleIsVisible {
   from {
@@ -1548,17 +1546,16 @@ a {
     line-height: 96px;
     color: #ffff;
     font-weight: bold;
-    display: block; }
-  .hero__title, .hero__subtitle {
+    display: block;
     opacity: 0; }
-    @media screen and (max-width: 1024px) {
-      .hero__title, .hero__subtitle {
-        font-size: 48px;
-        line-height: 56px; } }
-    @media screen and (max-width: 768px) {
-      .hero__title, .hero__subtitle {
-        font-size: 30px;
-        line-height: 30px; } }
+  @media screen and (max-width: 1024px) {
+    .hero__title, .hero__subtitle {
+      font-size: 48px;
+      line-height: 56px; } }
+  @media screen and (max-width: 768px) {
+    .hero__title, .hero__subtitle {
+      font-size: 30px;
+      line-height: 30px; } }
   .hero__bg-mask {
     position: absolute;
     top: 12%;
@@ -1752,33 +1749,33 @@ a {
     .why__card_animate:after {
       animation: cardBorderToTop 5s forwards; }
     .why__card_animate .why__icon_1 {
-      animation: drawIcon1 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon1 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__card_animate .why__icon_2 {
-      animation: drawIcon2 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon2 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__card_animate .why__icon_3 {
-      animation: drawIcon3 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon3 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__card_animate .why__icon_4 {
-      animation: drawIcon4 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon4 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__card_animate .why__icon_5 {
-      animation: drawIcon5 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon5 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__card_animate .why__icon_6 {
-      animation: drawIcon6 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon6 1s forwards, opacityIcon 0.3s 0.7s forwards; }
   .why__icon {
     width: 72px;
     height: 72px;
     filter: drop-shadow(0 0 8px #fff); }
     .why__icon_1:hover path {
-      animation: drawIcon1 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon1 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__icon_2:hover path {
-      animation: drawIcon2 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon2 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__icon_3:hover path {
-      animation: drawIcon3 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon3 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__icon_5:hover path {
-      animation: drawIcon5 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon5 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__icon_5:hover path {
-      animation: drawIcon5 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon5 1s forwards, opacityIcon 0.3s 0.7s forwards; }
     .why__icon_6:hover path {
-      animation: drawIcon6 2s forwards, opacityIcon 0.3s 2s forwards; }
+      animation: drawIcon6 1s forwards, opacityIcon 0.3s 0.7s forwards; }
 
 @keyframes opacityIcon {
   from {
@@ -2838,18 +2835,18 @@ a {
     width: 72px;
     height: 72px;
     filter: drop-shadow(0 0 8px #fff); }
-    .weDo__info-icon:hover.weDo__info-icon_1, .weDo__info-icon:focus.weDo__info-icon_1 {
-      animation: weDoIcon1 2s forwards, weDoIconOpaciy 0.5s 2s forwards; }
-    .weDo__info-icon:hover.weDo__info-icon_2, .weDo__info-icon:focus.weDo__info-icon_2 {
-      animation: weDoIcon2 2s forwards, weDoIconOpaciy 0.5s 2s forwards; }
-    .weDo__info-icon:hover.weDo__info-icon_3, .weDo__info-icon:focus.weDo__info-icon_3 {
-      animation: weDoIcon3 2s forwards, weDoIconOpaciy 0.5s 2s forwards; }
+    .weDo__info-icon:hover.weDo__info-icon_1 path, .weDo__info-icon:focus.weDo__info-icon_1 path {
+      animation: weDoIcon1 1s forwards, weDoIconOpaciy 0.3s 1s forwards; }
+    .weDo__info-icon:hover.weDo__info-icon_2 path, .weDo__info-icon:focus.weDo__info-icon_2 path {
+      animation: weDoIcon2 1s forwards, weDoIconOpaciy 0.3s 1s forwards; }
+    .weDo__info-icon:hover.weDo__info-icon_3 path, .weDo__info-icon:focus.weDo__info-icon_3 path {
+      animation: weDoIcon3 1s forwards, weDoIconOpaciy 0.3s 1s forwards; }
     .weDo__info-icon_animate.weDo__info-icon_1 {
-      animation: weDoIcon1 2s forwards, weDoIconOpaciy 0.5s 2s forwards; }
+      animation: weDoIcon1 1s forwards, weDoIconOpaciy 0.3s 1s forwards; }
     .weDo__info-icon_animate.weDo__info-icon_2 {
-      animation: weDoIcon2 2s forwards, weDoIconOpaciy 0.5s 2s forwards; }
+      animation: weDoIcon2 1s forwards, weDoIconOpaciy 0.3s 1s forwards; }
     .weDo__info-icon_animate.weDo__info-icon_3 {
-      animation: weDoIcon3 2s forwards, weDoIconOpaciy 0.5s 2s forwards; }
+      animation: weDoIcon3 1s forwards, weDoIconOpaciy 0.3s 1s forwards; }
 
 @keyframes weDoIcon1 {
   from {
@@ -3181,38 +3178,38 @@ a {
     margin-right: 16px;
     filter: drop-shadow(0 0 8px #fff);
     min-width: 50px; }
-    .options__icon:hover.options__icon_1, .options__icon:focus.options__icon_1 {
-      animation: optionsIcon1 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
-    .options__icon:hover.options__icon_2, .options__icon:focus.options__icon_2 {
-      animation: optionsIcon2 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
-    .options__icon:hover.options__icon_3, .options__icon:focus.options__icon_3 {
-      animation: optionsIcon3 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
-    .options__icon:hover.options__icon_4, .options__icon:focus.options__icon_4 {
-      animation: optionsIcon4 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
-    .options__icon:hover.options__icon_5, .options__icon:focus.options__icon_5 {
-      animation: optionsIcon5 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
-    .options__icon:hover.options__icon_6, .options__icon:focus.options__icon_6 {
-      animation: optionsIcon6 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
-    .options__icon:hover.options__icon_7, .options__icon:focus.options__icon_7 {
-      animation: optionsIcon7 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
-    .options__icon:hover.options__icon_8, .options__icon:focus.options__icon_8 {
-      animation: optionsIcon8 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+    .options__icon:hover.options__icon_1 path, .options__icon:focus.options__icon_1 path {
+      animation: optionsIcon1 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
+    .options__icon:hover.options__icon_2 path, .options__icon:focus.options__icon_2 path {
+      animation: optionsIcon2 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
+    .options__icon:hover.options__icon_3 path, .options__icon:focus.options__icon_3 path {
+      animation: optionsIcon3 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
+    .options__icon:hover.options__icon_4 path, .options__icon:focus.options__icon_4 path {
+      animation: optionsIcon4 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
+    .options__icon:hover.options__icon_5 path, .options__icon:focus.options__icon_5 path {
+      animation: optionsIcon5 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
+    .options__icon:hover.options__icon_6 path, .options__icon:focus.options__icon_6 path {
+      animation: optionsIcon6 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
+    .options__icon:hover.options__icon_7 path, .options__icon:focus.options__icon_7 path {
+      animation: optionsIcon7 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
+    .options__icon:hover.options__icon_8 path, .options__icon:focus.options__icon_8 path {
+      animation: optionsIcon8 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_1 {
-      animation: optionsIcon1 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon1 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_2 {
-      animation: optionsIcon2 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon2 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_3 {
-      animation: optionsIcon3 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon3 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_4 {
-      animation: optionsIcon4 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon4 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_5 {
-      animation: optionsIcon5 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon5 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_6 {
-      animation: optionsIcon6 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon6 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_7 {
-      animation: optionsIcon7 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon7 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
     .options__icon_animate.options__icon_8 {
-      animation: optionsIcon8 2s forwards, weDoIconOpaciy 0.3s 2s forwards; }
+      animation: optionsIcon8 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards; }
 
 @keyframes optionsIcon1 {
   from {
@@ -3651,7 +3648,10 @@ a {
     line-height: 96px;
     color: #ffff;
     font-weight: bold;
-    display: block; }
+    display: block;
+    opacity: 0; }
+    .constructor-hero__subtitle_animate {
+      animation: FadeIn 1s forwards; }
   .constructor-hero__title, .constructor-hero__subtitle {
     text-transform: uppercase; }
     @media screen and (max-width: 1024px) {
@@ -3730,12 +3730,23 @@ a {
     flex-wrap: wrap;
     width: 80%; }
   .base-functions__item {
-    width: 50%; }
+    width: 50%;
+    opacity: 0; }
     @media screen and (max-width: 768px) {
       .base-functions__item {
         flex: 0 1 100%; } }
     .base-functions__item-icon {
       align-self: flex-start; }
+    .base-functions__item_animate {
+      animation: FadeInToRight 0.8s forwards; }
+
+@keyframes FadeInToRight {
+  from {
+    opacity: 0;
+    transform: translateX(-50%); }
+  to {
+    opacity: 1;
+    transform: translateX(0%); } }
   @media screen and (max-width: 1260px) {
     .base-functions {
       width: 100%; } }

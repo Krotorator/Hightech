@@ -29,74 +29,11 @@
                     <div class="decor-square decor-square_title-wrapper"></div>
                 </div>
 
-                <form action="#" method="POST" class="main-form">
+                <form method="POST" class="main-form" data-formname='Форма заказа'>
                     <div class="order-options">
                         <h3 class="order-options__title">Вы выбрали:</h3>
                         <div class="order-options__choosen-items">
-                            <!-- <div class="order-options__item" data-name="Поиск по сайту">
-                                <span class="order-options__name">Поиск по сайту</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="order-options__item" data-name="Сортировка товара">
-                                <span class="order-options__name">Сортировка товара</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="order-options__item" data-name=" Слайдер">
-                                <span class="order-options__name">Слайдер</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="order-options__item" data-name="Онлайн-оплата">
-                                <span class="order-options__name">Онлайн-оплата</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="order-options__item" data-name="Личный кабинет ">
-                                <span class="order-options__name">Личный кабинет</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="order-options__item" data-name="Отзывы о сайте">
-                                <span class="order-options__name">Отзывы о сайте</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="order-options__item" data-name="Отзывы о товаре">
-                                <span class="order-options__name">Отзывы о товаре</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="order-options__item" data-name="Сравнение товаров">
-                                <span class="order-options__name">Сравнение товаров</span>
-                                <a href="#" class="order-options__close-link">
-                                    <svg class="order-options__closeBtn">
-                                        <use xlink:href="#orderOptionDelete"></use>
-                                    </svg>
-                                </a>
-                            </div> -->
+
 
                         </div>
                     </div>
@@ -113,8 +50,13 @@
                         <span class="main-form__error">Поле заполнено неверно.</span>
                     </div>
                     <div class="main-form__input-wrapper">
+                        <input class="main-form__input" type="tel" name="userPhone" id="userPhone" required>
+                        <label for="userPhone">Ваш телефон</label>
+                        <span class="main-form__error">Поле заполнено неверно.</span>
+                    </div>
+                    <div class="main-form__input-wrapper">
                         <textarea class="main-form__input" name="userMessage" id="userMessage" cols="30"
-                            rows="10"></textarea>
+                            rows="6"></textarea>
                         <label for="userMessage">Сообщение</label>
                     </div>
                     <div class="main-form__submit-group">

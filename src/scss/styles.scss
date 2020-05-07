@@ -688,11 +688,8 @@ a {
             padding: 140px 0 400px;
         }
         &_animate {
-            .hero__title {
-                animation: FadeIn 1s forwards;
-            }
             .hero__subtitle {
-                animation: subtitleIsVisible 1s 1s forwards;
+                animation: FadeIn 1s 0.5s forwards;
             }
         }
         @keyframes subtitleIsVisible {
@@ -716,10 +713,10 @@ a {
         color: $text-color1;
         font-weight: bold;
         display: block;
+        opacity: 0;
     }
     &__title,
     &__subtitle {
-        opacity: 0;
         @media screen and(max-width: 1024px) {
             font-size: 48px;
             line-height: 56px;
@@ -961,22 +958,22 @@ a {
                 animation: cardBorderToTop 5s forwards;
             }
             .why__icon_1 {
-                animation: drawIcon1 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon1 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
             .why__icon_2 {
-                animation: drawIcon2 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon2 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
             .why__icon_3 {
-                animation: drawIcon3 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon3 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
             .why__icon_4 {
-                animation: drawIcon4 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon4 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
             .why__icon_5 {
-                animation: drawIcon5 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon5 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
             .why__icon_6 {
-                animation: drawIcon6 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon6 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
         }
     }
@@ -986,32 +983,32 @@ a {
         height: 72px;
         &_1:hover {
             path {
-                animation: drawIcon1 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon1 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
         }
         &_2:hover {
             path {
-                animation: drawIcon2 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon2 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
         }
         &_3:hover {
             path {
-                animation: drawIcon3 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon3 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
         }
         &_5:hover {
             path {
-                animation: drawIcon5 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon5 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
         }
         &_5:hover {
             path {
-                animation: drawIcon5 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon5 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
         }
         &_6:hover {
             path {
-                animation: drawIcon6 2s forwards, opacityIcon 0.3s 2s forwards;
+                animation: drawIcon6 1s forwards, opacityIcon 0.3s 0.7s forwards;
             }
         }
         filter: drop-shadow(0 0 8px #fff);
@@ -2205,8 +2202,6 @@ a {
         font-size: 16px;
         line-height: 24px;
     }
-    &__info-group {
-    }
     &__info-label {
         display: inline-block;
         font-weight: bold;
@@ -2275,25 +2270,25 @@ a {
         filter: drop-shadow(0 0 8px #fff);
         &:hover,
         &:focus {
-            &.weDo__info-icon_1 {
-                animation: weDoIcon1 2s forwards, weDoIconOpaciy 0.5s 2s forwards;
+            &.weDo__info-icon_1 path {
+                animation: weDoIcon1 1s forwards, weDoIconOpaciy 0.3s 1s forwards;
             }
-            &.weDo__info-icon_2 {
-                animation: weDoIcon2 2s forwards, weDoIconOpaciy 0.5s 2s forwards;
+            &.weDo__info-icon_2 path {
+                animation: weDoIcon2 1s forwards, weDoIconOpaciy 0.3s 1s forwards;
             }
-            &.weDo__info-icon_3 {
-                animation: weDoIcon3 2s forwards, weDoIconOpaciy 0.5s 2s forwards;
+            &.weDo__info-icon_3 path {
+                animation: weDoIcon3 1s forwards, weDoIconOpaciy 0.3s 1s forwards;
             }
         }
         &_animate {
             &.weDo__info-icon_1 {
-                animation: weDoIcon1 2s forwards, weDoIconOpaciy 0.5s 2s forwards;
+                animation: weDoIcon1 1s forwards, weDoIconOpaciy 0.3s 1s forwards;
             }
             &.weDo__info-icon_2 {
-                animation: weDoIcon2 2s forwards, weDoIconOpaciy 0.5s 2s forwards;
+                animation: weDoIcon2 1s forwards, weDoIconOpaciy 0.3s 1s forwards;
             }
             &.weDo__info-icon_3 {
-                animation: weDoIcon3 2s forwards, weDoIconOpaciy 0.5s 2s forwards;
+                animation: weDoIcon3 1s forwards, weDoIconOpaciy 0.3s 1s forwards;
             }
         }
     }
@@ -2648,55 +2643,55 @@ a {
         min-width: 50px;
         &:hover,
         &:focus {
-            &.options__icon_1 {
-                animation: optionsIcon1 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_1 path {
+                animation: optionsIcon1 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
-            &.options__icon_2 {
-                animation: optionsIcon2 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_2 path {
+                animation: optionsIcon2 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
-            &.options__icon_3 {
-                animation: optionsIcon3 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_3 path {
+                animation: optionsIcon3 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
-            &.options__icon_4 {
-                animation: optionsIcon4 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_4 path {
+                animation: optionsIcon4 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
-            &.options__icon_5 {
-                animation: optionsIcon5 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_5 path {
+                animation: optionsIcon5 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
-            &.options__icon_6 {
-                animation: optionsIcon6 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_6 path {
+                animation: optionsIcon6 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
-            &.options__icon_7 {
-                animation: optionsIcon7 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_7 path {
+                animation: optionsIcon7 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
-            &.options__icon_8 {
-                animation: optionsIcon8 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+            &.options__icon_8 path {
+                animation: optionsIcon8 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
         }
         &_animate {
             &.options__icon_1 {
-                animation: optionsIcon1 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon1 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
             &.options__icon_2 {
-                animation: optionsIcon2 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon2 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
             &.options__icon_3 {
-                animation: optionsIcon3 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon3 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
             &.options__icon_4 {
-                animation: optionsIcon4 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon4 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
             &.options__icon_5 {
-                animation: optionsIcon5 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon5 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
             &.options__icon_6 {
-                animation: optionsIcon6 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon6 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
             &.options__icon_7 {
-                animation: optionsIcon7 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon7 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
             &.options__icon_8 {
-                animation: optionsIcon8 2s forwards, weDoIconOpaciy 0.3s 2s forwards;
+                animation: optionsIcon8 1s forwards, weDoIconOpaciy 0.3s 0.7s forwards;
             }
         }
     }
@@ -3161,11 +3156,14 @@ a {
         color: $text-color1;
         font-weight: bold;
         display: block;
+        opacity: 0; // for animation
+        &_animate {
+            animation: FadeIn 1s forwards;
+        }
     }
     &__title,
     &__subtitle {
         text-transform: uppercase;
-        // opacity: 0;    //// SET to 1 for animation fadeIn
         @media screen and(max-width: 1024px) {
             font-size: 48px;
             line-height: 56px;
@@ -3256,11 +3254,25 @@ a {
 
     &__item {
         width: 50%;
+        opacity: 0;
         @media screen and(max-width: 768px) {
             flex: 0 1 100%;
         }
         &-icon {
             align-self: flex-start;
+        }
+        &_animate {
+            animation: FadeInToRight 0.8s forwards;
+        }
+    }
+    @keyframes FadeInToRight {
+        from {
+            opacity: 0;
+            transform: translateX(-50%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0%);
         }
     }
     @media screen and(max-width: 1260px) {

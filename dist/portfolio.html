@@ -485,7 +485,7 @@
                             <div class="decor-square decor-square_title-wrapper"></div>
                         </div>
         
-                        <form action="#" method="POST" class="main-form">
+                        <form method="POST" class="main-form" data-formname='Форма обратной связи'>
                             <div class="main-form__input-wrapper">
                                 <input class="main-form__input" type="text" name="userName" id="userName" required>
                                 <label for="userName">Ваше имя</label>
@@ -497,8 +497,13 @@
                                 <span class="main-form__error">Поле заполнено неверно.</span>
                             </div>
                             <div class="main-form__input-wrapper">
+                                <input class="main-form__input" type="tel" name="userPhone" id="userPhone" required>
+                                <label for="userPhone">Ваш телефон</label>
+                                <span class="main-form__error">Поле заполнено неверно.</span>
+                            </div>
+                            <div class="main-form__input-wrapper">
                                 <textarea class="main-form__input" name="userMessage" id="userMessage" cols="30"
-                                    rows="10"></textarea>
+                                    rows="6"></textarea>
                                 <label for="userMessage">Сообщение</label>
                             </div>
                             <div class="main-form__submit-group">

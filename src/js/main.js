@@ -1,90 +1,95 @@
-//= _jquery.js
-//= _swiper.js
-//= _scripts.js
-import Swiper from "swiper";
 import Blazy from "blazy";
 require("waypoints/lib/noframework.waypoints.js");
+let animations = require("./animations.js");
+let accordion = require("./accordion.js");
+let nav = require("./nav.js");
+let slider = require("./slider.js");
 
 document.addEventListener("DOMContentLoaded", () => {
     var bLazy = new Blazy();
+    accordion();
+    animations();
+    nav();
+    slider();
 
-    /////////////////////////////SLIDER
-    var testimonialsSliderThumbs = new Swiper(".testimonials-thumbs", {
-        spaceBetween: 224,
-        slidesPerView: 2,
-        loop: true,
-        freeMode: true,
-        loopedSlides: 3, //looped slides should be the same
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-        breakpoints: {
-            1024: {
-                spaceBetween: 360,
-            },
-        },
-    });
+    ///////////////// MODAL STATE-MESSAGE SUCCESS/ERROR/NORMAL
+    function modalSucces(modal) {
+        let thisModal = modal || document.querySelector(".modal_open");
+        thisModal.querySelector(".title-wrapper").innerHTML = `
+            <span  class="section-subtitle contacts-form__subtitle">СпАСИБО</span>
+            <h2  class="title section-title contacts-form__title">зА ЗАЯВКУ!</h2>
+            <span >Мы свяжемся с Вами в кратчайшие сроки</span>
+     `;
 
-    var testimonialsSliderTop = new Swiper(".testimonials-slider", {
-        // Optional parameters
-        spaceBetween: 100,
-        loop: true,
-        centeredSlides: true,
-        grabCursor: false,
-        slidesPerView: 1,
-        loopedSlides: 3, //looped slides should be the same
-        navigation: {
-            nextEl: ".testimonials-slider-button-next",
-            prevEl: ".testimonials-slider-button-prev",
-        },
-        thumbs: {
-            swiper: testimonialsSliderThumbs,
-        },
-        pagination: {
-            el: ".testimonials-slider-pagination",
-            clickable: true,
-        },
-    });
-
-    //////////////NAV
-    let nav = document.querySelector("#nav");
-    let navLinks = [...document.querySelectorAll(".nav__link")];
-    let wrapper = document.querySelector("#wrapper");
-    let burger = document.querySelector("#burger");
-    let closeBtn = [...document.querySelectorAll(".close-btn")];
-
-    burger.addEventListener("click", (e) => {
-        e.preventDefault();
-        nav.classList.add("nav_active");
-        document.body.classList.add("body_hidden");
-    });
-    for (let i = 0; i < closeBtn.length; i++) {
-        const btn = closeBtn[i];
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            nav.classList.remove("nav_active");
-            document.body.classList.remove("body_hidden");
-        });
+        thisModal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+        thisModal.querySelector(".main-form").classList.add("form-isHide");
+        thisModal.classList.add("modal__message");
     }
+    function createModalSucces() {
+        let thisModal = document.querySelector("#modal");
+        modal.style.display = "block";
+        modal.classList.add("modal_open");
+        document.body.classList.add("body_hidden");
+        modal.querySelector(".title-wrapper").innerHTML = `
+            <span  class="section-subtitle contacts-form__subtitle">СпАСИБО</span>
+            <h2  class="title section-title contacts-form__title">зА ЗАЯВКУ!</h2>
+            <span >Мы свяжемся с Вами в кратчайшие сроки</span>
+     `;
 
-    //set active nav-link
+        modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+        modal.querySelector(".main-form").classList.add("form-isHide");
+        modal.classList.add("modal__message");
+    }
+    function modalError(modal) {
+        let thisModal = modal || document.querySelector(".modal_open");
+        thisModal.querySelector(".title-wrapper").innerHTML = `
+            <h2  class="title section-title contacts-form__title">Ошибка</h2>
+            <span >Не удалось отправть заявку! <br> Попробуйте позжею</span>
+       `;
 
-    navLinks.forEach((link) => {
-        if (window.location.href === link.href) {
-            link.classList.add("nav__link_active");
-        }
-        link.addEventListener("click", () => {
-            let thisLink = link;
-            link.classList.add("nav__link_active");
-            navLinks.forEach((link) => {
-                if (link !== thisLink) {
-                    link.classList.remove("nav__link_active");
-                }
-            });
-        });
-    });
+        thisModal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+        thisModal.querySelector(".main-form").classList.add("form-isHide");
+        thisModal.classList.add("modal__message");
+    }
+    function createModalError() {
+        let thisModal = document.querySelector("#modal");
+        modal.style.display = "block";
+        modal.classList.add("modal_open");
+        document.body.classList.add("body_hidden");
+        thisModal.querySelector(".title-wrapper").innerHTML = `
+            <h2  class="title section-title contacts-form__title">Ошибка</h2>
+            <span >Не удалось отправть заявку! <br> Попробуйте позжею</span>
+       `;
+
+        modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+        modal.querySelector(".main-form").classList.add("form-isHide");
+        modal.classList.add("modal__message");
+    }
+    function modalNormal(modal) {
+        let thisModal = modal || document.querySelector(".modal_open");
+        thisModal.querySelector(".title-wrapper").innerHTML = `
+            <h2 class="title section-title contacts-form__title">свяжитесь</h2>
+                <span class="section-subtitle contacts-form__subtitle">с нами</span>
+                <div class="decor-square decor-square_title-wrapper"></div>
+       `;
+
+        thisModal.querySelector(".title-wrapper").classList.remove("title-wrapper_form-succes");
+        thisModal.querySelector(".main-form").classList.remove("form-isHide");
+        thisModal.classList.remove("modal__message");
+    }
 
     if (document.querySelector("#modal")) {
         ////////////////// MODAL
+
+        function openModal(modal) {
+            modal.style.display = "block";
+            modal.classList.add("modal_open");
+            document.body.classList.add("body_hidden");
+        }
+        function closeModal(modal) {
+            modal.classList.remove("modal_open");
+            modal.classList.add("modal_close");
+        }
 
         let modal = document.querySelector("#modal");
         let closeModalBtn = document.querySelector("#modalClose");
@@ -95,23 +100,21 @@ document.addEventListener("DOMContentLoaded", () => {
             ///// SHOW MODAL ON CLICK
             btnsForModal[i].addEventListener("click", (e) => {
                 e.preventDefault();
-                modal.style.display = "block";
-                modal.classList.add("modal_open");
-                document.body.classList.add("body_hidden");
+                openModal(modal);
             });
         }
 
         closeModalBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            modal.classList.remove("modal_open");
-            modal.classList.add("modal_close");
-
+            closeModal(modal);
             let form = modal.querySelector(".main-form");
             for (const child of form.children) {
-                child.tagName !== "BUTTON" ? (child.classList = "main-form__input-wrapper") : false; /////////// REMOVE INPUT STATES
+                child.classList.contains("main-form__input-wrapper")
+                    ? (child.classList = "main-form__input-wrapper")
+                    : false; /////////// REMOVE INPUT STATES
             }
             form.reset(); /////////// RESET FORM
-
+            document.body.classList.remove("body_hidden");
             setTimeout(() => {
                 modalNormal(modal); ////// RETURN TO NORMAL MODAL STATE
             }, 500);
@@ -218,6 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
                 odreModal.classList.remove("modal_open");
                 odreModal.classList.add("modal_close");
+                document.body.classList.remove("body_hidden");
 
                 //remove chosen options
                 odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
@@ -232,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 form.reset(); /////////// RESET FORM
 
                 setTimeout(() => {
-                    // modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+                    modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
                 }, 500);
 
                 setTimeout(() => {
@@ -251,17 +255,25 @@ document.addEventListener("DOMContentLoaded", () => {
     let submitBtns = [...document.querySelectorAll(".main-form__btn")];
 
     //////////// FORM INPUTS STATES
+
+    function nameIsEmpty(element) {
+        return element.value == "";
+    }
+    function emailIsValid(element) {
+        return element.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
+    }
+    function phoneIsValid(element) {
+        return element.value.match(/^\d[\d\(\)\ -]{4,14}\d$/);
+    }
+
     for (let i = 0; i < inputs.length; i++) {
         const input = inputs[i];
         input.addEventListener("focus", () => {
             input.parentElement.classList.add("main-form__input-wrapper_active");
+            input.parentElement.classList.remove("main-form__input-wrapper_alert");
+            input.parentElement.classList.remove("main-form__input-wrapper_succes");
         });
         input.addEventListener("blur", () => {
-            if (input.value == "") {
-                input.parentElement.classList = "main-form__input-wrapper";
-            }
-        });
-        input.addEventListener("input", () => {
             if (input.name == "userName") {
                 if (!nameIsEmpty(input)) {
                     input.parentElement.classList.add("main-form__input-wrapper_succes");
@@ -278,33 +290,106 @@ document.addEventListener("DOMContentLoaded", () => {
                     input.parentElement.classList.add("main-form__input-wrapper_alert");
                     input.parentElement.classList.remove("main-form__input-wrapper_succes");
                 }
+            } else if (input.name == "userPhone") {
+                if (phoneIsValid(input)) {
+                    input.parentElement.classList.add("main-form__input-wrapper_succes");
+                    input.parentElement.classList.remove("main-form__input-wrapper_alert");
+                } else {
+                    input.parentElement.classList.add("main-form__input-wrapper_alert");
+                    input.parentElement.classList.remove("main-form__input-wrapper_succes");
+                }
             }
         });
+    }
+
+    function ajax(method, url, data, succes, error) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState !== XMLHttpRequest.DONE) return;
+            if (xhr.status === 200) {
+                succes();
+            } else {
+                error();
+            }
+        };
+        xhr.send(data);
     }
 
     ////////////// FORM VALIDATE AND SUBMIT
     for (let i = 0; i < submitBtns.length; i++) {
         const submitBtn = submitBtns[i];
         submitBtn.addEventListener("click", (e) => {
-            let name = submitBtn.parentElement.userName;
-            let email = submitBtn.parentElement.userMail;
+            let thisForm = submitBtn.parentElement.parentElement;
+            let name = thisForm.userName;
+            let email = thisForm.userMail;
+            let phone = thisForm.userPhone;
+            let thisModal = thisForm.parentElement.parentElement.parentElement;
             e.preventDefault();
-            if (!nameIsEmpty(name) && emailIsValid(email)) {
-                console.log("ok!"); ///////////////////////////// AJAX script here
-                modalSucces(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR SUCCES MESSAGE IF SENDING SUCCES
-                // modalError(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR ERROR MESSAGE IF SENDING FAILED
-                modal.style.display = "block";
-                modal.classList.add("modal_open");
-                document.body.classList.add("body_hidden");
+            // checking for valid inputs
+            if (!nameIsEmpty(name) && emailIsValid(email) && phoneIsValid(phone)) {
+                //create form data
+                let formData = new FormData(thisForm);
+                //append form type
+                formData.append(`Тип формы`, thisForm.dataset.formname);
+                //append page href
+                formData.append(`Форма отправлена со страницы`, window.location.href);
+                //checking if there are some aditional options in order
+                if (
+                    thisForm.firstElementChild.lastElementChild.classList.contains(
+                        "order-options__choosen-items"
+                    )
+                ) {
+                    let chosenOptions = [...thisForm.firstElementChild.lastElementChild.children];
+                    //create and fill an array of options
+                    let optionsArr = [];
+                    chosenOptions.forEach((el, ind) => {
+                        optionsArr.push(el.innerText);
+                    });
+                    //append aditional options to form data
+                    formData.append(`Выбранные опции`, optionsArr);
+                    // send form
+                    ajax(
+                        thisForm.method,
+                        "https://formspree.io/mwkrkwwg",
+                        formData,
+                        modalSucces,
+                        modalError
+                    );
+                } else {
+                    //if there are no aditional options sending just form
+                    //if form parent != modal we create new modal with message
+                    if (thisForm.parentElement.parentElement.parentElement.id !== "modal") {
+                        console.log("no modal");
+
+                        ajax(
+                            thisForm.method,
+                            "https://formspree.io/mwkrkwwg",
+                            formData,
+                            createModalSucces,
+                            createModalError
+                        );
+                    } else {
+                        //if form parent === modal, append message to this modal
+                        ajax(
+                            thisForm.method,
+                            "https://formspree.io/mwkrkwwg",
+                            formData,
+                            modalSucces,
+                            modalError
+                        );
+                    }
+                }
                 inputWrappers.forEach((el) => {
-                    ///////DISABLING INPUTS IF SUCCES
+                    ///////DISABLING INPUTS IF SUCCESS
                     el.classList = "main-form__input-wrapper";
                     let formElements = [...el.parentElement.elements];
                     formElements.forEach((input) => {
                         input.setAttribute("disabled", "disabled");
                     });
                 });
-                submitBtn.parentElement.reset();
+                thisForm.reset();
                 submitBtn.setAttribute("disabled", "disabled");
             } else if (nameIsEmpty(name)) {
                 ///// ALERT STATE OF INPUTS
@@ -313,89 +398,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 email.parentElement.classList.add("main-form__input-wrapper_alert");
             }
         });
-    }
-
-    function nameIsEmpty(element) {
-        return element.value == "";
-    }
-    function emailIsValid(element) {
-        return element.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
-    }
-
-    ///////////////// MODAL MESSAGE SUCCESS/ERROR/NORMAL
-    function modalSucces(modal) {
-        modal.querySelector(".title-wrapper").innerHTML = `
-            <span  class="section-subtitle contacts-form__subtitle">СпАСИБО</span>
-            <h2  class="title section-title contacts-form__title">зА ЗАЯВКУ!</h2>
-            <span >Мы свяжемся с Вами в кратчайшие сроки</span>
-     `;
-        modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
-        modal.querySelector(".main-form").classList.add("form-isHide");
-        modal.classList.add("modal__message");
-    }
-    function modalError(modal) {
-        modal.querySelector(".title-wrapper").innerHTML = `
-            <h2  class="title section-title contacts-form__title">Ошибка</h2>
-            <span >Не удалось отправть заявку! <br> Попробуйте позжею</span>
-       `;
-        modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
-        modal.querySelector(".main-form").classList.add("form-isHide");
-        modal.classList.add("modal__message");
-    }
-    function modalNormal(modal) {
-        modal.querySelector(".title-wrapper").innerHTML = `
-            <h2 class="title section-title contacts-form__title">свяжитесь</h2>
-                <span class="section-subtitle contacts-form__subtitle">с нами</span>
-                <div class="decor-square decor-square_title-wrapper"></div>
-       `;
-        modal.querySelector(".title-wrapper").classList.remove("title-wrapper_form-succes");
-        modal.querySelector(".main-form").classList.remove("form-isHide");
-        modal.classList.remove("modal__message");
-    }
-
-    ///// animations fot title
-    var decorSquare = document.querySelectorAll(".decor-square_title-wrapper");
-    for (var i = 0; i < decorSquare.length; i++) {
-        new Waypoint({
-            element: decorSquare[i],
-            handler: function () {
-                this.element.classList.toggle("decor-square_title-wrapper_animate");
-            },
-            offset: "100%",
-        });
-    }
-    var titleWrapper = document.querySelectorAll(".title-wrapper_section");
-    for (var i = 0; i < titleWrapper.length; i++) {
-        new Waypoint({
-            element: titleWrapper[i],
-            handler: function () {
-                this.element.classList.toggle("title-wrapper_section-animate");
-            },
-            offset: "120%",
-        });
-    }
-
-    if (document.querySelector("#portfolio")) {
-        var portfolioImage = document.querySelectorAll(".portfolio__img");
-        for (var i = 0; i < portfolioImage.length; i++) {
-            new Waypoint({
-                element: portfolioImage[i],
-                handler: function () {
-                    this.element.classList.toggle("portfolio__img_animate");
-                },
-                offset: "100%",
-            });
-        }
-        var portfolioDescription = document.querySelectorAll(".portfolio__desc");
-        for (var i = 0; i < portfolioDescription.length; i++) {
-            new Waypoint({
-                element: portfolioDescription[i],
-                handler: function () {
-                    this.element.classList.toggle("portfolio__desc_animate");
-                },
-                offset: "100%",
-            });
-        }
     }
 
     if (document.querySelector("#homePage")) {
@@ -423,312 +425,190 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             false
         );
-
-        ///////////////// ANIMATIONS
-        const heroContent = document.querySelector(".hero__content");
-        heroContent.classList.add("hero__content_animate");
-
-        var whyIcons = document.querySelectorAll(".why__icon");
-        for (var i = 0; i < whyIcons.length; i++) {
-            new Waypoint({
-                element: whyIcons[i],
-                handler: function () {
-                    this.element.parentElement.classList.toggle("why__card_animate");
-                },
-                offset: "70%",
-            });
-        }
-
-        var servicesCards = document.querySelectorAll(".services__card");
-        for (var i = 0; i < servicesCards.length; i++) {
-            new Waypoint({
-                element: servicesCards[i],
-                handler: function () {
-                    this.element.classList.add("services__card_animate");
-                    setTimeout(() => {
-                        this.element.classList.remove("services__card_animate");
-                    }, 1000);
-                },
-                offset: "80%",
-            });
-        }
-        var buttons = document.querySelectorAll(".btn");
-        for (var i = 0; i < buttons.length; i++) {
-            new Waypoint({
-                element: buttons[i],
-                handler: function () {
-                    if (this.element.classList.contains("header__btn")) {
-                        return false;
-                    }
-                    this.element.classList.add("btn_animate");
-                    setTimeout(() => {
-                        this.element.classList.remove("btn_animate");
-                    }, 1000);
-                },
-                offset: "110%",
-            });
-        }
-
-        var worksBtnLine = new Waypoint({
-            element: document.querySelector(".works__btn-wrapper"),
-            handler: function () {
-                this.element.classList.toggle("works__btn-wrapper_animate");
-            },
-            offset: "100%",
-        });
-        var form = new Waypoint({
-            element: document.querySelector(".main-form "),
-            handler: function () {
-                this.element.classList.toggle("main-form_animate");
-            },
-            offset: "110%",
-        });
-        var sliderControls = new Waypoint({
-            element: document.querySelector(".testimonials-slider-pagination "),
-            handler: function () {
-                document
-                    .querySelector(".testimonials__sliders")
-                    .classList.toggle("testimonials__sliders_animate");
-            },
-            offset: "100%",
-        });
-    }
-
-    /////////// STAGES ACCORDION
-    if (document.querySelector(".stages")) {
-        let stagesLink = [...document.querySelectorAll(".stages__arrow-link")];
-        let stagesItems = [...document.querySelectorAll(".stages__item")];
-        let stagesBody = [...document.querySelectorAll(".stages__body")];
-
-        stagesItems.forEach((stagesItem) => {
-            stagesItem.addEventListener("click", (e) => {
-                e.preventDefault();
-                if (e.target.classList.contains("stages__arrow-link")) {
-                    e.preventDefault();
-                    let link = e.target;
-                    link.classList.toggle("stages__arrow-link_isOpened");
-                    let itemBody = stagesItem.querySelector(".stages__body");
-                    if (itemBody.classList.contains("stages__body_isOpened")) {
-                        itemBody.style.height = getComputedStyle(itemBody).height;
-                        itemBody.classList.remove("stages__body_isOpened");
-                        getComputedStyle(itemBody).height;
-                        itemBody.style.height = "";
-                    } else {
-                        itemBody.classList.add("stages__body_isOpened");
-                        let h = getComputedStyle(itemBody).height;
-                        itemBody.style.height = "0";
-                        getComputedStyle(itemBody).height;
-                        itemBody.style.height = h;
-                        setTimeout(() => {
-                            itemBody.style.height = "";
-                        }, 1000);
-                    }
-                } else if (e.target.classList.contains("stages__arrow")) {
-                    return false;
-                }
-            });
-        });
     }
 });
 
-///////////// services page animations
+///// CHANGING GRID-ITEMS IN PRICE BLOCK
 
-if (document.querySelector("#servicesPage")) {
-    var weDoDesc = new Waypoint({
-        element: document.querySelector(".weDo__desc"),
-        handler: function () {
-            this.element.classList.toggle("weDo__desc_animate");
-        },
-        offset: "100%",
-    });
-
-    var optionsIcons = document.querySelectorAll(".options__icon");
-    for (var i = 0; i < optionsIcons.length; i++) {
-        new Waypoint({
-            element: optionsIcons[i],
-            handler: function () {
-                this.element.classList.toggle("options__icon_animate");
-            },
-            offset: "100%",
-        });
-    }
-
-    var weDoIcons = document.querySelectorAll(".weDo__info-icon");
-    for (var i = 0; i < weDoIcons.length; i++) {
-        new Waypoint({
-            element: weDoIcons[i],
-            handler: function () {
-                this.element.classList.toggle("weDo__info-icon_animate");
-            },
-            offset: "100%",
-        });
-    }
-
-    var resultNumber = document.querySelectorAll(".result__number");
-    for (var i = 0; i < resultNumber.length; i++) {
-        new Waypoint({
-            element: resultNumber[i],
-            handler: function () {
-                this.element.classList.toggle("result__number_animate");
-            },
-            offset: "100%",
-        });
-    }
-
-    ///// CHANGING GRID-ITEMS IN PRICE BLOCK
-
-    if (document.querySelector("#prices")) {
-        let grid = document.querySelector("#grid").children;
-        let action = document.querySelector("#action").outerHTML;
-        let standart = document.querySelector("#standart").outerHTML;
-        let busines = document.querySelector("#busines").outerHTML;
-        let top = document.querySelector("#top").outerHTML;
-        function changeGridItems() {
-            if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
-                grid[0].innerHTML = action + busines;
-                grid[1].innerHTML = standart + top;
-            } else if (window.innerWidth <= 768) {
-                grid[0].innerHTML = action + standart;
-                grid[1].innerHTML = busines + top;
-            } else if (window.innerWidth >= 1442) {
-                grid[0].innerHTML = action + standart;
-                grid[1].innerHTML = busines + top;
-            }
+if (document.querySelector("#prices")) {
+    let grid = document.querySelector("#grid").children;
+    let action = document.querySelector("#action").outerHTML;
+    let standart = document.querySelector("#standart").outerHTML;
+    let busines = document.querySelector("#busines").outerHTML;
+    let top = document.querySelector("#top").outerHTML;
+    function changeGridItems() {
+        if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
+            grid[0].innerHTML = action + busines;
+            grid[1].innerHTML = standart + top;
+        } else if (window.innerWidth <= 768) {
+            grid[0].innerHTML = action + standart;
+            grid[1].innerHTML = busines + top;
+        } else if (window.innerWidth >= 1442) {
+            grid[0].innerHTML = action + standart;
+            grid[1].innerHTML = busines + top;
         }
-        document.addEventListener("DOMContentLoaded", () => {
-            changeGridItems();
-            ////// ORDER BUTTONS MODAL
-            let odreModal = document.querySelector("#orderModal");
-
-            let orderBtns = document.querySelectorAll(".btnOrder");
-
-            let price = 0;
-            orderBtns.forEach((orderBtn) => {
-                orderBtn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    console.log(orderBtn);
-                    odreModal.style.display = "block";
-                    odreModal.classList.add("modal_open");
-                    document.body.classList.add("body_hidden");
-
-                    /// if option is chosen create option element
-                    let choosenOption = document.createElement("DIV");
-                    choosenOption.classList.add("order-options__item");
-                    choosenOption.dataset.name = orderBtn.dataset.name;
-                    choosenOption.dataset.price = orderBtn.dataset.price;
-                    choosenOption.innerHTML = ` 
-                        <span class="order-options__name">${orderBtn.dataset.name} ( ${orderBtn.dataset.option} )</span>
-                        <br>
-                       `;
-                    /// append option element to form
-                    odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
-
-                    //// calculate and show total price
-                    price += parseInt(orderBtn.dataset.price);
-                    odreModal.querySelector(".main-form__total-price").innerText = price;
-                });
-
-                let closeModalBtn = odreModal.querySelector("#modalClose");
-
-                closeModalBtn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    odreModal.classList.remove("modal_open");
-                    odreModal.classList.add("modal_close");
-                    price = 0;
-                    //remove chosen options
-                    odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
-
-                    /// REMOVE INPUT STATES
-                    let form = odreModal.querySelector(".main-form");
-                    for (const child of form.children) {
-                        !child.classList.contains("main-form__submit-group")
-                            ? (child.classList = "main-form__input-wrapper")
-                            : false; /////////// REMOVE INPUT STATES
-                    }
-                    form.reset(); /////////// RESET FORM
-
-                    setTimeout(() => {
-                        // modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
-                    }, 500);
-
-                    setTimeout(() => {
-                        odreModal.style.display = "none";
-                        odreModal.classList.remove("modal_close");
-                    }, 600);
-                });
-            });
-        });
-        window.addEventListener("resize", () => {
-            changeGridItems();
-            let odreModal = document.querySelector("#orderModal");
-
-            let orderBtns = document.querySelectorAll(".btnOrder");
-
-            let price = 0;
-            orderBtns.forEach((orderBtn) => {
-                orderBtn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    console.log(orderBtn);
-                    odreModal.style.display = "block";
-                    odreModal.classList.add("modal_open");
-                    document.body.classList.add("body_hidden");
-
-                    /// if option is chosen create option element
-                    let choosenOption = document.createElement("DIV");
-                    choosenOption.classList.add("order-options__item");
-                    choosenOption.dataset.name = orderBtn.dataset.name;
-                    choosenOption.dataset.price = orderBtn.dataset.price;
-                    choosenOption.innerHTML = ` 
-                        <span class="order-options__name">${orderBtn.dataset.name} ( ${orderBtn.dataset.option} )</span>
-                        <br>
-                       `;
-                    /// append option element to form
-                    if (
-                        odreModal.querySelector(".order-options__choosen-items").children.length < 1
-                    ) {
-                        odreModal
-                            .querySelector(".order-options__choosen-items")
-                            .append(choosenOption);
-                    }
-
-                    //// calculate and show total price
-                    price += parseInt(orderBtn.dataset.price);
-                    odreModal.querySelector(".main-form__total-price").innerText = price;
-                });
-
-                let closeModalBtn = odreModal.querySelector("#modalClose");
-
-                closeModalBtn.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    odreModal.classList.remove("modal_open");
-                    odreModal.classList.add("modal_close");
-                    price = 0;
-                    //remove chosen options
-                    odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
-
-                    /// REMOVE INPUT STATES
-                    let form = odreModal.querySelector(".main-form");
-                    for (const child of form.children) {
-                        !child.classList.contains("main-form__submit-group")
-                            ? (child.classList = "main-form__input-wrapper")
-                            : false; /////////// REMOVE INPUT STATES
-                    }
-                    form.reset(); /////////// RESET FORM
-
-                    setTimeout(() => {
-                        // modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
-                    }, 500);
-
-                    setTimeout(() => {
-                        odreModal.style.display = "none";
-                        odreModal.classList.remove("modal_close");
-                    }, 600);
-                });
-            });
-        });
     }
-}
+    document.addEventListener("DOMContentLoaded", () => {
+        changeGridItems();
+        ///////////////// MODAL STATE-MESSAGE SUCCESS/ERROR/NORMAL
+        function modalSucces(modal) {
+            modal.querySelector(".title-wrapper").innerHTML = `
+            <span  class="section-subtitle contacts-form__subtitle">СпАСИБО</span>
+            <h2  class="title section-title contacts-form__title">зА ЗАЯВКУ!</h2>
+            <span >Мы свяжемся с Вами в кратчайшие сроки</span>
+     `;
 
+            modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+            modal.querySelector(".main-form").classList.add("form-isHide");
+            modal.classList.add("modal__message");
+        }
+        function modalError(modal) {
+            modal.querySelector(".title-wrapper").innerHTML = `
+            <h2  class="title section-title contacts-form__title">Ошибка</h2>
+            <span >Не удалось отправть заявку! <br> Попробуйте позжею</span>
+       `;
+
+            modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+            modal.querySelector(".main-form").classList.add("form-isHide");
+            modal.classList.add("modal__message");
+        }
+        function modalNormal(modal) {
+            modal.querySelector(".title-wrapper").innerHTML = `
+            <h2 class="title section-title contacts-form__title">свяжитесь</h2>
+                <span class="section-subtitle contacts-form__subtitle">с нами</span>
+                <div class="decor-square decor-square_title-wrapper"></div>
+       `;
+
+            modal.querySelector(".title-wrapper").classList.remove("title-wrapper_form-succes");
+            modal.querySelector(".main-form").classList.remove("form-isHide");
+            modal.classList.remove("modal__message");
+        }
+        ////// ORDER BUTTONS MODAL
+        let odreModal = document.querySelector("#orderModal");
+
+        let orderBtns = document.querySelectorAll(".btnOrder");
+
+        let price = 0;
+        orderBtns.forEach((orderBtn) => {
+            orderBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log(orderBtn);
+                odreModal.style.display = "block";
+                odreModal.classList.add("modal_open");
+                document.body.classList.add("body_hidden");
+
+                /// if option is chosen create option element
+                let choosenOption = document.createElement("DIV");
+                choosenOption.classList.add("order-options__item");
+                choosenOption.dataset.name = orderBtn.dataset.name;
+                choosenOption.dataset.price = orderBtn.dataset.price;
+                choosenOption.innerHTML = ` 
+                        <span class="order-options__name">${orderBtn.dataset.name} ( ${orderBtn.dataset.option} )</span>
+                        <br>
+                       `;
+                /// append option element to form
+                odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
+
+                //// calculate and show total price
+                price += parseInt(orderBtn.dataset.price);
+                odreModal.querySelector(".main-form__total-price").innerText = price;
+            });
+
+            let closeModalBtn = odreModal.querySelector("#modalClose");
+
+            closeModalBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                odreModal.classList.remove("modal_open");
+                odreModal.classList.add("modal_close");
+                price = 0;
+                //remove chosen options
+                odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
+
+                /// REMOVE INPUT STATES
+                let form = odreModal.querySelector(".main-form");
+                for (const child of form.children) {
+                    !child.classList.contains("main-form__submit-group")
+                        ? (child.classList = "main-form__input-wrapper")
+                        : false; /////////// REMOVE INPUT STATES
+                }
+                form.reset(); /////////// RESET FORM
+
+                setTimeout(() => {
+                    modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+                }, 500);
+
+                setTimeout(() => {
+                    odreModal.style.display = "none";
+                    odreModal.classList.remove("modal_close");
+                }, 600);
+            });
+        });
+    });
+    window.addEventListener("resize", () => {
+        changeGridItems();
+        let odreModal = document.querySelector("#orderModal");
+
+        let orderBtns = document.querySelectorAll(".btnOrder");
+
+        let price = 0;
+        orderBtns.forEach((orderBtn) => {
+            orderBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log(orderBtn);
+                odreModal.style.display = "block";
+                odreModal.classList.add("modal_open");
+                document.body.classList.add("body_hidden");
+
+                /// if option is chosen create option element
+                let choosenOption = document.createElement("DIV");
+                choosenOption.classList.add("order-options__item");
+                choosenOption.dataset.name = orderBtn.dataset.name;
+                choosenOption.dataset.price = orderBtn.dataset.price;
+                choosenOption.innerHTML = ` 
+                        <span class="order-options__name">${orderBtn.dataset.name} ( ${orderBtn.dataset.option} )</span>
+                        <br>
+                       `;
+                /// append option element to form
+                if (odreModal.querySelector(".order-options__choosen-items").children.length < 1) {
+                    odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
+                }
+
+                //// calculate and show total price
+                price += parseInt(orderBtn.dataset.price);
+                odreModal.querySelector(".main-form__total-price").innerText = price;
+            });
+
+            let closeModalBtn = odreModal.querySelector("#modalClose");
+
+            closeModalBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                odreModal.classList.remove("modal_open");
+                odreModal.classList.add("modal_close");
+                price = 0;
+                //remove chosen options
+                odreModal.querySelector(".order-options__choosen-items").innerHTML = "";
+
+                /// REMOVE INPUT STATES
+                let form = odreModal.querySelector(".main-form");
+                for (const child of form.children) {
+                    !child.classList.contains("main-form__submit-group")
+                        ? (child.classList = "main-form__input-wrapper")
+                        : false; /////////// REMOVE INPUT STATES
+                }
+                form.reset(); /////////// RESET FORM
+
+                setTimeout(() => {
+                    modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+                }, 500);
+
+                setTimeout(() => {
+                    odreModal.style.display = "none";
+                    odreModal.classList.remove("modal_close");
+                }, 600);
+            });
+        });
+    });
+}
 //////////////  CONSTRUCTOR PAGE
 if (document.querySelector("#constructor")) {
     ////////// BUILDER
@@ -740,56 +620,6 @@ if (document.querySelector("#constructor")) {
             console.log(e.target);
             if (e.target.classList.contains("functions-card__btn")) {
                 card.parentElement.querySelector(".functions-builder__checkbox").checked = "true";
-            }
-        });
-    });
-
-    ////////// BUILDER ACCORDION WHEN SCREEN > 768px
-    // if (window.innerWidth >= 769) {
-    //     document.querySelectorAll(".functions-builder__function-link").forEach((element) => {
-    //         element.addEventListener("click", (e) => {
-    //             e.preventDefault();
-    //             let thisParent = element.parentElement.parentElement;
-    //             thisParent.classList.add("functions-builder__function_active");
-    //             document.querySelectorAll(".functions-builder__function").forEach((parent) => {
-    //                 if (parent !== thisParent) {
-    //                     parent.classList.remove("functions-builder__function_active");
-    //                 }
-    //             });
-    //         });
-    //     });
-    // }
-
-    ////////// BUILDER ACCORDION WHEN SCREEN < 768px
-
-    let optionLinks = document.querySelectorAll(".functions-builder__function-link");
-    optionLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            let optionTitle = link.parentElement.parentElement;
-            let optionCard = optionTitle.querySelector(".functions-card");
-            if (optionTitle.classList.contains("functions-builder__function_active")) {
-                console.log(optionTitle);
-                optionCard.style.height = getComputedStyle(optionCard).height;
-                optionTitle.classList.remove("functions-builder__function_active");
-                getComputedStyle(optionCard).height;
-                optionCard.style.height = "";
-            } else {
-                document.querySelectorAll(".functions-builder__function").forEach((element) => {
-                    if (element !== optionCard) {
-                        element.classList.remove("functions-builder__function_active");
-                    }
-                });
-                optionTitle.classList.add("functions-builder__function_active");
-
-                let h = getComputedStyle(optionCard).height;
-                optionCard.style.height = "0";
-                getComputedStyle(optionCard).height;
-                optionCard.style.height = h;
-
-                setTimeout(() => {
-                    optionCard.style.height = "";
-                }, 1000);
             }
         });
     });
