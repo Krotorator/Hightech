@@ -9843,7 +9843,316 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 },{}],4:[function(require,module,exports){
 "use strict";
 
-var _swiper = _interopRequireDefault(require("swiper"));
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+module.exports = function () {
+  /////////// STAGES ACCORDION
+  if (document.querySelector(".stages")) {
+    var stagesLink = _toConsumableArray(document.querySelectorAll(".stages__arrow-link"));
+
+    var stagesItems = _toConsumableArray(document.querySelectorAll(".stages__item"));
+
+    var stagesBody = _toConsumableArray(document.querySelectorAll(".stages__body"));
+
+    stagesItems.forEach(function (stagesItem) {
+      stagesItem.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (e.target.classList.contains("stages__arrow-link")) {
+          e.preventDefault();
+          var link = e.target;
+          link.classList.toggle("stages__arrow-link_isOpened");
+          var itemBody = stagesItem.querySelector(".stages__body");
+
+          if (itemBody.classList.contains("stages__body_isOpened")) {
+            itemBody.style.height = getComputedStyle(itemBody).height;
+            itemBody.classList.remove("stages__body_isOpened");
+            getComputedStyle(itemBody).height;
+            itemBody.style.height = "";
+          } else {
+            itemBody.classList.add("stages__body_isOpened");
+            var h = getComputedStyle(itemBody).height;
+            itemBody.style.height = "0";
+            getComputedStyle(itemBody).height;
+            itemBody.style.height = h;
+            setTimeout(function () {
+              itemBody.style.height = "";
+            }, 1000);
+          }
+        } else if (e.target.classList.contains("stages__arrow")) {
+          return false;
+        }
+      });
+    });
+  }
+
+  if (document.querySelector("#constructor")) {
+    ////////// BUILDER ACCORDION WHEN SCREEN < 768px
+    var optionLinks = document.querySelectorAll(".functions-builder__function-link");
+    optionLinks.forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        var optionTitle = link.parentElement.parentElement;
+        var optionCard = optionTitle.querySelector(".functions-card");
+
+        if (optionTitle.classList.contains("functions-builder__function_active")) {
+          console.log(optionTitle);
+          optionCard.style.height = getComputedStyle(optionCard).height;
+          optionTitle.classList.remove("functions-builder__function_active");
+          getComputedStyle(optionCard).height;
+          optionCard.style.height = "";
+        } else {
+          document.querySelectorAll(".functions-builder__function").forEach(function (element) {
+            if (element !== optionCard) {
+              element.classList.remove("functions-builder__function_active");
+            }
+          });
+          optionTitle.classList.add("functions-builder__function_active");
+          var h = getComputedStyle(optionCard).height;
+          optionCard.style.height = "0";
+          getComputedStyle(optionCard).height;
+          optionCard.style.height = h;
+          setTimeout(function () {
+            optionCard.style.height = "";
+          }, 1000);
+        }
+      });
+    });
+  }
+};
+
+},{}],5:[function(require,module,exports){
+"use strict";
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+module.exports = function () {
+  ///////////// services page animations
+  if (document.querySelector("#servicesPage")) {
+    var weDoDesc = new Waypoint({
+      element: document.querySelector(".weDo__desc"),
+      handler: function handler() {
+        this.element.classList.toggle("weDo__desc_animate");
+      },
+      offset: "100%"
+    });
+    var optionsIcons = document.querySelectorAll(".options__icon");
+
+    for (var i = 0; i < optionsIcons.length; i++) {
+      new Waypoint({
+        element: optionsIcons[i],
+        handler: function handler() {
+          this.element.classList.toggle("options__icon_animate");
+        },
+        offset: "100%"
+      });
+    }
+
+    var weDoIcons = document.querySelectorAll(".weDo__info-icon");
+
+    for (var i = 0; i < weDoIcons.length; i++) {
+      new Waypoint({
+        element: weDoIcons[i],
+        handler: function handler() {
+          this.element.classList.toggle("weDo__info-icon_animate");
+        },
+        offset: "100%"
+      });
+    }
+
+    var resultNumber = document.querySelectorAll(".result__number");
+
+    for (var i = 0; i < resultNumber.length; i++) {
+      new Waypoint({
+        element: resultNumber[i],
+        handler: function handler() {
+          this.element.classList.toggle("result__number_animate");
+        },
+        offset: "100%"
+      });
+    }
+  } ///// animations fot title
+
+
+  var decorSquare = document.querySelectorAll(".decor-square_title-wrapper");
+
+  for (var i = 0; i < decorSquare.length; i++) {
+    new Waypoint({
+      element: decorSquare[i],
+      handler: function handler() {
+        this.element.classList.toggle("decor-square_title-wrapper_animate");
+      },
+      offset: "100%"
+    });
+  }
+
+  var titleWrapper = document.querySelectorAll(".title-wrapper_section");
+
+  for (var i = 0; i < titleWrapper.length; i++) {
+    new Waypoint({
+      element: titleWrapper[i],
+      handler: function handler() {
+        this.element.classList.toggle("title-wrapper_section-animate");
+      },
+      offset: "120%"
+    });
+  }
+
+  if (document.querySelector("#portfolio")) {
+    console.log("portfolio");
+    var portfolioImage = document.querySelectorAll(".portfolio__img");
+
+    for (var i = 0; i < portfolioImage.length; i++) {
+      new Waypoint({
+        element: portfolioImage[i],
+        handler: function handler() {
+          this.element.classList.toggle("portfolio__img_animate");
+        },
+        offset: "100%"
+      });
+    }
+
+    var portfolioDescription = document.querySelectorAll(".portfolio__desc");
+
+    for (var i = 0; i < portfolioDescription.length; i++) {
+      new Waypoint({
+        element: portfolioDescription[i],
+        handler: function handler() {
+          this.element.classList.toggle("portfolio__desc_animate");
+        },
+        offset: "100%"
+      });
+    }
+  }
+
+  if (document.querySelector("#homePage")) {
+    console.log("homepage"); ///////////////// ANIMATIONS
+
+    var heroContent = document.querySelector(".hero__content");
+    heroContent.classList.add("hero__content_animate");
+    var whyIcons = document.querySelectorAll(".why__icon");
+
+    for (var i = 0; i < whyIcons.length; i++) {
+      new Waypoint({
+        element: whyIcons[i],
+        handler: function handler() {
+          this.element.parentElement.classList.toggle("why__card_animate");
+        },
+        offset: "100%"
+      });
+    }
+
+    var servicesCards = document.querySelectorAll(".services__card");
+
+    for (var i = 0; i < servicesCards.length; i++) {
+      new Waypoint({
+        element: servicesCards[i],
+        handler: function handler() {
+          var _this = this;
+
+          this.element.classList.add("services__card_animate");
+          setTimeout(function () {
+            _this.element.classList.remove("services__card_animate");
+          }, 1000);
+        },
+        offset: "100%"
+      });
+    }
+
+    var buttons = document.querySelectorAll(".btn");
+
+    for (var i = 0; i < buttons.length; i++) {
+      new Waypoint({
+        element: buttons[i],
+        handler: function handler() {
+          var _this2 = this;
+
+          if (this.element.classList.contains("header__btn")) {
+            return false;
+          }
+
+          this.element.classList.add("btn_animate");
+          setTimeout(function () {
+            _this2.element.classList.remove("btn_animate");
+          }, 1000);
+        },
+        offset: "110%"
+      });
+    }
+
+    var worksBtnLine = new Waypoint({
+      element: document.querySelector(".works__btn-wrapper"),
+      handler: function handler() {
+        this.element.classList.toggle("works__btn-wrapper_animate");
+      },
+      offset: "100%"
+    });
+    var sliderControls = new Waypoint({
+      element: document.querySelector(".testimonials-slider-pagination "),
+      handler: function handler() {
+        document.querySelector(".testimonials__sliders").classList.toggle("testimonials__sliders_animate");
+      },
+      offset: "100%"
+    });
+  }
+
+  if (document.querySelector(".main-form")) {
+    var form = new Waypoint({
+      element: document.querySelector(".main-form "),
+      handler: function handler() {
+        this.element.classList.toggle("main-form_animate");
+      },
+      offset: "110%"
+    });
+  }
+
+  if (document.querySelector("#constructor")) {
+    var constructorSubtitle = document.querySelector(".constructor-hero__subtitle");
+    setTimeout(function () {
+      constructorSubtitle.classList.add("constructor-hero__subtitle_animate");
+    }, 500);
+    var funcs = new Waypoint({
+      element: document.querySelector(".base-functions__list"),
+      handler: function handler() {
+        var children = _toConsumableArray(this.element.children);
+
+        var i = 0;
+        var interval = setInterval(function () {
+          children[i].classList.add("base-functions__item_animate");
+          i++;
+
+          if (i === children.length) {
+            clearInterval(interval);
+          }
+        }, 50);
+      },
+      offset: "110%"
+    });
+  }
+};
+
+},{}],6:[function(require,module,exports){
+"use strict";
 
 var _blazy = _interopRequireDefault(require("blazy"));
 
@@ -9865,110 +10174,98 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 require("waypoints/lib/noframework.waypoints.js");
 
+var animations = require("./animations.js");
+
+var accordion = require("./accordion.js");
+
+var nav = require("./nav.js");
+
+var slider = require("./slider.js");
+
 document.addEventListener("DOMContentLoaded", function () {
-  var bLazy = new _blazy.default(); /////////////////////////////SLIDER
+  var bLazy = new _blazy.default();
+  accordion();
+  animations();
+  nav();
+  slider(); ///////////////// MODAL STATE-MESSAGE SUCCESS/ERROR/NORMAL
 
-  var testimonialsSliderThumbs = new _swiper.default(".testimonials-thumbs", {
-    spaceBetween: 224,
-    slidesPerView: 2,
-    loop: true,
-    freeMode: true,
-    loopedSlides: 3,
-    //looped slides should be the same
-    watchSlidesVisibility: true,
-    watchSlidesProgress: true,
-    breakpoints: {
-      1024: {
-        spaceBetween: 360
-      }
-    }
-  });
-  var testimonialsSliderTop = new _swiper.default(".testimonials-slider", {
-    // Optional parameters
-    spaceBetween: 100,
-    loop: true,
-    centeredSlides: true,
-    grabCursor: false,
-    slidesPerView: 1,
-    loopedSlides: 3,
-    //looped slides should be the same
-    navigation: {
-      nextEl: ".testimonials-slider-button-next",
-      prevEl: ".testimonials-slider-button-prev"
-    },
-    thumbs: {
-      swiper: testimonialsSliderThumbs
-    },
-    pagination: {
-      el: ".testimonials-slider-pagination",
-      clickable: true
-    }
-  }); //////////////NAV
+  function modalSucces(modal) {
+    var thisModal = modal || document.querySelector(".modal_open");
+    thisModal.querySelector(".title-wrapper").innerHTML = "\n            <span  class=\"section-subtitle contacts-form__subtitle\">\u0421\u043F\u0410\u0421\u0418\u0411\u041E</span>\n            <h2  class=\"title section-title contacts-form__title\">\u0437\u0410 \u0417\u0410\u042F\u0412\u041A\u0423!</h2>\n            <span >\u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0441 \u0412\u0430\u043C\u0438 \u0432 \u043A\u0440\u0430\u0442\u0447\u0430\u0439\u0448\u0438\u0435 \u0441\u0440\u043E\u043A\u0438</span>\n     ";
+    thisModal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+    thisModal.querySelector(".main-form").classList.add("form-isHide");
+    thisModal.classList.add("modal__message");
+  }
 
-  var nav = document.querySelector("#nav");
-
-  var navLinks = _toConsumableArray(document.querySelectorAll(".nav__link"));
-
-  var wrapper = document.querySelector("#wrapper");
-  var burger = document.querySelector("#burger");
-
-  var closeBtn = _toConsumableArray(document.querySelectorAll(".close-btn"));
-
-  burger.addEventListener("click", function (e) {
-    e.preventDefault();
-    nav.classList.add("nav_active");
+  function createModalSucces() {
+    var thisModal = document.querySelector("#modal");
+    modal.style.display = "block";
+    modal.classList.add("modal_open");
     document.body.classList.add("body_hidden");
-  });
+    modal.querySelector(".title-wrapper").innerHTML = "\n            <span  class=\"section-subtitle contacts-form__subtitle\">\u0421\u043F\u0410\u0421\u0418\u0411\u041E</span>\n            <h2  class=\"title section-title contacts-form__title\">\u0437\u0410 \u0417\u0410\u042F\u0412\u041A\u0423!</h2>\n            <span >\u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0441 \u0412\u0430\u043C\u0438 \u0432 \u043A\u0440\u0430\u0442\u0447\u0430\u0439\u0448\u0438\u0435 \u0441\u0440\u043E\u043A\u0438</span>\n     ";
+    modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+    modal.querySelector(".main-form").classList.add("form-isHide");
+    modal.classList.add("modal__message");
+  }
 
-  for (var _i = 0; _i < closeBtn.length; _i++) {
-    var btn = closeBtn[_i];
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      nav.classList.remove("nav_active");
-      document.body.classList.remove("body_hidden");
-    });
-  } //set active nav-link
+  function modalError(modal) {
+    var thisModal = modal || document.querySelector(".modal_open");
+    thisModal.querySelector(".title-wrapper").innerHTML = "\n            <h2  class=\"title section-title contacts-form__title\">\u041E\u0448\u0438\u0431\u043A\u0430</h2>\n            <span >\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u0442\u043F\u0440\u0430\u0432\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443! <br> \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u043E\u0437\u0436\u0435\u044E</span>\n       ";
+    thisModal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+    thisModal.querySelector(".main-form").classList.add("form-isHide");
+    thisModal.classList.add("modal__message");
+  }
 
+  function createModalError() {
+    var thisModal = document.querySelector("#modal");
+    modal.style.display = "block";
+    modal.classList.add("modal_open");
+    document.body.classList.add("body_hidden");
+    thisModal.querySelector(".title-wrapper").innerHTML = "\n            <h2  class=\"title section-title contacts-form__title\">\u041E\u0448\u0438\u0431\u043A\u0430</h2>\n            <span >\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u0442\u043F\u0440\u0430\u0432\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443! <br> \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u043E\u0437\u0436\u0435\u044E</span>\n       ";
+    modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+    modal.querySelector(".main-form").classList.add("form-isHide");
+    modal.classList.add("modal__message");
+  }
 
-  navLinks.forEach(function (link) {
-    if (window.location.href === link.href) {
-      link.classList.add("nav__link_active");
-    }
-
-    link.addEventListener("click", function () {
-      var thisLink = link;
-      link.classList.add("nav__link_active");
-      navLinks.forEach(function (link) {
-        if (link !== thisLink) {
-          link.classList.remove("nav__link_active");
-        }
-      });
-    });
-  });
+  function modalNormal(modal) {
+    var thisModal = modal || document.querySelector(".modal_open");
+    thisModal.querySelector(".title-wrapper").innerHTML = "\n            <h2 class=\"title section-title contacts-form__title\">\u0441\u0432\u044F\u0436\u0438\u0442\u0435\u0441\u044C</h2>\n                <span class=\"section-subtitle contacts-form__subtitle\">\u0441 \u043D\u0430\u043C\u0438</span>\n                <div class=\"decor-square decor-square_title-wrapper\"></div>\n       ";
+    thisModal.querySelector(".title-wrapper").classList.remove("title-wrapper_form-succes");
+    thisModal.querySelector(".main-form").classList.remove("form-isHide");
+    thisModal.classList.remove("modal__message");
+  }
 
   if (document.querySelector("#modal")) {
     (function () {
       ////////////////// MODAL
+      var openModal = function openModal(modal) {
+        modal.style.display = "block";
+        modal.classList.add("modal_open");
+        document.body.classList.add("body_hidden");
+      };
+
+      var closeModal = function closeModal(modal) {
+        modal.classList.remove("modal_open");
+        modal.classList.add("modal_close");
+      };
+
       var modal = document.querySelector("#modal");
       var closeModalBtn = document.querySelector("#modalClose");
 
       var btnsForModal = _toConsumableArray(document.querySelectorAll(".btnForModal")); // open modal
 
 
-      for (var _i2 = 0; _i2 < btnsForModal.length; _i2++) {
+      for (var i = 0; i < btnsForModal.length; i++) {
         ///// SHOW MODAL ON CLICK
-        btnsForModal[_i2].addEventListener("click", function (e) {
+        btnsForModal[i].addEventListener("click", function (e) {
           e.preventDefault();
-          modal.style.display = "block";
-          modal.classList.add("modal_open");
-          document.body.classList.add("body_hidden");
+          openModal(modal);
         });
       }
 
       closeModalBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        modal.classList.remove("modal_open");
-        modal.classList.add("modal_close");
+        closeModal(modal);
         var form = modal.querySelector(".main-form");
 
         var _iterator = _createForOfIteratorHelper(form.children),
@@ -9977,7 +10274,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
           for (_iterator.s(); !(_step = _iterator.n()).done;) {
             var child = _step.value;
-            child.tagName !== "BUTTON" ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
+            child.classList.contains("main-form__input-wrapper") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
           }
         } catch (err) {
           _iterator.e(err);
@@ -9987,6 +10284,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         form.reset(); /////////// RESET FORM
 
+        document.body.classList.remove("body_hidden");
         setTimeout(function () {
           modalNormal(modal); ////// RETURN TO NORMAL MODAL STATE
         }, 500);
@@ -10064,7 +10362,8 @@ document.addEventListener("DOMContentLoaded", function () {
       closeModalBtn.addEventListener("click", function (e) {
         e.preventDefault();
         odreModal.classList.remove("modal_open");
-        odreModal.classList.add("modal_close"); //remove chosen options
+        odreModal.classList.add("modal_close");
+        document.body.classList.remove("body_hidden"); //remove chosen options
 
         odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
 
@@ -10086,7 +10385,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         form.reset(); /////////// RESET FORM
 
-        setTimeout(function () {// modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+        setTimeout(function () {
+          modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
         }, 500);
         setTimeout(function () {
           odreModal.style.display = "none";
@@ -10106,17 +10406,26 @@ document.addEventListener("DOMContentLoaded", function () {
   var submitBtns = _toConsumableArray(document.querySelectorAll(".main-form__btn")); //////////// FORM INPUTS STATES
 
 
-  var _loop = function _loop(_i3) {
-    var input = inputs[_i3];
+  function nameIsEmpty(element) {
+    return element.value == "";
+  }
+
+  function emailIsValid(element) {
+    return element.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
+  }
+
+  function phoneIsValid(element) {
+    return element.value.match(/^\d[\d\(\)\ -]{4,14}\d$/);
+  }
+
+  var _loop = function _loop(i) {
+    var input = inputs[i];
     input.addEventListener("focus", function () {
       input.parentElement.classList.add("main-form__input-wrapper_active");
+      input.parentElement.classList.remove("main-form__input-wrapper_alert");
+      input.parentElement.classList.remove("main-form__input-wrapper_succes");
     });
     input.addEventListener("blur", function () {
-      if (input.value == "") {
-        input.parentElement.classList = "main-form__input-wrapper";
-      }
-    });
-    input.addEventListener("input", function () {
       if (input.name == "userName") {
         if (!nameIsEmpty(input)) {
           input.parentElement.classList.add("main-form__input-wrapper_succes");
@@ -10133,33 +10442,85 @@ document.addEventListener("DOMContentLoaded", function () {
           input.parentElement.classList.add("main-form__input-wrapper_alert");
           input.parentElement.classList.remove("main-form__input-wrapper_succes");
         }
+      } else if (input.name == "userPhone") {
+        if (phoneIsValid(input)) {
+          input.parentElement.classList.add("main-form__input-wrapper_succes");
+          input.parentElement.classList.remove("main-form__input-wrapper_alert");
+        } else {
+          input.parentElement.classList.add("main-form__input-wrapper_alert");
+          input.parentElement.classList.remove("main-form__input-wrapper_succes");
+        }
       }
     });
   };
 
-  for (var _i3 = 0; _i3 < inputs.length; _i3++) {
-    _loop(_i3);
+  for (var i = 0; i < inputs.length; i++) {
+    _loop(i);
+  }
+
+  function ajax(method, url, data, succes, error) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.setRequestHeader("Accept", "application/json");
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+      if (xhr.status === 200) {
+        succes();
+      } else {
+        error();
+      }
+    };
+
+    xhr.send(data);
   } ////////////// FORM VALIDATE AND SUBMIT
 
 
-  var _loop2 = function _loop2(_i4) {
-    var submitBtn = submitBtns[_i4];
+  var _loop2 = function _loop2(_i) {
+    var submitBtn = submitBtns[_i];
     submitBtn.addEventListener("click", function (e) {
-      var name = submitBtn.parentElement.userName;
-      var email = submitBtn.parentElement.userMail;
-      e.preventDefault();
+      var thisForm = submitBtn.parentElement.parentElement;
+      var name = thisForm.userName;
+      var email = thisForm.userMail;
+      var phone = thisForm.userPhone;
+      var thisModal = thisForm.parentElement.parentElement.parentElement;
+      e.preventDefault(); // checking for valid inputs
 
-      if (!nameIsEmpty(name) && emailIsValid(email)) {
-        console.log("ok!"); ///////////////////////////// AJAX script here
+      if (!nameIsEmpty(name) && emailIsValid(email) && phoneIsValid(phone)) {
+        //create form data
+        var formData = new FormData(thisForm); //append form type
 
-        modalSucces(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR SUCCES MESSAGE IF SENDING SUCCES
-        // modalError(modal); //////////// CHANGE STATE/INNER HTML OF MODAL FOR ERROR MESSAGE IF SENDING FAILED
+        formData.append("\u0422\u0438\u043F \u0444\u043E\u0440\u043C\u044B", thisForm.dataset.formname); //append page href
 
-        modal.style.display = "block";
-        modal.classList.add("modal_open");
-        document.body.classList.add("body_hidden");
+        formData.append("\u0424\u043E\u0440\u043C\u0430 \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430 \u0441\u043E \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u044B", window.location.href); //checking if there are some aditional options in order
+
+        if (thisForm.firstElementChild.lastElementChild.classList.contains("order-options__choosen-items")) {
+          var chosenOptions = _toConsumableArray(thisForm.firstElementChild.lastElementChild.children); //create and fill an array of options
+
+
+          var optionsArr = [];
+          chosenOptions.forEach(function (el, ind) {
+            optionsArr.push(el.innerText);
+          }); //append aditional options to form data
+
+          formData.append("\u0412\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0435 \u043E\u043F\u0446\u0438\u0438", optionsArr); // send form
+
+          ajax(thisForm.method, "https://formspree.io/mwkrkwwg", formData, modalSucces, modalError);
+        } else {
+          //if there are no aditional options sending just form
+          //if form parent != modal we create new modal with message
+          if (thisForm.parentElement.parentElement.parentElement.id !== "modal") {
+            console.log("no modal");
+            ajax(thisForm.method, "https://formspree.io/mwkrkwwg", formData, createModalSucces, createModalError);
+          } else {
+            //if form parent === modal, append message to this modal
+            ajax(thisForm.method, "https://formspree.io/mwkrkwwg", formData, modalSucces, modalError);
+          }
+        }
+
         inputWrappers.forEach(function (el) {
-          ///////DISABLING INPUTS IF SUCCES
+          ///////DISABLING INPUTS IF SUCCESS
           el.classList = "main-form__input-wrapper";
 
           var formElements = _toConsumableArray(el.parentElement.elements);
@@ -10168,7 +10529,7 @@ document.addEventListener("DOMContentLoaded", function () {
             input.setAttribute("disabled", "disabled");
           });
         });
-        submitBtn.parentElement.reset();
+        thisForm.reset();
         submitBtn.setAttribute("disabled", "disabled");
       } else if (nameIsEmpty(name)) {
         ///// ALERT STATE OF INPUTS
@@ -10179,89 +10540,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   };
 
-  for (var _i4 = 0; _i4 < submitBtns.length; _i4++) {
-    _loop2(_i4);
-  }
-
-  function nameIsEmpty(element) {
-    return element.value == "";
-  }
-
-  function emailIsValid(element) {
-    return element.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
-  } ///////////////// MODAL MESSAGE SUCCESS/ERROR/NORMAL
-
-
-  function modalSucces(modal) {
-    modal.querySelector(".title-wrapper").innerHTML = "\n            <span  class=\"section-subtitle contacts-form__subtitle\">\u0421\u043F\u0410\u0421\u0418\u0411\u041E</span>\n            <h2  class=\"title section-title contacts-form__title\">\u0437\u0410 \u0417\u0410\u042F\u0412\u041A\u0423!</h2>\n            <span >\u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0441 \u0412\u0430\u043C\u0438 \u0432 \u043A\u0440\u0430\u0442\u0447\u0430\u0439\u0448\u0438\u0435 \u0441\u0440\u043E\u043A\u0438</span>\n     ";
-    modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
-    modal.querySelector(".main-form").classList.add("form-isHide");
-    modal.classList.add("modal__message");
-  }
-
-  function modalError(modal) {
-    modal.querySelector(".title-wrapper").innerHTML = "\n            <h2  class=\"title section-title contacts-form__title\">\u041E\u0448\u0438\u0431\u043A\u0430</h2>\n            <span >\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u0442\u043F\u0440\u0430\u0432\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443! <br> \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u043E\u0437\u0436\u0435\u044E</span>\n       ";
-    modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
-    modal.querySelector(".main-form").classList.add("form-isHide");
-    modal.classList.add("modal__message");
-  }
-
-  function modalNormal(modal) {
-    modal.querySelector(".title-wrapper").innerHTML = "\n            <h2 class=\"title section-title contacts-form__title\">\u0441\u0432\u044F\u0436\u0438\u0442\u0435\u0441\u044C</h2>\n                <span class=\"section-subtitle contacts-form__subtitle\">\u0441 \u043D\u0430\u043C\u0438</span>\n                <div class=\"decor-square decor-square_title-wrapper\"></div>\n       ";
-    modal.querySelector(".title-wrapper").classList.remove("title-wrapper_form-succes");
-    modal.querySelector(".main-form").classList.remove("form-isHide");
-    modal.classList.remove("modal__message");
-  } ///// animations fot title
-
-
-  var decorSquare = document.querySelectorAll(".decor-square_title-wrapper");
-
-  for (var i = 0; i < decorSquare.length; i++) {
-    new Waypoint({
-      element: decorSquare[i],
-      handler: function handler() {
-        this.element.classList.toggle("decor-square_title-wrapper_animate");
-      },
-      offset: "100%"
-    });
-  }
-
-  var titleWrapper = document.querySelectorAll(".title-wrapper_section");
-
-  for (var i = 0; i < titleWrapper.length; i++) {
-    new Waypoint({
-      element: titleWrapper[i],
-      handler: function handler() {
-        this.element.classList.toggle("title-wrapper_section-animate");
-      },
-      offset: "120%"
-    });
-  }
-
-  if (document.querySelector("#portfolio")) {
-    var portfolioImage = document.querySelectorAll(".portfolio__img");
-
-    for (var i = 0; i < portfolioImage.length; i++) {
-      new Waypoint({
-        element: portfolioImage[i],
-        handler: function handler() {
-          this.element.classList.toggle("portfolio__img_animate");
-        },
-        offset: "100%"
-      });
-    }
-
-    var portfolioDescription = document.querySelectorAll(".portfolio__desc");
-
-    for (var i = 0; i < portfolioDescription.length; i++) {
-      new Waypoint({
-        element: portfolioDescription[i],
-        handler: function handler() {
-          this.element.classList.toggle("portfolio__desc_animate");
-        },
-        offset: "100%"
-      });
-    }
+  for (var _i = 0; _i < submitBtns.length; _i++) {
+    _loop2(_i);
   }
 
   if (document.querySelector("#homePage")) {
@@ -10279,313 +10559,177 @@ document.addEventListener("DOMContentLoaded", function () {
     contactsChangeTitlesOnMobile();
     window.addEventListener("resize", function () {
       contactsChangeTitlesOnMobile();
-    }, false); ///////////////// ANIMATIONS
+    }, false);
+  }
+}); ///// CHANGING GRID-ITEMS IN PRICE BLOCK
 
-    var heroContent = document.querySelector(".hero__content");
-    heroContent.classList.add("hero__content_animate");
-    var whyIcons = document.querySelectorAll(".why__icon");
+if (document.querySelector("#prices")) {
+  var changeGridItems = function changeGridItems() {
+    if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
+      grid[0].innerHTML = action + busines;
+      grid[1].innerHTML = standart + top;
+    } else if (window.innerWidth <= 768) {
+      grid[0].innerHTML = action + standart;
+      grid[1].innerHTML = busines + top;
+    } else if (window.innerWidth >= 1442) {
+      grid[0].innerHTML = action + standart;
+      grid[1].innerHTML = busines + top;
+    }
+  };
 
-    for (var i = 0; i < whyIcons.length; i++) {
-      new Waypoint({
-        element: whyIcons[i],
-        handler: function handler() {
-          this.element.parentElement.classList.toggle("why__card_animate");
-        },
-        offset: "70%"
-      });
+  var grid = document.querySelector("#grid").children;
+  var action = document.querySelector("#action").outerHTML;
+  var standart = document.querySelector("#standart").outerHTML;
+  var busines = document.querySelector("#busines").outerHTML;
+  var top = document.querySelector("#top").outerHTML;
+  document.addEventListener("DOMContentLoaded", function () {
+    changeGridItems(); ///////////////// MODAL STATE-MESSAGE SUCCESS/ERROR/NORMAL
+
+    function modalSucces(modal) {
+      modal.querySelector(".title-wrapper").innerHTML = "\n            <span  class=\"section-subtitle contacts-form__subtitle\">\u0421\u043F\u0410\u0421\u0418\u0411\u041E</span>\n            <h2  class=\"title section-title contacts-form__title\">\u0437\u0410 \u0417\u0410\u042F\u0412\u041A\u0423!</h2>\n            <span >\u041C\u044B \u0441\u0432\u044F\u0436\u0435\u043C\u0441\u044F \u0441 \u0412\u0430\u043C\u0438 \u0432 \u043A\u0440\u0430\u0442\u0447\u0430\u0439\u0448\u0438\u0435 \u0441\u0440\u043E\u043A\u0438</span>\n     ";
+      modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+      modal.querySelector(".main-form").classList.add("form-isHide");
+      modal.classList.add("modal__message");
     }
 
-    var servicesCards = document.querySelectorAll(".services__card");
-
-    for (var i = 0; i < servicesCards.length; i++) {
-      new Waypoint({
-        element: servicesCards[i],
-        handler: function handler() {
-          var _this = this;
-
-          this.element.classList.add("services__card_animate");
-          setTimeout(function () {
-            _this.element.classList.remove("services__card_animate");
-          }, 1000);
-        },
-        offset: "80%"
-      });
+    function modalError(modal) {
+      modal.querySelector(".title-wrapper").innerHTML = "\n            <h2  class=\"title section-title contacts-form__title\">\u041E\u0448\u0438\u0431\u043A\u0430</h2>\n            <span >\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u0442\u043F\u0440\u0430\u0432\u0442\u044C \u0437\u0430\u044F\u0432\u043A\u0443! <br> \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u043E\u0437\u0436\u0435\u044E</span>\n       ";
+      modal.querySelector(".title-wrapper").classList.add("title-wrapper_form-succes");
+      modal.querySelector(".main-form").classList.add("form-isHide");
+      modal.classList.add("modal__message");
     }
 
-    var buttons = document.querySelectorAll(".btn");
-
-    for (var i = 0; i < buttons.length; i++) {
-      new Waypoint({
-        element: buttons[i],
-        handler: function handler() {
-          var _this2 = this;
-
-          if (this.element.classList.contains("header__btn")) {
-            return false;
-          }
-
-          this.element.classList.add("btn_animate");
-          setTimeout(function () {
-            _this2.element.classList.remove("btn_animate");
-          }, 1000);
-        },
-        offset: "110%"
-      });
-    }
-
-    var worksBtnLine = new Waypoint({
-      element: document.querySelector(".works__btn-wrapper"),
-      handler: function handler() {
-        this.element.classList.toggle("works__btn-wrapper_animate");
-      },
-      offset: "100%"
-    });
-    var form = new Waypoint({
-      element: document.querySelector(".main-form "),
-      handler: function handler() {
-        this.element.classList.toggle("main-form_animate");
-      },
-      offset: "110%"
-    });
-    var sliderControls = new Waypoint({
-      element: document.querySelector(".testimonials-slider-pagination "),
-      handler: function handler() {
-        document.querySelector(".testimonials__sliders").classList.toggle("testimonials__sliders_animate");
-      },
-      offset: "100%"
-    });
-  } /////////// STAGES ACCORDION
+    function modalNormal(modal) {
+      modal.querySelector(".title-wrapper").innerHTML = "\n            <h2 class=\"title section-title contacts-form__title\">\u0441\u0432\u044F\u0436\u0438\u0442\u0435\u0441\u044C</h2>\n                <span class=\"section-subtitle contacts-form__subtitle\">\u0441 \u043D\u0430\u043C\u0438</span>\n                <div class=\"decor-square decor-square_title-wrapper\"></div>\n       ";
+      modal.querySelector(".title-wrapper").classList.remove("title-wrapper_form-succes");
+      modal.querySelector(".main-form").classList.remove("form-isHide");
+      modal.classList.remove("modal__message");
+    } ////// ORDER BUTTONS MODAL
 
 
-  if (document.querySelector(".stages")) {
-    var stagesLink = _toConsumableArray(document.querySelectorAll(".stages__arrow-link"));
-
-    var stagesItems = _toConsumableArray(document.querySelectorAll(".stages__item"));
-
-    var stagesBody = _toConsumableArray(document.querySelectorAll(".stages__body"));
-
-    stagesItems.forEach(function (stagesItem) {
-      stagesItem.addEventListener("click", function (e) {
+    var odreModal = document.querySelector("#orderModal");
+    var orderBtns = document.querySelectorAll(".btnOrder");
+    var price = 0;
+    orderBtns.forEach(function (orderBtn) {
+      orderBtn.addEventListener("click", function (e) {
         e.preventDefault();
+        console.log(orderBtn);
+        odreModal.style.display = "block";
+        odreModal.classList.add("modal_open");
+        document.body.classList.add("body_hidden"); /// if option is chosen create option element
 
-        if (e.target.classList.contains("stages__arrow-link")) {
-          e.preventDefault();
-          var link = e.target;
-          link.classList.toggle("stages__arrow-link_isOpened");
-          var itemBody = stagesItem.querySelector(".stages__body");
+        var choosenOption = document.createElement("DIV");
+        choosenOption.classList.add("order-options__item");
+        choosenOption.dataset.name = orderBtn.dataset.name;
+        choosenOption.dataset.price = orderBtn.dataset.price;
+        choosenOption.innerHTML = " \n                        <span class=\"order-options__name\">".concat(orderBtn.dataset.name, " ( ").concat(orderBtn.dataset.option, " )</span>\n                        <br>\n                       "); /// append option element to form
 
-          if (itemBody.classList.contains("stages__body_isOpened")) {
-            itemBody.style.height = getComputedStyle(itemBody).height;
-            itemBody.classList.remove("stages__body_isOpened");
-            getComputedStyle(itemBody).height;
-            itemBody.style.height = "";
-          } else {
-            itemBody.classList.add("stages__body_isOpened");
-            var h = getComputedStyle(itemBody).height;
-            itemBody.style.height = "0";
-            getComputedStyle(itemBody).height;
-            itemBody.style.height = h;
-            setTimeout(function () {
-              itemBody.style.height = "";
-            }, 1000);
+        odreModal.querySelector(".order-options__choosen-items").append(choosenOption); //// calculate and show total price
+
+        price += parseInt(orderBtn.dataset.price);
+        odreModal.querySelector(".main-form__total-price").innerText = price;
+      });
+      var closeModalBtn = odreModal.querySelector("#modalClose");
+      closeModalBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        odreModal.classList.remove("modal_open");
+        odreModal.classList.add("modal_close");
+        price = 0; //remove chosen options
+
+        odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
+
+        var form = odreModal.querySelector(".main-form");
+
+        var _iterator3 = _createForOfIteratorHelper(form.children),
+            _step3;
+
+        try {
+          for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+            var child = _step3.value;
+            !child.classList.contains("main-form__submit-group") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
           }
-        } else if (e.target.classList.contains("stages__arrow")) {
-          return false;
+        } catch (err) {
+          _iterator3.e(err);
+        } finally {
+          _iterator3.f();
         }
+
+        form.reset(); /////////// RESET FORM
+
+        setTimeout(function () {
+          modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+        }, 500);
+        setTimeout(function () {
+          odreModal.style.display = "none";
+          odreModal.classList.remove("modal_close");
+        }, 600);
       });
     });
-  }
-}); ///////////// services page animations
-
-if (document.querySelector("#servicesPage")) {
-  var weDoDesc = new Waypoint({
-    element: document.querySelector(".weDo__desc"),
-    handler: function handler() {
-      this.element.classList.toggle("weDo__desc_animate");
-    },
-    offset: "100%"
   });
-  var optionsIcons = document.querySelectorAll(".options__icon");
+  window.addEventListener("resize", function () {
+    changeGridItems();
+    var odreModal = document.querySelector("#orderModal");
+    var orderBtns = document.querySelectorAll(".btnOrder");
+    var price = 0;
+    orderBtns.forEach(function (orderBtn) {
+      orderBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        console.log(orderBtn);
+        odreModal.style.display = "block";
+        odreModal.classList.add("modal_open");
+        document.body.classList.add("body_hidden"); /// if option is chosen create option element
 
-  for (var i = 0; i < optionsIcons.length; i++) {
-    new Waypoint({
-      element: optionsIcons[i],
-      handler: function handler() {
-        this.element.classList.toggle("options__icon_animate");
-      },
-      offset: "100%"
-    });
-  }
+        var choosenOption = document.createElement("DIV");
+        choosenOption.classList.add("order-options__item");
+        choosenOption.dataset.name = orderBtn.dataset.name;
+        choosenOption.dataset.price = orderBtn.dataset.price;
+        choosenOption.innerHTML = " \n                        <span class=\"order-options__name\">".concat(orderBtn.dataset.name, " ( ").concat(orderBtn.dataset.option, " )</span>\n                        <br>\n                       "); /// append option element to form
 
-  var weDoIcons = document.querySelectorAll(".weDo__info-icon");
-
-  for (var i = 0; i < weDoIcons.length; i++) {
-    new Waypoint({
-      element: weDoIcons[i],
-      handler: function handler() {
-        this.element.classList.toggle("weDo__info-icon_animate");
-      },
-      offset: "100%"
-    });
-  }
-
-  var resultNumber = document.querySelectorAll(".result__number");
-
-  for (var i = 0; i < resultNumber.length; i++) {
-    new Waypoint({
-      element: resultNumber[i],
-      handler: function handler() {
-        this.element.classList.toggle("result__number_animate");
-      },
-      offset: "100%"
-    });
-  } ///// CHANGING GRID-ITEMS IN PRICE BLOCK
+        if (odreModal.querySelector(".order-options__choosen-items").children.length < 1) {
+          odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
+        } //// calculate and show total price
 
 
-  if (document.querySelector("#prices")) {
-    var changeGridItems = function changeGridItems() {
-      if (window.innerWidth <= 1442 && window.innerWidth >= 768) {
-        grid[0].innerHTML = action + busines;
-        grid[1].innerHTML = standart + top;
-      } else if (window.innerWidth <= 768) {
-        grid[0].innerHTML = action + standart;
-        grid[1].innerHTML = busines + top;
-      } else if (window.innerWidth >= 1442) {
-        grid[0].innerHTML = action + standart;
-        grid[1].innerHTML = busines + top;
-      }
-    };
+        price += parseInt(orderBtn.dataset.price);
+        odreModal.querySelector(".main-form__total-price").innerText = price;
+      });
+      var closeModalBtn = odreModal.querySelector("#modalClose");
+      closeModalBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        odreModal.classList.remove("modal_open");
+        odreModal.classList.add("modal_close");
+        price = 0; //remove chosen options
 
-    var grid = document.querySelector("#grid").children;
-    var action = document.querySelector("#action").outerHTML;
-    var standart = document.querySelector("#standart").outerHTML;
-    var busines = document.querySelector("#busines").outerHTML;
-    var top = document.querySelector("#top").outerHTML;
-    document.addEventListener("DOMContentLoaded", function () {
-      changeGridItems(); ////// ORDER BUTTONS MODAL
+        odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
 
-      var odreModal = document.querySelector("#orderModal");
-      var orderBtns = document.querySelectorAll(".btnOrder");
-      var price = 0;
-      orderBtns.forEach(function (orderBtn) {
-        orderBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          console.log(orderBtn);
-          odreModal.style.display = "block";
-          odreModal.classList.add("modal_open");
-          document.body.classList.add("body_hidden"); /// if option is chosen create option element
+        var form = odreModal.querySelector(".main-form");
 
-          var choosenOption = document.createElement("DIV");
-          choosenOption.classList.add("order-options__item");
-          choosenOption.dataset.name = orderBtn.dataset.name;
-          choosenOption.dataset.price = orderBtn.dataset.price;
-          choosenOption.innerHTML = " \n                        <span class=\"order-options__name\">".concat(orderBtn.dataset.name, " ( ").concat(orderBtn.dataset.option, " )</span>\n                        <br>\n                       "); /// append option element to form
+        var _iterator4 = _createForOfIteratorHelper(form.children),
+            _step4;
 
-          odreModal.querySelector(".order-options__choosen-items").append(choosenOption); //// calculate and show total price
-
-          price += parseInt(orderBtn.dataset.price);
-          odreModal.querySelector(".main-form__total-price").innerText = price;
-        });
-        var closeModalBtn = odreModal.querySelector("#modalClose");
-        closeModalBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          odreModal.classList.remove("modal_open");
-          odreModal.classList.add("modal_close");
-          price = 0; //remove chosen options
-
-          odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
-
-          var form = odreModal.querySelector(".main-form");
-
-          var _iterator3 = _createForOfIteratorHelper(form.children),
-              _step3;
-
-          try {
-            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-              var child = _step3.value;
-              !child.classList.contains("main-form__submit-group") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
-            }
-          } catch (err) {
-            _iterator3.e(err);
-          } finally {
-            _iterator3.f();
+        try {
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var child = _step4.value;
+            !child.classList.contains("main-form__submit-group") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
           }
+        } catch (err) {
+          _iterator4.e(err);
+        } finally {
+          _iterator4.f();
+        }
 
-          form.reset(); /////////// RESET FORM
+        form.reset(); /////////// RESET FORM
 
-          setTimeout(function () {// modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
-          }, 500);
-          setTimeout(function () {
-            odreModal.style.display = "none";
-            odreModal.classList.remove("modal_close");
-          }, 600);
-        });
+        setTimeout(function () {
+          modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
+        }, 500);
+        setTimeout(function () {
+          odreModal.style.display = "none";
+          odreModal.classList.remove("modal_close");
+        }, 600);
       });
     });
-    window.addEventListener("resize", function () {
-      changeGridItems();
-      var odreModal = document.querySelector("#orderModal");
-      var orderBtns = document.querySelectorAll(".btnOrder");
-      var price = 0;
-      orderBtns.forEach(function (orderBtn) {
-        orderBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          console.log(orderBtn);
-          odreModal.style.display = "block";
-          odreModal.classList.add("modal_open");
-          document.body.classList.add("body_hidden"); /// if option is chosen create option element
-
-          var choosenOption = document.createElement("DIV");
-          choosenOption.classList.add("order-options__item");
-          choosenOption.dataset.name = orderBtn.dataset.name;
-          choosenOption.dataset.price = orderBtn.dataset.price;
-          choosenOption.innerHTML = " \n                        <span class=\"order-options__name\">".concat(orderBtn.dataset.name, " ( ").concat(orderBtn.dataset.option, " )</span>\n                        <br>\n                       "); /// append option element to form
-
-          if (odreModal.querySelector(".order-options__choosen-items").children.length < 1) {
-            odreModal.querySelector(".order-options__choosen-items").append(choosenOption);
-          } //// calculate and show total price
-
-
-          price += parseInt(orderBtn.dataset.price);
-          odreModal.querySelector(".main-form__total-price").innerText = price;
-        });
-        var closeModalBtn = odreModal.querySelector("#modalClose");
-        closeModalBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          odreModal.classList.remove("modal_open");
-          odreModal.classList.add("modal_close");
-          price = 0; //remove chosen options
-
-          odreModal.querySelector(".order-options__choosen-items").innerHTML = ""; /// REMOVE INPUT STATES
-
-          var form = odreModal.querySelector(".main-form");
-
-          var _iterator4 = _createForOfIteratorHelper(form.children),
-              _step4;
-
-          try {
-            for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-              var child = _step4.value;
-              !child.classList.contains("main-form__submit-group") ? child.classList = "main-form__input-wrapper" : false; /////////// REMOVE INPUT STATES
-            }
-          } catch (err) {
-            _iterator4.e(err);
-          } finally {
-            _iterator4.f();
-          }
-
-          form.reset(); /////////// RESET FORM
-
-          setTimeout(function () {// modalNormal(odreModal); ////// RETURN TO NORMAL MODAL STATE
-          }, 500);
-          setTimeout(function () {
-            odreModal.style.display = "none";
-            odreModal.classList.remove("modal_close");
-          }, 600);
-        });
-      });
-    });
-  }
+  });
 } //////////////  CONSTRUCTOR PAGE
 
 
@@ -10601,53 +10745,100 @@ if (document.querySelector("#constructor")) {
         card.parentElement.querySelector(".functions-builder__checkbox").checked = "true";
       }
     });
-  }); ////////// BUILDER ACCORDION WHEN SCREEN > 768px
-  // if (window.innerWidth >= 769) {
-  //     document.querySelectorAll(".functions-builder__function-link").forEach((element) => {
-  //         element.addEventListener("click", (e) => {
-  //             e.preventDefault();
-  //             let thisParent = element.parentElement.parentElement;
-  //             thisParent.classList.add("functions-builder__function_active");
-  //             document.querySelectorAll(".functions-builder__function").forEach((parent) => {
-  //                 if (parent !== thisParent) {
-  //                     parent.classList.remove("functions-builder__function_active");
-  //                 }
-  //             });
-  //         });
-  //     });
-  // }
-  ////////// BUILDER ACCORDION WHEN SCREEN < 768px
-
-  var optionLinks = document.querySelectorAll(".functions-builder__function-link");
-  optionLinks.forEach(function (link) {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      var optionTitle = link.parentElement.parentElement;
-      var optionCard = optionTitle.querySelector(".functions-card");
-
-      if (optionTitle.classList.contains("functions-builder__function_active")) {
-        console.log(optionTitle);
-        optionCard.style.height = getComputedStyle(optionCard).height;
-        optionTitle.classList.remove("functions-builder__function_active");
-        getComputedStyle(optionCard).height;
-        optionCard.style.height = "";
-      } else {
-        document.querySelectorAll(".functions-builder__function").forEach(function (element) {
-          if (element !== optionCard) {
-            element.classList.remove("functions-builder__function_active");
-          }
-        });
-        optionTitle.classList.add("functions-builder__function_active");
-        var h = getComputedStyle(optionCard).height;
-        optionCard.style.height = "0";
-        getComputedStyle(optionCard).height;
-        optionCard.style.height = h;
-        setTimeout(function () {
-          optionCard.style.height = "";
-        }, 1000);
-      }
-    });
   });
 }
 
-},{"blazy":1,"swiper":2,"waypoints/lib/noframework.waypoints.js":3}]},{},[4]);
+},{"./accordion.js":4,"./animations.js":5,"./nav.js":7,"./slider.js":8,"blazy":1,"waypoints/lib/noframework.waypoints.js":3}],7:[function(require,module,exports){
+"use strict";
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+module.exports = function () {
+  //////////////NAV
+  if (document.querySelector("#nav")) {
+    (function () {
+      var nav = document.querySelector("#nav");
+      var wrapper = document.querySelector("#wrapper");
+      var burger = document.querySelector("#burger");
+
+      var closeBtn = _toConsumableArray(document.querySelectorAll(".close-btn")); //open nav
+
+
+      burger.addEventListener("click", function (e) {
+        e.preventDefault();
+        nav.classList.add("nav_active");
+        document.body.classList.add("body_hidden");
+      }); //close nav
+
+      for (var i = 0; i < closeBtn.length; i++) {
+        var btn = closeBtn[i];
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          nav.classList.remove("nav_active");
+          document.body.classList.remove("body_hidden");
+        });
+      }
+    })();
+  }
+};
+
+},{}],8:[function(require,module,exports){
+"use strict";
+
+var _swiper = _interopRequireDefault(require("swiper"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = function () {
+  if (document.querySelector("#sliders")) {} /////////////////////////////SLIDER
+
+
+  var testimonialsSliderThumbs = new _swiper.default(".testimonials-thumbs", {
+    spaceBetween: 224,
+    slidesPerView: 2,
+    loop: true,
+    freeMode: true,
+    loopedSlides: 3,
+    //looped slides should be the same
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
+    breakpoints: {
+      1024: {
+        spaceBetween: 360
+      }
+    }
+  });
+  var testimonialsSliderTop = new _swiper.default(".testimonials-slider", {
+    // Optional parameters
+    spaceBetween: 100,
+    loop: true,
+    centeredSlides: true,
+    grabCursor: false,
+    slidesPerView: 1,
+    loopedSlides: 3,
+    //looped slides should be the same
+    navigation: {
+      nextEl: ".testimonials-slider-button-next",
+      prevEl: ".testimonials-slider-button-prev"
+    },
+    thumbs: {
+      swiper: testimonialsSliderThumbs
+    },
+    pagination: {
+      el: ".testimonials-slider-pagination",
+      clickable: true
+    }
+  });
+};
+
+},{"swiper":2}]},{},[6]);
